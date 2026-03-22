@@ -8,6 +8,10 @@
       <input type="text" name="title" required>
       <label>Excerpt</label>
       <textarea name="excerpt" rows="3" required></textarea>
+      <label>Slug (e.g. ethical-data-practice)</label>
+      <input type="text" name="slug">
+      <label>Content</label>
+      <textarea name="content" rows="5"></textarea>
       <label>URL</label>
       <input type="text" name="url">
       <label>Tags (comma-separated)</label>
@@ -26,6 +30,7 @@
           <th>ID</th>
           <th>Title</th>
           <th>Excerpt</th>
+          <th>Slug</th>
           <th>Tags</th>
           <th>Actions</th>
         </tr>
@@ -36,6 +41,7 @@
           <td>{{ post.id }}</td>
           <td>{{ post.title }}</td>
           <td>{{ post.excerpt }}</td>
+          <td>{{ post.slug }}</td>
           <td>{{ post.tags | join(", ") }}</td>
           <td>
             <form action="/admin/posts/delete" method="post" style="display:inline;">
@@ -52,6 +58,10 @@
               <input type="text" name="title" value="{{ post.title }}" required>
               <label>Excerpt</label>
               <textarea name="excerpt" rows="2" required>{{ post.excerpt }}</textarea>
+              <label>Slug</label>
+              <input type="text" name="slug" value="{{ post.slug }}">
+              <label>Content</label>
+              <textarea name="content" rows="4">{{ post.content }}</textarea>
               <label>URL</label>
               <input type="text" name="url" value="{{ post.url }}">
               <label>Tags (comma-separated)</label>
