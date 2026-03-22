@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://data-science-portfolio-pmzw.onrender.com/api/$1" },
+    { "source": "/post/(.*)", "destination": "https://data-science-portfolio-pmzw.onrender.com/post/$1" },
+    { "source": "/admin/(.*)", "destination": "https://data-science-portfolio-pmzw.onrender.com/admin/$1" }
+  ]
+}

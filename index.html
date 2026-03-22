@@ -302,22 +302,29 @@
       border-color: rgba(255, 255, 255, 0.12);
     }
 
-    .card-img-top {
+    .project-media {
+      position: relative;
+      width: 100%;
+      height: 200px;
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
-      height: 200px;
+      overflow: hidden;
+      border-bottom: 2px solid rgba(20, 20, 20, 0.08);
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     .project-icon {
-      width: 100%;
-      height: 200px;
+      position: absolute;
+      inset: 0;
       display: grid;
       place-items: center;
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
       background: linear-gradient(135deg, rgba(239, 123, 45, 0.15) 0%, rgba(31, 111, 92, 0.2) 100%);
-      border-bottom: 2px solid rgba(20, 20, 20, 0.08);
       color: var(--accent-2);
       font-size: 2.6rem;
     }
@@ -682,8 +689,11 @@
 <template id="project-card-template">
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card h-100">
-      <div class="project-icon">
-        <i class="project-icon-i fa-solid fa-briefcase" aria-hidden="true"></i>
+      <div class="project-media">
+        <img class="project-image" alt="">
+        <div class="project-icon">
+          <i class="project-icon-i fa-solid fa-briefcase" aria-hidden="true"></i>
+        </div>
       </div>
       <div class="card-body d-flex flex-column">
         <h5 class="card-title project-title"></h5>
@@ -900,7 +910,7 @@
   <!-- Bootstrap JS (optional, for interactive components later) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const API_BASE = "";
+    const API_BASE = "/api";
     const I18N = {
       en: {
         nav_home: "Home",
@@ -1123,7 +1133,20 @@
         data.forEach((project) => {
           const node = tpl.content.cloneNode(true);
           const icon = node.querySelector(".project-icon-i");
+          const img = node.querySelector(".project-image");
           icon.className = `project-icon-i ${project.icon_class || "fa-solid fa-briefcase"}`;
+          if (project.image) {
+            img.src = project.image;
+            img.alt = project.title;
+            img.onload = () => {
+              img.style.opacity = "1";
+            };
+            img.onerror = () => {
+              img.src = "";
+            };
+          } else {
+            img.src = "";
+          }
           node.querySelector(".project-title").textContent = project.title;
           node.querySelector(".project-description").textContent = project.description;
           const tags = node.querySelector(".project-tags");
