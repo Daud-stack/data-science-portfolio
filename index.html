@@ -96,6 +96,19 @@
       object-fit: cover;
     }
 
+    .project-icon {
+      width: 100%;
+      height: 200px;
+      display: grid;
+      place-items: center;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      background: linear-gradient(135deg, #f4e9df 0%, #e6efe9 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      color: var(--accent-2);
+      font-size: 2.4rem;
+    }
+
     .pill {
       background: #eef3ef;
       color: #2f4f4f;
@@ -183,6 +196,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -322,7 +336,9 @@
 <template id="project-card-template">
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card h-100">
-      <img class="card-img-top project-image" alt="">
+      <div class="project-icon">
+        <i class="project-icon-i fa-solid fa-briefcase" aria-hidden="true"></i>
+      </div>
       <div class="card-body d-flex flex-column">
         <h5 class="card-title project-title"></h5>
         <p class="card-text project-description"></p>
@@ -480,7 +496,7 @@
             </div>
             <div class="col-md-6">
               <p class="small mb-1 text-uppercase">LinkedIn</p>
-              <p class="mb-0">linkedin.com/in/yourprofile</p>
+              <p class="mb-0">linkedin.com/in/daud-sibanda</p>
             </div>
             <div class="col-md-6">
               <p class="small mb-1 text-uppercase">GitHub</p>
@@ -522,7 +538,7 @@
     <p class="mb-1">&copy; 2025 Daud Sibanda. All rights reserved.</p>
     <div class="d-flex justify-content-center gap-3">
       <a href="https://github.com/yourusername" target="_blank" class="text-white text-decoration-none">GitHub</a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white text-decoration-none">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/daud-sibanda" target="_blank" class="text-white text-decoration-none">LinkedIn</a>
       <a href="mailto:your@email.com" class="text-white text-decoration-none">Email Me</a>
     </div>
   </div>
@@ -568,9 +584,8 @@
         grid.innerHTML = "";
         data.forEach((project) => {
           const node = tpl.content.cloneNode(true);
-          const img = node.querySelector(".project-image");
-          img.src = project.image || "Images/Projects/1.jpg";
-          img.alt = project.title;
+          const icon = node.querySelector(".project-icon-i");
+          icon.className = `project-icon-i ${project.icon_class || "fa-solid fa-briefcase"}`;
           node.querySelector(".project-title").textContent = project.title;
           node.querySelector(".project-description").textContent = project.description;
           const tags = node.querySelector(".project-tags");

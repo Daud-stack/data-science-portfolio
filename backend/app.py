@@ -65,6 +65,7 @@ def init_db():
       title TEXT NOT NULL,
       description TEXT NOT NULL,
       image TEXT,
+      icon_class TEXT,
       tags TEXT,
       case_study_url TEXT,
       source_url TEXT,
@@ -72,6 +73,10 @@ def init_db():
     )
     """
   )
+  try:
+    cur.execute("ALTER TABLE projects ADD COLUMN icon_class TEXT")
+  except sqlite3.OperationalError:
+    pass
   cur.execute(
     """
     CREATE TABLE IF NOT EXISTS posts (
@@ -121,37 +126,40 @@ def seed_data():
   if projects_count == 0:
     sample_projects = [
       (
-        "Customer Churn Intelligence",
-        "Built a churn prediction pipeline and executive dashboard to prioritize retention actions.",
-        "Images/Projects/1.jpg",
-        json.dumps(["Python", "XGBoost", "Power BI"]),
+        "Personal Productivity App",
+        "A focused task and habit tracker designed to help users plan, execute, and reflect on daily goals.",
         "",
+        "fa-solid fa-list-check",
+        json.dumps(["Productivity", "UX", "Planning"]),
         "",
+        "https://github.com/Daud-stack/Personal-productivity-app.git",
         datetime.utcnow().isoformat(),
       ),
       (
-        "Supply Chain KPI Console",
-        "Designed a KPI suite to track OTIF, lead times, and cost variance for operations leaders.",
-        "Images/Projects/2.jpg",
-        json.dumps(["SQL", "Tableau", "ETL"]),
+        "MDH MIS Platform",
+        "A management information system concept to centralize reporting, tracking, and operational visibility.",
         "",
+        "fa-solid fa-chart-line",
+        json.dumps(["MIS", "Reporting", "Operations"]),
         "",
+        "https://github.com/Daud-stack/mdh-mis-platform.git",
         datetime.utcnow().isoformat(),
       ),
       (
-        "Quality Audit Automation",
-        "Automated audit scheduling and corrective action tracking for ISO 9001 readiness.",
-        "Images/Projects/3.jpg",
-        json.dumps(["Excel", "Power Automate", "QA"]),
+        "MedMarket Starter",
+        "A starter template for a healthcare marketplace experience with scalable data foundations.",
         "",
+        "fa-solid fa-briefcase-medical",
+        json.dumps(["Healthcare", "Marketplace", "Data"]),
         "",
+        "https://github.com/Daud-stack/medmarket-starter.git",
         datetime.utcnow().isoformat(),
       ),
     ]
     cur.executemany(
       """
-      INSERT INTO projects (title, description, image, tags, case_study_url, source_url, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       """,
       sample_projects,
     )
@@ -193,6 +201,7 @@ def row_to_project(row):
     "title": row["title"],
     "description": row["description"],
     "image": row["image"],
+    "icon_class": row["icon_class"],
     "tags": json.loads(row["tags"] or "[]"),
     "case_study_url": row["case_study_url"],
     "source_url": row["source_url"],
@@ -383,6 +392,7 @@ def admin_projects_create(
   title: str = Form(...),
   description: str = Form(...),
   image: str = Form(""),
+  icon_class: str = Form(""),
   tags: str = Form(""),
   case_study_url: str = Form(""),
   source_url: str = Form(""),
@@ -393,13 +403,14 @@ def admin_projects_create(
   tag_list = [t.strip() for t in tags.split(",") if t.strip()]
   cur.execute(
     """
-    INSERT INTO projects (title, description, image, tags, case_study_url, source_url, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """,
     (
       title,
       description,
       image,
+      icon_class,
       json.dumps(tag_list),
       case_study_url,
       source_url,
@@ -418,6 +429,7 @@ def admin_projects_update(
   title: str = Form(...),
   description: str = Form(...),
   image: str = Form(""),
+  icon_class: str = Form(""),
   tags: str = Form(""),
   case_study_url: str = Form(""),
   source_url: str = Form(""),
@@ -429,13 +441,14 @@ def admin_projects_update(
   cur.execute(
     """
     UPDATE projects
-    SET title = ?, description = ?, image = ?, tags = ?, case_study_url = ?, source_url = ?
+    SET title = ?, description = ?, image = ?, icon_class = ?, tags = ?, case_study_url = ?, source_url = ?
     WHERE id = ?
     """,
     (
       title,
       description,
       image,
+      icon_class,
       json.dumps(tag_list),
       case_study_url,
       source_url,

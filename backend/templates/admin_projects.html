@@ -10,6 +10,8 @@
       <textarea name="description" rows="3" required></textarea>
       <label>Image Path (relative, e.g. Images/Projects/1.jpg)</label>
       <input type="text" name="image">
+      <label>Icon Class (Font Awesome, e.g. fa-solid fa-list-check)</label>
+      <input type="text" name="icon_class">
       <label>Tags (comma-separated)</label>
       <input type="text" name="tags">
       <label>Case Study URL</label>
@@ -29,6 +31,7 @@
           <th>Title</th>
           <th>Description</th>
           <th>Tags</th>
+          <th>Icon</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -39,6 +42,7 @@
           <td>{{ project.title }}</td>
           <td>{{ project.description }}</td>
           <td>{{ project.tags | join(", ") }}</td>
+          <td>{{ project.icon_class }}</td>
           <td>
             <form action="/admin/projects/delete" method="post" style="display:inline;">
               <input type="hidden" name="project_id" value="{{ project.id }}">
@@ -56,6 +60,8 @@
               <textarea name="description" rows="2" required>{{ project.description }}</textarea>
               <label>Image Path</label>
               <input type="text" name="image" value="{{ project.image }}">
+              <label>Icon Class</label>
+              <input type="text" name="icon_class" value="{{ project.icon_class }}">
               <label>Tags (comma-separated)</label>
               <input type="text" name="tags" value="{{ project.tags | join(', ') }}">
               <label>Case Study URL</label>
