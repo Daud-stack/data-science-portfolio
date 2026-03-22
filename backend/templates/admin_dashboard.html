@@ -1,0 +1,23 @@
+{% extends "admin_base.html" %}
+{% block content %}
+  <h1>Dashboard</h1>
+  <p class="muted">Quick overview of content and activity.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>{{ projects_count }}</h3>
+      <p class="muted">Projects</p>
+    </div>
+    <div class="card">
+      <h3>{{ posts_count }}</h3>
+      <p class="muted">Posts</p>
+    </div>
+    <div class="card">
+      <h3>{{ contacts_count }}</h3>
+      <p class="muted">Contact Messages</p>
+    </div>
+    <div class="card">
+      <h3>{{ analytics_count }}</h3>
+      <p class="muted">Analytics Events</p>
+    </div>
+  </div>
+{% endblock %}

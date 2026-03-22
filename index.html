@@ -4,23 +4,191 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daud Sibanda Portfolio</title>
-  <!-- Bootstrap CSS CDN -->
+  <!-- Bootstrap CSS CDN (kept for grid + utilities) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f6f2ee;
+      --ink: #1f1f1f;
+      --muted: #5a5a5a;
+      --accent: #d07a4f;
+      --accent-2: #2f4f4f;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: radial-gradient(1200px 600px at 10% -10%, #f0e5db 0%, transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, #e6efe9 0%, transparent 55%),
+                  var(--bg);
+      color: var(--ink);
+      font-family: "Playfair Display", "Georgia", serif;
+    }
+
+    p, li, .btn, .nav-link, .tag, .small, .lead, .card-text {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    }
+
+    .navbar {
+      backdrop-filter: blur(8px);
+      background: rgba(18, 18, 18, 0.9);
+    }
+
+    .hero {
+      padding: 140px 0 100px;
+    }
+
+    .hero-card {
+      background: linear-gradient(140deg, #ffffff 0%, #f8f2ec 100%);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px;
+    }
+
     .profile-img {
-      width: 180px;
-      height: 180px;
+      width: 190px;
+      height: 190px;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid #dee2e6;
+      border: 6px solid #f6efe7;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .section-title {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent-2);
+    }
+
+    .big-title {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fff3ea;
+      color: #7a3e24;
+      border: 1px solid #f2d7c6;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .card {
+      border: 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card-img-top {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .pill {
+      background: #eef3ef;
+      color: #2f4f4f;
+      border: 1px solid #d8e3dd;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline {
+      border-left: 3px solid #e4d7cc;
+      padding-left: 22px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 18px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -34px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .contact-card {
+      background: #1d1d1d;
+      color: #f2f2f2;
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .btn-outline-ink {
+      border: 1px solid #1f1f1f;
+      color: #1f1f1f;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: transparent;
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .fade-delay-1 { animation-delay: 0.1s; }
+    .fade-delay-2 { animation-delay: 0.2s; }
+    .fade-delay-3 { animation-delay: 0.3s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 120px 0 70px; }
+      .hero-card { padding: 26px; }
+      .card-img-top { height: 180px; }
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Daud Sibanda</a>
+    <a class="navbar-brand fw-bold" href="#">Daud Sibanda</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,7 +197,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link active" href="#home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#about">About</a>
@@ -38,7 +206,7 @@
           <a class="nav-link" href="#projects">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#capabilities">Capabilities</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#contact">Contact</a>
@@ -48,70 +216,185 @@
   </div>
 </nav>
 
-  <!-- About Section -->
-  <section class="py-5 bg-white text-center">
+  <!-- Hero -->
+  <section id="home" class="hero">
     <div class="container">
-      <h2 class="display-4 mb-4">About</h2>
-      <div class="d-flex justify-content-center mb-4">
-        <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\data-science-portfolio\Images\About\IMG-20250617-WA0003.jpg" alt="Profile" class="profile-img">
-      </div>
-      <div class="mx-auto" style="max-width: 700px;">
-        <p><strong>🎯 Daud Sibanda: Data-Driven Strategist with a Quality-Centric Mindset</strong></p>
-        <p>
-          I’m a detail-oriented data scientist and ISO 9001 systems implementer with a strong foundation in internal auditing and continuous improvement. I bring clarity to complexity — whether analyzing datasets to surface insights, building clean and modern data-driven dashboards, or streamlining quality management systems for real-world impact.
-        </p>
-        <p>
-          With a keen eye for structure and compliance, I ensure that both digital and operational systems are efficient, scalable, and aligned with international standards. My approach blends analytical precision with a commitment to excellence, making me a valuable asset in data-centric and quality-focused environments alike.
-        </p>
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 fade-up">
+          <span class="tag mb-3">Data Science • Quality Systems • Analytics</span>
+          <h1 class="big-title mb-3">Human‑centered data science for clearer decisions.</h1>
+          <p class="lead text-muted mb-4">
+            I’m Daud Sibanda—an aspiring data scientist and entrepreneur-in-progress. I focus on continuous
+            learning, structured analysis, and ethical, people-aware solutions that create measurable value.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#projects" class="btn btn-accent">View Projects</a>
+            <a href="#contact" class="btn btn-outline-ink">Let’s Collaborate</a>
+          </div>
+        </div>
+        <div class="col-lg-6 fade-up fade-delay-1">
+          <div class="hero-card">
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+              <img src="Images/About/IMG-20250617-WA0003.jpg" alt="Daud Sibanda" class="profile-img">
+              <div>
+                <h2 class="h3 mb-2">Daud Sibanda</h2>
+                <p class="mb-2 text-muted">Data Scientist • Quality Systems Implementer</p>
+                <div class="d-flex gap-2 flex-wrap">
+                  <span class="pill">ISO 9001</span>
+                  <span class="pill">Internal Audits</span>
+                  <span class="pill">Dashboards</span>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <div class="row g-3">
+              <div class="col-4">
+                <div class="stat">
+                  <div class="h4 mb-0">10+</div>
+                  <div class="small text-muted">Projects</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="stat">
+                  <div class="h4 mb-0">5+</div>
+                  <div class="small text-muted">Dashboards</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="stat">
+                  <div class="h4 mb-0">3+</div>
+                  <div class="small text-muted">Audits Led</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 fade-up">
+          <p class="section-title mb-2">About</p>
+          <h2 class="mb-3">Growth‑minded, detail‑driven, and committed to impact.</h2>
+          <p class="text-muted">
+            I’m building my foundation through continuous learning and hands‑on projects—focused on uncovering
+            patterns, connecting the dots, and translating complexity into insight.
+          </p>
+          <p class="text-muted">
+            Long term, I aim to build a data‑driven business grounded in ethical practice, social impact, and
+            responsible innovation.
+          </p>
+        </div>
+        <div class="col-lg-6 fade-up fade-delay-1">
+          <div class="timeline">
+            <div class="timeline-item">
+              <h5 class="mb-1">2025 — Present</h5>
+              <p class="text-muted mb-0">Analytics projects for process improvement and executive reporting.</p>
+            </div>
+            <div class="timeline-item">
+              <h5 class="mb-1">2024 — 2025</h5>
+              <p class="text-muted mb-0">ISO 9001 systems implementation and internal auditing leadership.</p>
+            </div>
+            <div class="timeline-item">
+              <h5 class="mb-1">2023 — 2024</h5>
+              <p class="text-muted mb-0">Data visualization and BI dashboards for operations teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!-- Projects Section -->
-<section class="py-5 bg-light text-center">
+<section id="projects" class="py-5">
   <div class="container">
-    <h2 class="mb-5 display-5">Projects</h2>
+    <p class="section-title text-center mb-2">Projects</p>
+    <h2 class="mb-5 display-5 text-center">Focused work with measurable impact</h2>
+
+    <div id="projects-grid" class="row justify-content-center g-4"></div>
+  </div>
+</section>
+
+<template id="project-card-template">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card h-100">
+      <img class="card-img-top project-image" alt="">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title project-title"></h5>
+        <p class="card-text project-description"></p>
+        <div class="d-flex gap-2 flex-wrap mb-3 project-tags"></div>
+        <div class="mt-auto project-links"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Capabilities Section -->
+<section id="capabilities" class="py-5">
+  <div class="container">
+    <p class="section-title text-center mb-2">Capabilities</p>
+    <h2 class="mb-5 display-5 text-center">What I deliver</h2>
 
     <div class="row justify-content-center g-4">
-      <!-- Project 1 -->
-      <div class="col-12 col-md-6 col-lg-4">
+      <!-- Capability 1 -->
+      <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\data-science-portfolio\Images\Projects\1.jpg" class="card-img-top" alt="Project 1">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Project 1</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            <div class="mt-auto">
-              <a href="#" class="btn btn-primary btn-sm me-2">Blog Post</a>
-              <a href="#" class="btn btn-outline-secondary btn-sm">Source Code</a>
+          <img src="Images/Skills/1.png" class="card-img-top mx-auto mt-3" alt="Python" style="width: 60px; height: 60px; object-fit: contain;">
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="card-title">Data Engineering</h5>
+            <p class="card-text">Clean pipelines, reproducible workflows, and automated reporting for leaders.</p>
+            <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
+              <span class="pill">Python</span>
+              <span class="pill">SQL</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Project 2 -->
-      <div class="col-12 col-md-6 col-lg-4">
+      <!-- Capability 2 -->
+      <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\data-science-portfolio\Images\Projects\2.jpg" class="card-img-top" alt="Project 2">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Project 2</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            <div class="mt-auto">
-              <a href="#" class="btn btn-primary btn-sm me-2">Blog Post</a>
-              <a href="#" class="btn btn-outline-secondary btn-sm">Source Code</a>
+          <img src="Images/Skills/2.png" class="card-img-top mx-auto mt-3" alt="Data Visualization" style="width: 60px; height: 60px; object-fit: contain;">
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="card-title">Decision Dashboards</h5>
+            <p class="card-text">Performance dashboards built for executives, supervisors, and operations teams.</p>
+            <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
+              <span class="pill">Power BI</span>
+              <span class="pill">Tableau</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Project 3 -->
-      <div class="col-12 col-md-6 col-lg-4">
+      <!-- Capability 3 -->
+      <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\data-science-portfolio\Images\Projects\3.jpg" class="card-img-top" alt="Project 3">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Project 3</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-            <div class="mt-auto">
-              <a href="#" class="btn btn-primary btn-sm me-2">Blog Post</a>
-              <a href="#" class="btn btn-outline-secondary btn-sm">Source Code</a>
+          <img src="Images/Skills/3.png" class="card-img-top mx-auto mt-3" alt="SQL" style="width: 60px; height: 60px; object-fit: contain;">
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="card-title">Predictive Analytics</h5>
+            <p class="card-text">Forecasting, classification, and evaluation that translate into action.</p>
+            <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
+              <span class="pill">Modeling</span>
+              <span class="pill">Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capability 4 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100">
+          <img src="Images/Skills/4.png" class="card-img-top mx-auto mt-3" alt="Data Storytelling" style="width: 60px; height: 60px; object-fit: contain;">
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="card-title">Quality Systems</h5>
+            <p class="card-text">ISO 9001 documentation, audit readiness, and continuous improvement.</p>
+            <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
+              <span class="pill">ISO 9001</span>
+              <span class="pill">Audits</span>
             </div>
           </div>
         </div>
@@ -119,92 +402,120 @@
     </div>
   </div>
 </section>
-</section> <!-- End of Projects Section -->
-<!-- Skills Section -->
-<section class="py-5 bg-white text-center">
+
+<!-- Services Section -->
+<section class="py-5">
   <div class="container">
-    <h2 class="mb-5 display-5">Skills</h2>
-
-    <div class="row justify-content-center g-4">
-      <!-- Skill 1 -->
-      <div class="col-12 col-md-6 col-lg-3">
+    <p class="section-title text-center mb-2">Services</p>
+    <h2 class="mb-5 display-5 text-center">Ways I can help</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\Images\Skills\1.png" class="card-img-top mx-auto mt-3" alt="Python" style="width: 60px; height: 60px; object-fit: contain;">
-          <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Python</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <a href="#" class="mt-auto btn btn-link">Link to course or bootcamp</a>
+          <div class="card-body">
+            <h5 class="card-title">Analytics & KPI Strategy</h5>
+            <p class="card-text text-muted">Define KPIs, build data models, and deliver weekly decision reports.</p>
           </div>
         </div>
       </div>
-
-      <!-- Skill 2 -->
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\Images\Skills\2.png" class="card-img-top mx-auto mt-3" alt="Data Visualization" style="width: 60px; height: 60px; object-fit: contain;">
-          <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Data Visualization</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <a href="#" class="mt-auto btn btn-link">Link to course or bootcamp</a>
+          <div class="card-body">
+            <h5 class="card-title">Dashboard Build</h5>
+            <p class="card-text text-muted">Design and deploy dashboards for sales, operations, and quality teams.</p>
           </div>
         </div>
       </div>
-
-      <!-- Skill 3 -->
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\Images\Skills\3.png" class="card-img-top mx-auto mt-3" alt="SQL" style="width: 60px; height: 60px; object-fit: contain;">
-          <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">SQL</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <a href="#" class="mt-auto btn btn-link">Link to course or bootcamp</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Skill 4 -->
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card h-100">
-          <img src="C:\Users\HomePC\Desktop\Data Science\Data Science Portfolio\Images\Skills\4.png" class="card-img-top mx-auto mt-3" alt="Data Storytelling" style="width: 60px; height: 60px; object-fit: contain;">
-          <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Data Storytelling</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <a href="#" class="mt-auto btn btn-link">Link to course or bootcamp</a>
+          <div class="card-body">
+            <h5 class="card-title">Quality Systems Support</h5>
+            <p class="card-text text-muted">Documentation, internal audit prep, and ISO 9001 alignment.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Blog Section -->
+<section id="blog" class="py-5">
+  <div class="container">
+    <p class="section-title text-center mb-2">Writing</p>
+    <h2 class="mb-5 display-5 text-center">Notes, reflections, and case studies</h2>
+    <div id="posts-grid" class="row justify-content-center g-4"></div>
+  </div>
+</section>
+
+<template id="post-card-template">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column">
+        <p class="small text-uppercase text-muted mb-2 post-date"></p>
+        <h5 class="card-title post-title"></h5>
+        <p class="card-text post-excerpt"></p>
+        <div class="d-flex gap-2 flex-wrap mb-3 post-tags"></div>
+        <div class="mt-auto post-links"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <!-- Contact Section -->
-<section class="py-5 bg-light text-center">
+<section id="contact" class="py-5">
   <div class="container">
-    <h2 class="mb-4 display-5">Contact</h2>
-    <p class="mb-4">Interested in working together or have a question? Send me a message below and I'll get back to you soon!</p>
-
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-8 col-lg-6">
-        <form>
-          <div class="mb-3 text-start">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Your full name">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7">
+        <p class="section-title mb-2">Contact</p>
+        <h2 class="mb-3">Let’s build something dependable.</h2>
+        <p class="text-muted mb-4">Share your goals and I’ll respond with a clear plan, timeline, and next steps.</p>
+        <div class="contact-card">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <p class="small mb-1 text-uppercase">Email</p>
+              <p class="mb-0">your@email.com</p>
+            </div>
+            <div class="col-md-6">
+              <p class="small mb-1 text-uppercase">Location</p>
+              <p class="mb-0">Harare, Zimbabwe</p>
+            </div>
+            <div class="col-md-6">
+              <p class="small mb-1 text-uppercase">LinkedIn</p>
+              <p class="mb-0">linkedin.com/in/yourprofile</p>
+            </div>
+            <div class="col-md-6">
+              <p class="small mb-1 text-uppercase">GitHub</p>
+              <p class="mb-0">github.com/yourusername</p>
+            </div>
           </div>
-          <div class="mb-3 text-start">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Quick Message</h5>
+            <form id="contact-form">
+              <div class="mb-3 text-start">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+              </div>
+              <div class="mb-3 text-start">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+              </div>
+              <div class="mb-3 text-start">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-accent w-100" data-track="contact-submit">Send Message</button>
+            </form>
+            <div id="contact-status" class="small text-muted mt-3"></div>
           </div>
-          <div class="mb-3 text-start">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" rows="5" placeholder="Write your message here..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Send Message</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-  <!-- Future Sections (Projects, Skills, etc.) go below -->
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-4">
   <div class="container">
@@ -219,5 +530,140 @@
 
   <!-- Bootstrap JS (optional, for interactive components later) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const API_BASE = "";
+
+    function createTag(text) {
+      const span = document.createElement("span");
+      span.className = "pill";
+      span.textContent = text;
+      return span;
+    }
+
+    function createLink(href, label, isPrimary = false) {
+      const link = document.createElement("a");
+      link.href = href || "#";
+      link.target = href ? "_blank" : "_self";
+      link.rel = "noopener";
+      link.className = isPrimary ? "btn btn-accent btn-sm me-2" : "btn btn-outline-secondary btn-sm";
+      link.textContent = label;
+      if (!href) {
+        link.classList.add("disabled");
+        link.setAttribute("aria-disabled", "true");
+      }
+      if (label) {
+        link.dataset.track = `link-${label.toLowerCase().replace(/\s+/g, "-")}`;
+      }
+      return link;
+    }
+
+    async function loadProjects() {
+      const grid = document.getElementById("projects-grid");
+      const tpl = document.getElementById("project-card-template");
+      if (!grid || !tpl) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/projects`);
+        const data = await res.json();
+        grid.innerHTML = "";
+        data.forEach((project) => {
+          const node = tpl.content.cloneNode(true);
+          const img = node.querySelector(".project-image");
+          img.src = project.image || "Images/Projects/1.jpg";
+          img.alt = project.title;
+          node.querySelector(".project-title").textContent = project.title;
+          node.querySelector(".project-description").textContent = project.description;
+          const tags = node.querySelector(".project-tags");
+          (project.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
+          const links = node.querySelector(".project-links");
+          links.appendChild(createLink(project.case_study_url, "Case Study", true));
+          links.appendChild(createLink(project.source_url, "Source Code", false));
+          grid.appendChild(node);
+        });
+      } catch (err) {
+        grid.innerHTML = "<p class='text-muted text-center'>Projects will appear here soon.</p>";
+      }
+    }
+
+    async function loadPosts() {
+      const grid = document.getElementById("posts-grid");
+      const tpl = document.getElementById("post-card-template");
+      if (!grid || !tpl) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/posts`);
+        const data = await res.json();
+        grid.innerHTML = "";
+        data.forEach((post) => {
+          const node = tpl.content.cloneNode(true);
+          node.querySelector(".post-date").textContent = post.published_at || "Draft";
+          node.querySelector(".post-title").textContent = post.title;
+          node.querySelector(".post-excerpt").textContent = post.excerpt;
+          const tags = node.querySelector(".post-tags");
+          (post.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
+          const links = node.querySelector(".post-links");
+          links.appendChild(createLink(post.url, "Read More", true));
+          grid.appendChild(node);
+        });
+      } catch (err) {
+        grid.innerHTML = "<p class='text-muted text-center'>Posts will appear here soon.</p>";
+      }
+    }
+
+    async function submitContact(form) {
+      const status = document.getElementById("contact-status");
+      status.textContent = "Sending...";
+      const payload = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        status.textContent = data.message || "Thanks for reaching out!";
+        form.reset();
+      } catch (err) {
+        status.textContent = "Unable to send right now. Please try again later.";
+      }
+    }
+
+    async function trackEvent(eventName, meta = {}) {
+      try {
+        await fetch(`${API_BASE}/api/track`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event_name: eventName,
+            path: window.location.pathname,
+            meta: meta
+          }),
+          keepalive: true
+        });
+      } catch (err) {
+        // Best effort only.
+      }
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target.closest("[data-track]");
+      if (!target) return;
+      trackEvent(target.dataset.track, { text: target.textContent.trim() });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProjects();
+      loadPosts();
+      trackEvent("pageview");
+      const form = document.getElementById("contact-form");
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          submitContact(form);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,8 @@
+*.log
+*.err
+.server.log
+.server.err
+.backend.log
+.backend.err
+backend/data/
+__pycache__/
