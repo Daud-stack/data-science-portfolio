@@ -1126,7 +1126,7 @@
       if (!grid || !tpl) return;
 
       try {
-        const res = await fetch(`${API_BASE}/api/projects`);
+        const res = await fetch(`${API_BASE}/projects`);
         if (!res.ok) throw new Error("Failed to load projects");
         const data = await res.json();
         grid.innerHTML = "";
@@ -1166,7 +1166,7 @@
       if (!grid || !tpl) return;
 
       try {
-        const res = await fetch(`${API_BASE}/api/posts`);
+        const res = await fetch(`${API_BASE}/posts`);
         if (!res.ok) throw new Error("Failed to load posts");
         const data = await res.json();
         grid.innerHTML = "";
@@ -1194,7 +1194,7 @@
       const payload = Object.fromEntries(new FormData(form).entries());
 
       try {
-        const res = await fetch(`${API_BASE}/api/contact`, {
+        const res = await fetch(`${API_BASE}/contact`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
@@ -1212,7 +1212,7 @@
 
     async function trackEvent(eventName, meta = {}) {
       try {
-        await fetch(`${API_BASE}/api/track`, {
+        await fetch(`${API_BASE}/track`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
