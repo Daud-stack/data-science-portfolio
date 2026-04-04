@@ -333,66 +333,60 @@
       border-color: rgba(255, 255, 255, 0.12);
     }
 
-    .project-media {
-      position: relative;
-      width: 100%;
-      height: 156px;
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
-      overflow: hidden;
-      border-bottom: 2px solid rgba(20, 20, 20, 0.08);
-    }
-
-    .project-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-
-    .project-icon {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(239, 123, 45, 0.15) 0%, rgba(31, 111, 92, 0.2) 100%);
-      color: var(--accent-2);
-      font-size: 2.6rem;
-      transition: opacity 0.25s ease;
-    }
-
-    .project-media.has-image .project-icon {
-      opacity: 0;
-      pointer-events: none;
-    }
-
     .project-card {
-      max-width: 320px;
+      max-width: 280px;
       margin: 0 auto;
     }
 
     .project-card .card-body {
-      padding: 0.9rem 0.9rem 1rem;
+      padding: 1rem 0.95rem 1rem;
+      text-align: center;
+    }
+
+    .project-thumb {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .project-icon-badge {
+      width: 60px;
+      height: 60px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      margin: 0.75rem auto 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(239, 123, 45, 0.15) 0%, rgba(31, 111, 92, 0.2) 100%);
+      color: var(--accent-2);
+      font-size: 1.65rem;
+    }
+
+    .project-card.no-image .project-icon-badge {
+      display: flex;
+    }
+
+    .project-card.no-image .project-thumb {
+      display: none;
     }
 
     .project-title {
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       line-height: 1.3;
-      min-height: 2.45rem;
-      margin-bottom: 0.45rem;
+      min-height: 2.35rem;
+      margin-bottom: 0.4rem;
     }
 
     .project-description {
-      font-size: 0.89rem;
+      font-size: 0.87rem;
       line-height: 1.45;
-      min-height: 3.9rem;
+      min-height: 3.8rem;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.6rem;
     }
 
     .project-tags {
@@ -400,10 +394,12 @@
       min-height: 2rem;
       align-content: flex-start;
       margin-bottom: 0.7rem !important;
+      justify-content: center;
     }
 
     .project-links {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 0.45rem;
     }
@@ -652,9 +648,6 @@
       .project-card {
         max-width: 100%;
       }
-      .project-media {
-        height: 148px;
-      }
       .project-title,
       .project-description,
       .project-tags {
@@ -841,13 +834,11 @@
 <template id="project-card-template">
   <div class="col-12 col-md-6 col-lg-4 d-flex">
     <div class="card h-100 project-card">
-      <div class="project-media">
-        <img class="project-image" alt="">
-        <div class="project-icon">
-          <i class="project-icon-i fa-solid fa-briefcase" aria-hidden="true"></i>
-        </div>
+      <img class="project-thumb mx-auto mt-3 project-image" alt="">
+      <div class="project-icon-badge">
+        <i class="project-icon-i fa-solid fa-briefcase" aria-hidden="true"></i>
       </div>
-      <div class="card-body d-flex flex-column">
+      <div class="card-body d-flex flex-column text-center">
         <h5 class="card-title project-title"></h5>
         <p class="card-text project-description"></p>
         <div class="d-flex gap-2 flex-wrap mb-3 project-tags"></div>
@@ -1284,7 +1275,7 @@
         grid.innerHTML = "";
         data.forEach((project) => {
           const node = tpl.content.cloneNode(true);
-          const media = node.querySelector(".project-media");
+          const card = node.querySelector(".project-card");
           const icon = node.querySelector(".project-icon-i");
           const img = node.querySelector(".project-image");
           icon.className = `project-icon-i ${project.icon_class || "fa-solid fa-briefcase"}`;
@@ -1292,16 +1283,15 @@
             img.src = project.image;
             img.alt = project.title;
             img.onload = () => {
-              img.style.opacity = "1";
-              media.classList.add("has-image");
+              card.classList.remove("no-image");
             };
             img.onerror = () => {
               img.src = "";
-              media.classList.remove("has-image");
+              card.classList.add("no-image");
             };
           } else {
             img.src = "";
-            media.classList.remove("has-image");
+            card.classList.add("no-image");
           }
           node.querySelector(".project-title").textContent = project.title;
           node.querySelector(".project-description").textContent = project.description;
