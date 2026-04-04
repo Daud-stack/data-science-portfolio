@@ -336,7 +336,7 @@
     .project-media {
       position: relative;
       width: 100%;
-      height: 200px;
+      height: 180px;
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
       overflow: hidden;
@@ -358,6 +358,48 @@
       background: linear-gradient(135deg, rgba(239, 123, 45, 0.15) 0%, rgba(31, 111, 92, 0.2) 100%);
       color: var(--accent-2);
       font-size: 2.6rem;
+    }
+
+    .project-card {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .project-card .card-body {
+      padding: 1.15rem 1.15rem 1.25rem;
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      line-height: 1.3;
+      min-height: 2.7rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      min-height: 4.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+    }
+
+    .project-tags {
+      min-height: 2.4rem;
+      align-content: flex-start;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .project-links .btn {
+      margin-right: 0 !important;
     }
 
     .studio-strip {
@@ -595,6 +637,17 @@
       .hero { padding: 120px 0 70px; }
       .hero-card { padding: 26px; transform: none; }
       .card-img-top { height: 180px; }
+      .project-card {
+        max-width: 100%;
+      }
+      .project-media {
+        height: 170px;
+      }
+      .project-title,
+      .project-description,
+      .project-tags {
+        min-height: 0;
+      }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -775,7 +828,7 @@
 
 <template id="project-card-template">
   <div class="col-12 col-md-6 col-lg-4">
-    <div class="card h-100">
+    <div class="card h-100 project-card">
       <div class="project-media">
         <img class="project-image" alt="">
         <div class="project-icon">
