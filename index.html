@@ -263,13 +263,70 @@
     }
 
     .profile-img {
-      width: 190px;
-      height: 190px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 22px;
-      border: 4px solid rgba(20, 20, 20, 0.08);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-      transform: rotate(1.6deg);
+      border-radius: 26px;
+      display: block;
+    }
+
+    .profile-frame {
+      width: 220px;
+      flex: 0 0 220px;
+      padding: 10px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(244, 233, 255, 0.8));
+      border: 1px solid rgba(20, 20, 20, 0.08);
+      box-shadow: 0 20px 36px rgba(20, 20, 20, 0.14);
+      transform: rotate(2deg);
+    }
+
+    .profile-caption {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 0.8rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: #6b5848;
+    }
+
+    .profile-copy {
+      flex: 1 1 240px;
+    }
+
+    .profile-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31, 111, 92, 0.1);
+      color: #1f4a3f;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+    }
+
+    .profile-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(239, 123, 45, 0.14);
+    }
+
+    .profile-summary {
+      max-width: 360px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.55;
+      margin: 0.85rem 0 0;
     }
 
     .hero-badges {
@@ -303,6 +360,21 @@
     [data-theme="dark"] .hero-badge {
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(15, 15, 15, 0.5);
+    }
+
+    [data-theme="dark"] .profile-frame {
+      background: linear-gradient(145deg, rgba(34, 34, 34, 0.95), rgba(24, 24, 24, 0.88));
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="dark"] .profile-caption {
+      background: rgba(24, 24, 24, 0.72);
+      color: #d8c7bb;
+    }
+
+    [data-theme="dark"] .profile-kicker {
+      background: rgba(124, 232, 198, 0.12);
+      color: #baf4e1;
     }
 
     [data-theme="dark"] .hero-note {
@@ -733,6 +805,12 @@
         inset: 16px 12px 16px;
         border-radius: 28px;
       }
+      .profile-frame {
+        width: 100%;
+        max-width: 240px;
+        flex-basis: auto;
+        transform: none;
+      }
       .card-img-top { height: 180px; }
       .project-card {
         max-width: 100%;
@@ -832,8 +910,12 @@
           <div class="hero-card">
             <div class="studio-stamp">Studio</div>
             <div class="d-flex align-items-center gap-4 flex-wrap">
-              <img src="Images/About/IMG-20250617-WA0003.jpg" alt="Daud Sibanda" class="profile-img">
-              <div>
+              <div class="profile-frame">
+                <img src="Images/About/IMG-20250617-WA0003.jpg" alt="Daud Sibanda" class="profile-img">
+                <div class="profile-caption">Daud Sibanda Studio</div>
+              </div>
+              <div class="profile-copy">
+                <div class="profile-kicker">Profile</div>
                 <h2 class="h3 mb-2">Daud Sibanda</h2>
                 <p class="mb-2 text-muted">Data Scientist • Quality Systems Implementer</p>
                 <div class="d-flex gap-2 flex-wrap">
@@ -841,6 +923,7 @@
                   <span class="pill">Internal Audits</span>
                   <span class="pill">Dashboards</span>
                 </div>
+                <p class="profile-summary">Blending analytical thinking, quality discipline, and practical system design to turn complex workflows into clear decisions and reliable tools.</p>
               </div>
             </div>
             <hr class="my-4">
