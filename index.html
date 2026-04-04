@@ -144,6 +144,7 @@
     .hero {
       padding: 150px 0 110px;
       position: relative;
+      overflow: hidden;
     }
 
     .hero::before {
@@ -159,8 +160,32 @@
       pointer-events: none;
     }
 
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 28px 4% 24px;
+      border-radius: 36px;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.16) 100%),
+        radial-gradient(circle at top left, rgba(239, 123, 45, 0.22) 0%, transparent 34%),
+        radial-gradient(circle at bottom right, rgba(31, 111, 92, 0.2) 0%, transparent 38%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      z-index: -1;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
     [data-theme="dark"] .hero::before {
       color: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="dark"] .hero::after {
+      background:
+        linear-gradient(140deg, rgba(24, 24, 24, 0.75) 0%, rgba(16, 16, 16, 0.62) 100%),
+        radial-gradient(circle at top left, rgba(255, 145, 77, 0.12) 0%, transparent 34%),
+        radial-gradient(circle at bottom right, rgba(124, 232, 198, 0.12) 0%, transparent 38%);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
     .hero-card {
@@ -171,6 +196,45 @@
       padding: 36px;
       transform: rotate(-0.4deg);
       position: relative;
+    }
+
+    .studio-panel {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(20, 20, 20, 0.08);
+      box-shadow: 0 10px 24px rgba(20, 20, 20, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .studio-panel strong {
+      display: block;
+      font-size: 0.82rem;
+      letter-spacing: 0.14rem;
+      text-transform: uppercase;
+    }
+
+    .studio-panel span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    [data-theme="dark"] .studio-panel {
+      background: rgba(18, 18, 18, 0.68);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .studio-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(239, 123, 45, 0.12);
+      flex: 0 0 auto;
     }
 
     .studio-stamp {
@@ -213,6 +277,7 @@
       gap: 10px;
       flex-wrap: wrap;
       margin-top: 18px;
+      margin-bottom: 22px;
     }
 
     .hero-badge {
@@ -224,9 +289,24 @@
       font-size: 0.85rem;
     }
 
+    .hero-note {
+      max-width: 520px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 18px 18px 0;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--muted);
+      font-size: 0.95rem;
+      box-shadow: 0 10px 24px rgba(20, 20, 20, 0.06);
+    }
+
     [data-theme="dark"] .hero-badge {
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(15, 15, 15, 0.5);
+    }
+
+    [data-theme="dark"] .hero-note {
+      background: rgba(18, 18, 18, 0.58);
     }
 
     .section-title {
@@ -412,11 +492,13 @@
 
     .studio-strip {
       overflow: hidden;
-      border-top: 2px solid rgba(20, 20, 20, 0.08);
-      border-bottom: 2px solid rgba(20, 20, 20, 0.08);
-      background: rgba(255, 255, 255, 0.6);
+      border-top: 1px solid rgba(20, 20, 20, 0.08);
+      border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+      background:
+        linear-gradient(90deg, rgba(239, 123, 45, 0.08), rgba(31, 111, 92, 0.08)),
+        rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(6px);
-      padding: 10px 0;
+      padding: 12px 0;
     }
 
     .section-tilt {
@@ -429,17 +511,20 @@
 
     [data-theme="dark"] .studio-strip {
       border-color: rgba(255, 255, 255, 0.12);
-      background: rgba(20, 20, 20, 0.6);
+      background:
+        linear-gradient(90deg, rgba(255, 145, 77, 0.08), rgba(124, 232, 198, 0.08)),
+        rgba(20, 20, 20, 0.6);
     }
 
     .studio-marquee {
       display: flex;
-      gap: 30px;
+      gap: 36px;
       white-space: nowrap;
       animation: marquee 18s linear infinite;
-      font-weight: 600;
-      letter-spacing: 0.18rem;
+      font-weight: 700;
+      letter-spacing: 0.22rem;
       text-transform: uppercase;
+      color: var(--ink);
     }
 
     @keyframes marquee {
@@ -457,16 +542,16 @@
 
     .orb {
       position: absolute;
-      width: 120px;
-      height: 120px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(239, 123, 45, 0.35) 0%, transparent 70%);
       filter: blur(4px);
       animation: float 6s ease-in-out infinite;
     }
 
-    .orb.orb-1 { top: 30px; left: 6%; }
-    .orb.orb-2 { bottom: 20px; right: 8%; animation-delay: 1.5s; }
+    .orb.orb-1 { top: 46px; left: 4%; }
+    .orb.orb-2 { bottom: 38px; right: 6%; animation-delay: 1.5s; }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -644,6 +729,10 @@
     @media (max-width: 768px) {
       .hero { padding: 120px 0 70px; }
       .hero-card { padding: 26px; transform: none; }
+      .hero::after {
+        inset: 16px 12px 16px;
+        border-radius: 28px;
+      }
       .card-img-top { height: 180px; }
       .project-card {
         max-width: 100%;
@@ -710,6 +799,13 @@
     <div class="container">
       <div class="row g-5 align-items-center">
         <div class="col-lg-6 fade-up">
+          <div class="studio-panel">
+            <span class="studio-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Studio Practice</strong>
+              <span>Analytics, quality systems, and thoughtful execution.</span>
+            </div>
+          </div>
           <span class="tag mb-3" data-i18n="hero_tag">Data Science • Quality Systems • Analytics</span>
           <svg class="scribble" viewBox="0 0 120 18" aria-hidden="true">
             <path d="M4 10 C18 2, 34 16, 52 8 C70 0, 86 16, 116 6" />
@@ -727,6 +823,9 @@
           <div class="d-flex gap-3 flex-wrap">
             <a href="#projects" class="btn btn-accent" data-i18n="hero_cta_projects">View Projects</a>
             <a href="#contact" class="btn btn-outline-ink" data-i18n="hero_cta_contact">Let’s Collaborate</a>
+          </div>
+          <div class="hero-note mt-4">
+            Studio thinking for practical problems: dashboards, reporting systems, and operational tools that feel calm, clear, and useful from day one.
           </div>
         </div>
         <div class="col-lg-6 fade-up fade-delay-1">
