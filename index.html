@@ -353,22 +353,22 @@
     .project-icon-badge {
       width: 60px;
       height: 60px;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0.75rem auto 0;
+      margin: 0.55rem auto 0;
       border-radius: 18px;
       background: linear-gradient(135deg, rgba(239, 123, 45, 0.15) 0%, rgba(31, 111, 92, 0.2) 100%);
       color: var(--accent-2);
       font-size: 1.65rem;
     }
 
-    .project-card.no-image .project-icon-badge {
-      display: flex;
-    }
-
     .project-card.no-image .project-thumb {
       display: none;
+    }
+
+    .project-card.no-image .project-icon-badge {
+      margin-top: 1rem;
     }
 
     .project-title {
