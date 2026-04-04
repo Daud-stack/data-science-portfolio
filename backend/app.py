@@ -142,41 +142,51 @@ def init_db():
 def seed_data():
   with get_db() as conn:
     cur = conn.cursor()
+    sample_projects = [
+      (
+        "Personal Productivity App",
+        "A focused task and habit tracker designed to help users plan, execute, and reflect on daily goals.",
+        "Images/Projects/personal-productivity.svg",
+        "fa-solid fa-list-check",
+        json.dumps(["Productivity", "UX", "Planning"]),
+        "https://personal-productivity-app-3ml0.onrender.com",
+        "https://github.com/Daud-stack/Personal-productivity-app.git",
+        datetime.utcnow().isoformat(),
+      ),
+      (
+        "MDH MIS Platform",
+        "A management information system concept to centralize reporting, tracking, and operational visibility.",
+        "Images/Projects/mdh-mis.svg",
+        "fa-solid fa-chart-line",
+        json.dumps(["MIS", "Reporting", "Operations"]),
+        "https://mdh-mis-platform.vercel.app/",
+        "https://github.com/Daud-stack/mdh-mis-platform.git",
+        datetime.utcnow().isoformat(),
+      ),
+      (
+        "MedMarket Starter",
+        "A starter template for a healthcare marketplace experience with scalable data foundations.",
+        "Images/Projects/medmarket.svg",
+        "fa-solid fa-briefcase-medical",
+        json.dumps(["Healthcare", "Marketplace", "Data"]),
+        "https://medmarket-starter.onrender.com",
+        "https://github.com/Daud-stack/medmarket-starter.git",
+        datetime.utcnow().isoformat(),
+      ),
+      (
+        "OpsHub Intranet",
+        "A healthcare operations intranet with secure staff sign-in, centralized access, and a polished admin-first experience.",
+        "Images/Projects/opshub.svg",
+        "fa-solid fa-hospital-user",
+        json.dumps(["Healthcare", "Intranet", "Operations"]),
+        "https://mdh-intranet.onrender.com",
+        "",
+        datetime.utcnow().isoformat(),
+      ),
+    ]
     cur.execute("SELECT COUNT(*) FROM projects")
     projects_count = cur.fetchone()[0]
     if projects_count == 0:
-      sample_projects = [
-        (
-          "Personal Productivity App",
-          "A focused task and habit tracker designed to help users plan, execute, and reflect on daily goals.",
-          "Images/Projects/personal-productivity.svg",
-          "fa-solid fa-list-check",
-          json.dumps(["Productivity", "UX", "Planning"]),
-          "https://personal-productivity-app-3ml0.onrender.com",
-          "https://github.com/Daud-stack/Personal-productivity-app.git",
-          datetime.utcnow().isoformat(),
-        ),
-        (
-          "MDH MIS Platform",
-          "A management information system concept to centralize reporting, tracking, and operational visibility.",
-          "Images/Projects/mdh-mis.svg",
-          "fa-solid fa-chart-line",
-          json.dumps(["MIS", "Reporting", "Operations"]),
-          "https://mdh-mis-platform.vercel.app/",
-          "https://github.com/Daud-stack/mdh-mis-platform.git",
-          datetime.utcnow().isoformat(),
-        ),
-        (
-          "MedMarket Starter",
-          "A starter template for a healthcare marketplace experience with scalable data foundations.",
-          "Images/Projects/medmarket.svg",
-          "fa-solid fa-briefcase-medical",
-          json.dumps(["Healthcare", "Marketplace", "Data"]),
-          "https://medmarket-starter.onrender.com",
-          "https://github.com/Daud-stack/medmarket-starter.git",
-          datetime.utcnow().isoformat(),
-        ),
-      ]
       cur.executemany(
         """
         INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
@@ -184,6 +194,16 @@ def seed_data():
         """,
         sample_projects,
       )
+    else:
+      cur.execute("SELECT 1 FROM projects WHERE case_study_url = ?", ("https://mdh-intranet.onrender.com",))
+      if cur.fetchone() is None:
+        cur.execute(
+          """
+          INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          """,
+          sample_projects[-1],
+        )
     cur.execute("SELECT COUNT(*) FROM posts")
     posts_count = cur.fetchone()[0]
     if posts_count == 0:
