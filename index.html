@@ -828,13 +828,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous">
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to content</a>
+<a href="#main-content" class="skip-link" data-i18n="skip_link">Skip to content</a>
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">Daud Sibanda</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-i18n-aria-label="nav_toggle">
       <span class="navbar-toggler-icon"></span>
     </button>
     
@@ -856,13 +856,13 @@
           <a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a>
         </li>
       </ul>
-      <select id="lang-toggle" class="form-select form-select-sm lang-select ms-lg-3 mt-3 mt-lg-0" aria-label="Language">
+      <select id="lang-toggle" class="form-select form-select-sm lang-select ms-lg-3 mt-3 mt-lg-0" aria-label="Language" data-i18n-aria-label="language_label">
         <option value="en">English</option>
         <option value="fr">Français</option>
         <option value="sn">Shona</option>
         <option value="nd">Ndebele</option>
       </select>
-      <button id="theme-toggle" class="btn btn-outline-light btn-sm ms-lg-3 mt-3 mt-lg-0" type="button" aria-label="Toggle theme">
+      <button id="theme-toggle" class="btn btn-outline-light btn-sm ms-lg-3 mt-3 mt-lg-0" type="button" aria-label="Toggle theme" data-i18n-aria-label="theme_toggle_label">
         Theme
       </button>
     </div>
@@ -880,8 +880,8 @@
           <div class="studio-panel">
             <span class="studio-dot" aria-hidden="true"></span>
             <div>
-              <strong>Studio Practice</strong>
-              <span>Analytics, quality systems, and thoughtful execution.</span>
+              <strong data-i18n="studio_panel_title">Studio Practice</strong>
+              <span data-i18n="studio_panel_body">Analytics, quality systems, and thoughtful execution.</span>
             </div>
           </div>
           <span class="tag mb-3" data-i18n="hero_tag">Data Science • Quality Systems • Analytics</span>
@@ -894,36 +894,36 @@
             learning, structured analysis, and ethical, people-aware solutions that create measurable value.
           </p>
           <div class="hero-badges">
-            <span class="hero-badge">Studio‑style analytics</span>
-            <span class="hero-badge">Ethics‑first</span>
-            <span class="hero-badge">Global ready</span>
+            <span class="hero-badge" data-i18n="hero_badge_1">Studio‑style analytics</span>
+            <span class="hero-badge" data-i18n="hero_badge_2">Ethics‑first</span>
+            <span class="hero-badge" data-i18n="hero_badge_3">Global ready</span>
           </div>
           <div class="d-flex gap-3 flex-wrap">
             <a href="#projects" class="btn btn-accent" data-i18n="hero_cta_projects">View Projects</a>
             <a href="#contact" class="btn btn-outline-ink" data-i18n="hero_cta_contact">Let’s Collaborate</a>
           </div>
           <div class="hero-note mt-4">
-            Studio thinking for practical problems: dashboards, reporting systems, and operational tools that feel calm, clear, and useful from day one.
+            <span data-i18n="hero_note">Studio thinking for practical problems: dashboards, reporting systems, and operational tools that feel calm, clear, and useful from day one.</span>
           </div>
         </div>
         <div class="col-lg-6 fade-up fade-delay-1">
           <div class="hero-card">
-            <div class="studio-stamp">Studio</div>
+            <div class="studio-stamp" data-i18n="studio_stamp">Studio</div>
             <div class="d-flex align-items-center gap-4 flex-wrap">
               <div class="profile-frame">
-                <img src="Images/About/IMG-20250617-WA0003.jpg" alt="Daud Sibanda" class="profile-img">
-                <div class="profile-caption">Daud Sibanda Studio</div>
+                <img src="Images/About/IMG-20250617-WA0003.jpg" alt="Daud Sibanda" class="profile-img" data-i18n-alt="profile_image_alt">
+                <div class="profile-caption" data-i18n="profile_caption">Daud Sibanda Studio</div>
               </div>
               <div class="profile-copy">
-                <div class="profile-kicker">Profile</div>
+                <div class="profile-kicker" data-i18n="profile_kicker">Profile</div>
                 <h2 class="h3 mb-2">Daud Sibanda</h2>
-                <p class="mb-2 text-muted">Data Scientist • Quality Systems Implementer</p>
+                <p class="mb-2 text-muted" data-i18n="profile_role">Data Scientist • Quality Systems Implementer</p>
                 <div class="d-flex gap-2 flex-wrap">
                   <span class="pill">ISO 9001</span>
-                  <span class="pill">Internal Audits</span>
-                  <span class="pill">Dashboards</span>
+                  <span class="pill" data-i18n="profile_pill_2">Internal Audits</span>
+                  <span class="pill" data-i18n="profile_pill_3">Dashboards</span>
                 </div>
-                <p class="profile-summary">Blending analytical thinking, quality discipline, and practical system design to turn complex workflows into clear decisions and reliable tools.</p>
+                <p class="profile-summary" data-i18n="profile_summary">Blending analytical thinking, quality discipline, and practical system design to turn complex workflows into clear decisions and reliable tools.</p>
               </div>
             </div>
             <hr class="my-4">
@@ -931,19 +931,19 @@
               <div class="col-4">
                 <div class="stat">
                   <div class="h4 mb-0">10+</div>
-                  <div class="small text-muted">Projects</div>
+                  <div class="small text-muted" data-i18n="stat_projects">Projects</div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="stat">
                   <div class="h4 mb-0">5+</div>
-                  <div class="small text-muted">Dashboards</div>
+                  <div class="small text-muted" data-i18n="stat_dashboards">Dashboards</div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="stat">
                   <div class="h4 mb-0">3+</div>
-                  <div class="small text-muted">Audits Led</div>
+                  <div class="small text-muted" data-i18n="stat_audits">Audits Led</div>
                 </div>
               </div>
             </div>
@@ -955,9 +955,9 @@
 
   <section class="studio-strip">
     <div class="studio-marquee">
-      <span>Creative studio • Analytics • Systems • Quality • Storytelling •</span>
-      <span>Creative studio • Analytics • Systems • Quality • Storytelling •</span>
-      <span>Creative studio • Analytics • Systems • Quality • Storytelling •</span>
+      <span data-i18n="marquee_text">Creative studio • Analytics • Systems • Quality • Storytelling •</span>
+      <span data-i18n="marquee_text">Creative studio • Analytics • Systems • Quality • Storytelling •</span>
+      <span data-i18n="marquee_text">Creative studio • Analytics • Systems • Quality • Storytelling •</span>
     </div>
   </section>
 
@@ -989,15 +989,15 @@
           <div class="timeline">
             <div class="timeline-item">
               <h5 class="mb-1">2025 — Present</h5>
-              <p class="text-muted mb-0">Analytics projects for process improvement and executive reporting.</p>
+              <p class="text-muted mb-0" data-i18n="timeline_1_body">Analytics projects for process improvement and executive reporting.</p>
             </div>
             <div class="timeline-item">
               <h5 class="mb-1">2024 — 2025</h5>
-              <p class="text-muted mb-0">ISO 9001 systems implementation and internal auditing leadership.</p>
+              <p class="text-muted mb-0" data-i18n="timeline_2_body">ISO 9001 systems implementation and internal auditing leadership.</p>
             </div>
             <div class="timeline-item">
               <h5 class="mb-1">2023 — 2024</h5>
-              <p class="text-muted mb-0">Data visualization and BI dashboards for operations teams.</p>
+              <p class="text-muted mb-0" data-i18n="timeline_3_body">Data visualization and BI dashboards for operations teams.</p>
             </div>
           </div>
         </div>
@@ -1048,8 +1048,8 @@
         <div class="card h-100">
           <img src="Images/Skills/1.png" class="card-img-top mx-auto mt-3" alt="Python" style="width: 60px; height: 60px; object-fit: contain;">
           <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Data Engineering</h5>
-            <p class="card-text">Clean pipelines, reproducible workflows, and automated reporting for leaders.</p>
+            <h5 class="card-title" data-i18n="capability_1_title">Data Engineering</h5>
+            <p class="card-text" data-i18n="capability_1_body">Clean pipelines, reproducible workflows, and automated reporting for leaders.</p>
             <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
               <span class="pill">Python</span>
               <span class="pill">SQL</span>
@@ -1063,8 +1063,8 @@
         <div class="card h-100">
           <img src="Images/Skills/2.png" class="card-img-top mx-auto mt-3" alt="Data Visualization" style="width: 60px; height: 60px; object-fit: contain;">
           <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Decision Dashboards</h5>
-            <p class="card-text">Performance dashboards built for executives, supervisors, and operations teams.</p>
+            <h5 class="card-title" data-i18n="capability_2_title">Decision Dashboards</h5>
+            <p class="card-text" data-i18n="capability_2_body">Performance dashboards built for executives, supervisors, and operations teams.</p>
             <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
               <span class="pill">Power BI</span>
               <span class="pill">Tableau</span>
@@ -1078,8 +1078,8 @@
         <div class="card h-100">
           <img src="Images/Skills/3.png" class="card-img-top mx-auto mt-3" alt="SQL" style="width: 60px; height: 60px; object-fit: contain;">
           <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Predictive Analytics</h5>
-            <p class="card-text">Forecasting, classification, and evaluation that translate into action.</p>
+            <h5 class="card-title" data-i18n="capability_3_title">Predictive Analytics</h5>
+            <p class="card-text" data-i18n="capability_3_body">Forecasting, classification, and evaluation that translate into action.</p>
             <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
               <span class="pill">Modeling</span>
               <span class="pill">Testing</span>
@@ -1093,8 +1093,8 @@
         <div class="card h-100">
           <img src="Images/Skills/4.png" class="card-img-top mx-auto mt-3" alt="Data Storytelling" style="width: 60px; height: 60px; object-fit: contain;">
           <div class="card-body d-flex flex-column text-center">
-            <h5 class="card-title">Quality Systems</h5>
-            <p class="card-text">ISO 9001, ISO 7101, ISO 45001, and ISO 15189 documentation, audit readiness, and continuous improvement.</p>
+            <h5 class="card-title" data-i18n="capability_4_title">Quality Systems</h5>
+            <p class="card-text" data-i18n="capability_4_body">ISO 9001, ISO 7101, ISO 45001, and ISO 15189 documentation, audit readiness, and continuous improvement.</p>
             <div class="mt-auto d-flex justify-content-center gap-2 flex-wrap">
               <span class="pill">ISO 9001</span>
               <span class="pill">Audits</span>
@@ -1180,12 +1180,12 @@
         <div class="contact-card">
           <div class="row g-3">
             <div class="col-md-6">
-              <p class="small mb-1 text-uppercase">Email</p>
+              <p class="small mb-1 text-uppercase" data-i18n="contact_email_label">Email</p>
               <p class="mb-0">daudsibanda@gmail.com</p>
             </div>
             <div class="col-md-6">
-              <p class="small mb-1 text-uppercase">Location</p>
-              <p class="mb-0">Harare, Zimbabwe</p>
+              <p class="small mb-1 text-uppercase" data-i18n="contact_location_label">Location</p>
+              <p class="mb-0" data-i18n="contact_location_value">Harare, Zimbabwe</p>
             </div>
             <div class="col-md-6">
               <p class="small mb-1 text-uppercase">LinkedIn</p>
@@ -1205,15 +1205,15 @@
     <form id="contact-form" aria-live="polite">
       <div class="mb-3 text-start">
         <label for="name" class="form-label" data-i18n="contact_name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" autocomplete="name" maxlength="100" required>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" data-i18n-placeholder="contact_name_placeholder" autocomplete="name" maxlength="100" required>
       </div>
       <div class="mb-3 text-start">
         <label for="email" class="form-label" data-i18n="contact_email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" data-i18n-placeholder="contact_email_placeholder" autocomplete="email" required>
       </div>
       <div class="mb-3 text-start">
         <label for="message" class="form-label" data-i18n="contact_message">Message</label>
-        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." maxlength="2000" required></textarea>
+        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." data-i18n-placeholder="contact_message_placeholder" maxlength="2000" required></textarea>
       </div>
               <button type="submit" class="btn btn-accent w-100" data-track="contact-submit" data-i18n="contact_submit">Send Message</button>
             </form>
@@ -1229,11 +1229,11 @@
 <!-- Footer -->
 <footer class="footer-shell text-center py-4">
   <div class="container">
-    <p class="mb-1">&copy; <span id="current-year">2026</span> Daud Sibanda. All rights reserved.</p>
+    <p class="mb-1">&copy; <span id="current-year">2026</span> Daud Sibanda. <span data-i18n="footer_rights">All rights reserved.</span></p>
     <div class="d-flex justify-content-center gap-3">
       <a href="https://github.com/Daud-stack" target="_blank" rel="noopener noreferrer" class="text-decoration-none">GitHub</a>
       <a href="https://www.linkedin.com/in/daud-sibanda" target="_blank" rel="noopener noreferrer" class="text-decoration-none">LinkedIn</a>
-      <a href="mailto:daudsibanda@gmail.com" class="text-decoration-none">Email Me</a>
+      <a href="mailto:daudsibanda@gmail.com" class="text-decoration-none" data-i18n="footer_email">Email Me</a>
     </div>
   </div>
 </footer>
@@ -1242,33 +1242,78 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
     const API_BASE = "/api";
+    let currentLang = "en";
     const I18N = {
       en: {
+        skip_link: "Skip to content",
+        nav_toggle: "Toggle navigation",
+        language_label: "Language",
+        theme_toggle_label: "Toggle theme",
+        theme_light: "Light",
+        theme_dark: "Dark",
         nav_home: "Home",
         nav_about: "About",
         nav_projects: "Projects",
         nav_capabilities: "Capabilities",
         nav_contact: "Contact",
+        studio_panel_title: "Studio Practice",
+        studio_panel_body: "Analytics, quality systems, and thoughtful execution.",
         hero_tag: "Data Science • Quality Systems • Analytics",
         hero_title: "Human‑centered data science for <span class=\"underline\">clearer</span> decisions.",
         hero_body: "I’m Daud Sibanda—an aspiring data scientist and entrepreneur-in-progress. I focus on continuous learning, structured analysis, and ethical, people-aware solutions that create measurable value.",
+        hero_badge_1: "Studio-style analytics",
+        hero_badge_2: "Ethics-first",
+        hero_badge_3: "Global ready",
         hero_cta_projects: "View Projects",
         hero_cta_contact: "Let’s Collaborate",
+        hero_note: "Studio thinking for practical problems: dashboards, reporting systems, and operational tools that feel calm, clear, and useful from day one.",
+        studio_stamp: "Studio",
+        profile_image_alt: "Daud Sibanda",
+        profile_caption: "Daud Sibanda Studio",
+        profile_kicker: "Profile",
+        profile_role: "Data Scientist • Quality Systems Implementer",
+        profile_pill_2: "Internal Audits",
+        profile_pill_3: "Dashboards",
+        profile_summary: "Blending analytical thinking, quality discipline, and practical system design to turn complex workflows into clear decisions and reliable tools.",
+        stat_projects: "Projects",
+        stat_dashboards: "Dashboards",
+        stat_audits: "Audits Led",
+        marquee_text: "Creative studio • Analytics • Systems • Quality • Storytelling •",
         about_label: "About",
         about_title: "Growth‑minded, detail‑driven, and committed to impact.",
         about_body_1: "I’ve strengthened my foundation through relentless learning, hands-on creation, and a deep curiosity about how data can improve real lives. My work is driven by a simple belief: behind every dataset are people, decisions, challenges, and possibilities waiting to be understood. I focus on uncovering patterns, connecting ideas, and turning complexity into insight that helps people act with clarity, confidence, and purpose.",
         about_body_2: "I have built a business grounded in ethics, social impact, and responsible innovation. My goal is to create solutions that do more than measure progress; I want them to unlock potential, strengthen communities, improve systems, and support better decisions in moments that truly matter. For me, data is not only about numbers. It is about building tools, stories, and systems that help people move forward.",
+        timeline_1_body: "Analytics projects for process improvement and executive reporting.",
+        timeline_2_body: "ISO 9001 systems implementation and internal auditing leadership.",
+        timeline_3_body: "Data visualization and BI dashboards for operations teams.",
         projects_label: "Projects",
         projects_title: "Focused work with measurable impact",
+        project_live_demo: "Live Demo",
+        project_source_code: "Source Code",
+        projects_empty: "Projects will appear here soon.",
         capabilities_label: "Capabilities",
         capabilities_title: "What I deliver",
+        capability_1_title: "Data Engineering",
+        capability_1_body: "Clean pipelines, reproducible workflows, and automated reporting for leaders.",
+        capability_2_title: "Decision Dashboards",
+        capability_2_body: "Performance dashboards built for executives, supervisors, and operations teams.",
+        capability_3_title: "Predictive Analytics",
+        capability_3_body: "Forecasting, classification, and evaluation that translate into action.",
+        capability_4_title: "Quality Systems",
+        capability_4_body: "ISO 9001, ISO 7101, ISO 45001, and ISO 15189 documentation, audit readiness, and continuous improvement.",
         services_label: "Services",
         services_title: "Ways I can help",
         blog_label: "Writing",
         blog_title: "Notes, reflections, and case studies",
+        post_draft: "Draft",
+        post_read_more: "Read More",
+        posts_empty: "Posts will appear here soon.",
         contact_label: "Contact",
         contact_title: "Let’s build something dependable.",
         contact_body: "Share your goals and I’ll respond with a clear plan, timeline, and next steps.",
+        contact_email_label: "Email",
+        contact_location_label: "Location",
+        contact_location_value: "Harare, Zimbabwe",
         service_1_title: "Analytics & KPI Strategy",
         service_1_body: "Define KPIs, build data models, and deliver weekly decision reports.",
         service_2_title: "Dashboard Build",
@@ -1277,36 +1322,88 @@
         service_3_body: "Documentation, internal audit prep, and alignment with ISO 9001, ISO 7101, ISO 45001, and ISO 15189.",
         contact_form_title: "Quick Message",
         contact_name: "Name",
+        contact_name_placeholder: "Your full name",
         contact_email: "Email address",
+        contact_email_placeholder: "you@example.com",
         contact_message: "Message",
-        contact_submit: "Send Message"
+        contact_message_placeholder: "Write your message here...",
+        contact_submit: "Send Message",
+        contact_sending: "Sending...",
+        contact_success: "Thanks for reaching out!",
+        contact_error: "Unable to send right now. Please try again later.",
+        footer_rights: "All rights reserved.",
+        footer_email: "Email Me"
       },
       fr: {
+        skip_link: "Aller au contenu",
+        nav_toggle: "Basculer la navigation",
+        language_label: "Langue",
+        theme_toggle_label: "Changer le thème",
+        theme_light: "Clair",
+        theme_dark: "Sombre",
         nav_home: "Accueil",
         nav_about: "À propos",
         nav_projects: "Projets",
         nav_capabilities: "Compétences",
         nav_contact: "Contact",
+        studio_panel_title: "Pratique studio",
+        studio_panel_body: "Analytics, systèmes qualité et exécution réfléchie.",
         hero_tag: "Science des données • Qualité • Analytics",
         hero_title: "La science des données au service de décisions <span class=\"underline\">plus claires</span>.",
         hero_body: "Je suis Daud Sibanda—aspirant data scientist et entrepreneur en devenir. Je mise sur l’apprentissage continu, une analyse structurée et des solutions éthiques centrées sur l’humain.",
+        hero_badge_1: "Analytics façon studio",
+        hero_badge_2: "Éthique d’abord",
+        hero_badge_3: "Prêt pour le monde",
         hero_cta_projects: "Voir les projets",
         hero_cta_contact: "Collaborons",
+        hero_note: "Une approche studio pour des problèmes pratiques : dashboards, systèmes de reporting et outils opérationnels calmes, clairs et utiles dès le premier jour.",
+        studio_stamp: "Studio",
+        profile_image_alt: "Daud Sibanda",
+        profile_caption: "Studio Daud Sibanda",
+        profile_kicker: "Profil",
+        profile_role: "Data scientist • Implémenteur de systèmes qualité",
+        profile_pill_2: "Audits internes",
+        profile_pill_3: "Dashboards",
+        profile_summary: "Allier pensée analytique, discipline qualité et conception pratique de systèmes pour transformer des workflows complexes en décisions claires et outils fiables.",
+        stat_projects: "Projets",
+        stat_dashboards: "Dashboards",
+        stat_audits: "Audits menés",
+        marquee_text: "Studio créatif • Analytics • Systèmes • Qualité • Storytelling •",
         about_label: "À propos",
         about_title: "Orienté croissance, rigoureux et tourné vers l’impact.",
         about_body_1: "J’ai renforcé mes bases grâce à un apprentissage constant, des créations concrètes et une profonde curiosité pour la manière dont les données peuvent améliorer des vies réelles. Mon travail repose sur une conviction simple : derrière chaque jeu de données se trouvent des personnes, des décisions, des défis et des possibilités qui attendent d’être compris. Je m’attache à révéler des tendances, relier les idées et transformer la complexité en insights qui aident à agir avec clarté, confiance et intention.",
         about_body_2: "J’ai bâti une entreprise fondée sur l’éthique, l’impact social et l’innovation responsable. Mon objectif est de créer des solutions qui font plus que mesurer le progrès ; je veux qu’elles libèrent le potentiel, renforcent les communautés, améliorent les systèmes et soutiennent de meilleures décisions dans les moments qui comptent vraiment. Pour moi, les données ne sont pas seulement des chiffres. Elles servent à construire des outils, des histoires et des systèmes qui aident les personnes à avancer.",
+        timeline_1_body: "Projets analytics pour l’amélioration des processus et le reporting exécutif.",
+        timeline_2_body: "Mise en œuvre de systèmes ISO 9001 et leadership en audit interne.",
+        timeline_3_body: "Visualisation de données et dashboards BI pour les équipes opérationnelles.",
         projects_label: "Projets",
         projects_title: "Un travail ciblé avec un impact mesurable",
+        project_live_demo: "Démo",
+        project_source_code: "Code source",
+        projects_empty: "Les projets apparaîtront bientôt ici.",
         capabilities_label: "Compétences",
         capabilities_title: "Ce que je délivre",
+        capability_1_title: "Ingénierie des données",
+        capability_1_body: "Pipelines propres, workflows reproductibles et reporting automatisé pour les leaders.",
+        capability_2_title: "Dashboards décisionnels",
+        capability_2_body: "Dashboards de performance conçus pour dirigeants, superviseurs et équipes opérationnelles.",
+        capability_3_title: "Analytics prédictive",
+        capability_3_body: "Prévision, classification et évaluation qui se traduisent en action.",
+        capability_4_title: "Systèmes qualité",
+        capability_4_body: "Documentation ISO 9001, ISO 7101, ISO 45001 et ISO 15189, préparation aux audits et amélioration continue.",
         services_label: "Services",
         services_title: "Comment je peux aider",
         blog_label: "Écriture",
         blog_title: "Notes, réflexions et études de cas",
+        post_draft: "Brouillon",
+        post_read_more: "Lire plus",
+        posts_empty: "Les articles apparaîtront bientôt ici.",
         contact_label: "Contact",
         contact_title: "Construisons quelque chose de fiable.",
         contact_body: "Partagez vos objectifs et je répondrai avec un plan clair, un calendrier et les prochaines étapes.",
+        contact_email_label: "E-mail",
+        contact_location_label: "Localisation",
+        contact_location_value: "Harare, Zimbabwe",
         service_1_title: "Stratégie Analytics & KPI",
         service_1_body: "Définir les KPI, construire des modèles de données et livrer des rapports décisionnels.",
         service_2_title: "Création de dashboards",
@@ -1315,36 +1412,88 @@
         service_3_body: "Documentation, préparation aux audits internes et alignement ISO 9001, ISO 7101, ISO 45001 et ISO 15189.",
         contact_form_title: "Message rapide",
         contact_name: "Nom",
+        contact_name_placeholder: "Votre nom complet",
         contact_email: "Adresse e‑mail",
+        contact_email_placeholder: "vous@exemple.com",
         contact_message: "Message",
-        contact_submit: "Envoyer"
+        contact_message_placeholder: "Écrivez votre message ici...",
+        contact_submit: "Envoyer",
+        contact_sending: "Envoi...",
+        contact_success: "Merci pour votre message !",
+        contact_error: "Impossible d’envoyer maintenant. Veuillez réessayer plus tard.",
+        footer_rights: "Tous droits réservés.",
+        footer_email: "M’envoyer un e-mail"
       },
       sn: {
+        skip_link: "Svetukira kuzviri mukati",
+        nav_toggle: "Vhura kana kuvhara menyu",
+        language_label: "Mutauro",
+        theme_toggle_label: "Chinja theme",
+        theme_light: "Chiedza",
+        theme_dark: "Rima",
         nav_home: "Kumba",
         nav_about: "Nezvangu",
         nav_projects: "Mapurojekiti",
         nav_capabilities: "Unyanzvi",
         nav_contact: "Bata",
+        studio_panel_title: "Studio Practice",
+        studio_panel_body: "Analytics, masisitimu e quality, nekuita kwakarongeka.",
         hero_tag: "Data Science • Quality Systems • Analytics",
         hero_title: "Data science ine hanya nevanhu kuti sarudzo dzive <span class=\"underline\">pachena</span>.",
         hero_body: "Ndini Daud Sibanda—mudhimai wenguva yekudzidza data science uye muzvinabhizimisi ari munzira. Ndinosimbaradza kudzidza nguva dzose, kuongorora kwakarongeka, uye mhinduro dzine tsika dzakanaka dzinokoshesa vanhu.",
+        hero_badge_1: "Analytics yemhando ye studio",
+        hero_badge_2: "Tsika dzakanaka pakutanga",
+        hero_badge_3: "Yakagadzirira nyika",
         hero_cta_projects: "Tarisa Mapurojekiti",
         hero_cta_contact: "Ngatishandei",
+        hero_note: "Kufunga kwe studio kumatambudziko anoshanda: dashboards, masisitimu emishumo, nematurusi ebasa anonyatsobatsira kubva pazuva rekutanga.",
+        studio_stamp: "Studio",
+        profile_image_alt: "Daud Sibanda",
+        profile_caption: "Daud Sibanda Studio",
+        profile_kicker: "Profile",
+        profile_role: "Data Scientist • Quality Systems Implementer",
+        profile_pill_2: "Ma audit emukati",
+        profile_pill_3: "Dashboards",
+        profile_summary: "Kubatanidza kufunga kwe analytics, discipline ye quality, nekugadzira masisitimu anoshanda kuti workflows dzakaoma dzive sarudzo dzakajeka nematurusi akavimbika.",
+        stat_projects: "Mapurojekiti",
+        stat_dashboards: "Dashboards",
+        stat_audits: "Ma audit andakatungamira",
+        marquee_text: "Creative studio • Analytics • Systems • Quality • Storytelling •",
         about_label: "Nezvangu",
         about_title: "Kukura mupfungwa, kunyatsoteerera, uye kutsvaga mhedzisiro.",
         about_body_1: "Ndasimbisa hwaro hwangu kuburikidza nekudzidza kusingaperi, kugadzira zvinhu nemaoko, uye kuda kuziva kwakadzama kuti data ingavandudza sei hupenyu hwevanhu. Basa rangu rinotungamirirwa nekutenda kuri nyore: kuseri kwe dataset yega yega kune vanhu, sarudzo, matambudziko, nemikana yakamirira kunzwisiswa. Ndinotarisa pakutsvaga mapatani, kubatanidza pfungwa, uye kushandura kuoma kuita ruzivo runobatsira vanhu kuita nezvakajeka, nechivimbo, uye nechinangwa.",
         about_body_2: "Ndakavaka bhizimisi rakadzika midzi mutsika dzakanaka, kubatsira nharaunda, uye hunyanzvi hunotarisira mhedzisiro. Chinangwa changu kugadzira mhinduro dzisingangoyeri kufambira mberi chete; ndinoda kuti dzivhure mikana, dzisimbise nharaunda, dzivandudze masisitimu, uye dzitsigire sarudzo dziri nani panguva dzinonyanya kukosha. Kwandiri, data haisi nhamba chete. Icho chishandiso chekuvaka maturusi, nyaya, nemasisitimu anobatsira vanhu kufambira mberi.",
+        timeline_1_body: "Mapurojekiti e analytics ekusimudzira ma process nemishumo yevatungamiri.",
+        timeline_2_body: "Kuiswa kwe ISO 9001 systems uye kutungamira ma audit emukati.",
+        timeline_3_body: "Data visualization ne BI dashboards dzezvikwata zve operations.",
         projects_label: "Mapurojekiti",
         projects_title: "Basa rakanangana nemhedzisiro inoonekwa",
+        project_live_demo: "Live Demo",
+        project_source_code: "Source Code",
+        projects_empty: "Mapurojekiti achaonekwa pano munguva pfupi.",
         capabilities_label: "Unyanzvi",
         capabilities_title: "Zvandinounza",
+        capability_1_title: "Data Engineering",
+        capability_1_body: "Pipelines dzakachena, workflows dzinodzokororwa, nemishumo inozviitira yevatungamiri.",
+        capability_2_title: "Decision Dashboards",
+        capability_2_body: "Dashboards dzekuyera performance dzakavakirwa executive, supervisors, nezvikwata zve operations.",
+        capability_3_title: "Predictive Analytics",
+        capability_3_body: "Forecasting, classification, uye evaluation inoshanduka kuita action.",
+        capability_4_title: "Quality Systems",
+        capability_4_body: "ISO 9001, ISO 7101, ISO 45001, ne ISO 15189 documentation, audit readiness, uye continuous improvement.",
         services_label: "Mabasa",
         services_title: "Nzira dzandinokubatsira",
         blog_label: "Zvinyorwa",
         blog_title: "Zvinyorwa, pfungwa, uye nyaya dzebasa",
+        post_draft: "Draft",
+        post_read_more: "Verenga Zvimwe",
+        posts_empty: "Zvinyorwa zvichaonekwa pano munguva pfupi.",
         contact_label: "Bata",
         contact_title: "Ngativake chinhu chinovimbika.",
         contact_body: "Taura zvinangwa zvako, ndichapindura nechirongwa chakajeka, nguva, uye matanho anotevera.",
+        contact_email_label: "Email",
+        contact_location_label: "Nzvimbo",
+        contact_location_value: "Harare, Zimbabwe",
         service_1_title: "Analytics & KPI Strategy",
         service_1_body: "Kutsanangura KPI, kuvaka mamodheru edata, uye kupa mishumo yemasvondo ekusarudza.",
         service_2_title: "Kuvaka Dashboards",
@@ -1353,11 +1502,71 @@
         service_3_body: "Zvinyorwa, kugadzirira ma audit emukati, uye kuwiriranisa neISO 9001, ISO 7101, ISO 45001, uye ISO 15189.",
         contact_form_title: "Mharidzo Pfupi",
         contact_name: "Zita",
+        contact_name_placeholder: "Zita rako rese",
         contact_email: "Email",
+        contact_email_placeholder: "iwe@example.com",
         contact_message: "Mharidzo",
-        contact_submit: "Tumira"
+        contact_message_placeholder: "Nyora mharidzo yako pano...",
+        contact_submit: "Tumira",
+        contact_sending: "Kutumira...",
+        contact_success: "Ndatenda nekundibata!",
+        contact_error: "Hazvisi kukwanisika kutumira parizvino. Edza zvakare gare gare.",
+        footer_rights: "Kodzero dzese dzakachengetedzwa.",
+        footer_email: "Nditumire Email"
       },
       nd: {
+        skip_link: "Yeqa uye ungene kokuqukethwe",
+        nav_toggle: "Vula kumbe vala imenyu",
+        language_label: "Ulimi",
+        theme_toggle_label: "Tshintsha theme",
+        theme_light: "Khanya",
+        theme_dark: "Mnyama",
+        studio_panel_title: "Studio Practice",
+        studio_panel_body: "Analytics, amasistimu e quality, lokwenza okucabangiweyo.",
+        hero_badge_1: "Analytics yesitayela se studio",
+        hero_badge_2: "Izimiso kuqala",
+        hero_badge_3: "Ilungele umhlaba",
+        hero_note: "Ukucabanga kwe studio ngezinkinga ezisebenzayo: ama dashboards, amasistimu okubika, lamathuluzi omsebenzi acacileyo njalo alusizo kusukela ngosuku lokuqala.",
+        studio_stamp: "Studio",
+        profile_image_alt: "Daud Sibanda",
+        profile_caption: "Daud Sibanda Studio",
+        profile_kicker: "Profile",
+        profile_role: "Data Scientist • Quality Systems Implementer",
+        profile_pill_2: "Ama audit angaphakathi",
+        profile_pill_3: "Ama dashboards",
+        profile_summary: "Ukuhlanganisa ukucabanga kwe analytics, discipline ye quality, lokwakha amasistimu asebenzayo ukuze workflows ezinzima zibe yizinqumo ezicacileyo lamathuluzi athembekileyo.",
+        stat_projects: "Amaphrojekthi",
+        stat_dashboards: "Ama dashboards",
+        stat_audits: "Ama audit engiwakhokheleyo",
+        marquee_text: "Creative studio • Analytics • Systems • Quality • Storytelling •",
+        timeline_1_body: "Amaphrojekthi e analytics okuthuthukisa ama process lokubika kubakhokheli.",
+        timeline_2_body: "Ukufaka amasistimu e ISO 9001 lokukhokhela ama audit angaphakathi.",
+        timeline_3_body: "Data visualization lama BI dashboards amaqembu e operations.",
+        project_live_demo: "Live Demo",
+        project_source_code: "Source Code",
+        projects_empty: "Amaphrojekthi azavela lapha masinyane.",
+        capability_1_title: "Data Engineering",
+        capability_1_body: "Ama pipelines ahlanzekileyo, workflows eziphindekayo, lokubika okuzenzakalelayo kwabakhokheli.",
+        capability_2_title: "Decision Dashboards",
+        capability_2_body: "Ama dashboards e performance akhelwe executives, supervisors, lamaqembu e operations.",
+        capability_3_title: "Predictive Analytics",
+        capability_3_body: "Forecasting, classification, le evaluation okuguquka kube yisenzo.",
+        capability_4_title: "Quality Systems",
+        capability_4_body: "ISO 9001, ISO 7101, ISO 45001, le ISO 15189 documentation, audit readiness, le continuous improvement.",
+        post_draft: "Draft",
+        post_read_more: "Bala Okunengi",
+        posts_empty: "Okubhaliweyo kuzavela lapha masinyane.",
+        contact_email_label: "I-email",
+        contact_location_label: "Indawo",
+        contact_location_value: "Harare, Zimbabwe",
+        contact_name_placeholder: "Ibizo lakho eligcweleyo",
+        contact_email_placeholder: "wena@example.com",
+        contact_message_placeholder: "Bhala umlayezo wakho lapha...",
+        contact_sending: "Kuyathunyelwa...",
+        contact_success: "Siyabonga ngokuxhumana!",
+        contact_error: "Akusenelakali ukuthumela khathesi. Zama futhi ngemva kwesikhathi.",
+        footer_rights: "Wonke amalungelo agodliwe.",
+        footer_email: "Ngithumelele i-email",
         nav_home: "Ekhaya",
         nav_about: "Ngami",
         nav_projects: "Amaphrojekthi",
@@ -1411,13 +1620,14 @@
       localStorage.setItem("theme", nextTheme);
       const toggle = document.getElementById("theme-toggle");
       if (toggle) {
-        toggle.textContent = isDark ? "Light" : "Dark";
+        toggle.textContent = isDark ? t("theme_light") : t("theme_dark");
         toggle.setAttribute("aria-pressed", String(isDark));
       }
     }
 
     function setLanguage(lang) {
       const dict = I18N[lang] || I18N.en;
+      currentLang = I18N[lang] ? lang : "en";
       document.documentElement.lang = lang;
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.getAttribute("data-i18n");
@@ -1427,7 +1637,26 @@
         const key = el.getAttribute("data-i18n-html");
         if (dict[key]) el.innerHTML = dict[key];
       });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (dict[key]) el.setAttribute("placeholder", dict[key]);
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-aria-label");
+        if (dict[key]) el.setAttribute("aria-label", dict[key]);
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-alt");
+        if (dict[key]) el.setAttribute("alt", dict[key]);
+      });
+      const activeTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      setTheme(activeTheme);
       localStorage.setItem("lang", lang);
+    }
+
+    function t(key) {
+      const dict = I18N[currentLang] || I18N.en;
+      return dict[key] || I18N.en[key] || key;
     }
 
     function createTag(text) {
@@ -1487,14 +1716,14 @@
           const tags = node.querySelector(".project-tags");
           (project.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
           const links = node.querySelector(".project-links");
-          const liveDemoLink = createLink(project.case_study_url, "Live Demo", true);
+          const liveDemoLink = createLink(project.case_study_url, t("project_live_demo"), true);
           if (liveDemoLink) links.appendChild(liveDemoLink);
-          const sourceLink = createLink(project.source_url, "Source Code");
+          const sourceLink = createLink(project.source_url, t("project_source_code"));
           if (sourceLink) links.appendChild(sourceLink);
           grid.appendChild(node);
         });
       } catch (err) {
-        grid.innerHTML = "<p class='text-muted text-center'>Projects will appear here soon.</p>";
+        grid.innerHTML = `<p class='text-muted text-center'>${t("projects_empty")}</p>`;
       }
     }
 
@@ -1510,18 +1739,18 @@
         grid.innerHTML = "";
         data.forEach((post) => {
           const node = tpl.content.cloneNode(true);
-          node.querySelector(".post-date").textContent = post.published_at || "Draft";
+          node.querySelector(".post-date").textContent = post.published_at || t("post_draft");
           node.querySelector(".post-title").textContent = post.title;
           node.querySelector(".post-excerpt").textContent = post.excerpt;
           const tags = node.querySelector(".post-tags");
           (post.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
           const links = node.querySelector(".post-links");
           const postUrl = post.url || (post.slug ? `/post/${post.slug}` : "");
-          links.appendChild(createLink(postUrl, "Read More", true));
+          links.appendChild(createLink(postUrl, t("post_read_more"), true));
           grid.appendChild(node);
         });
       } catch (err) {
-        grid.innerHTML = "<p class='text-muted text-center'>Posts will appear here soon.</p>";
+        grid.innerHTML = `<p class='text-muted text-center'>${t("posts_empty")}</p>`;
       }
     }
 
@@ -1529,7 +1758,7 @@
       const status = document.getElementById("contact-status");
       const submitButton = form.querySelector('button[type="submit"]');
       if (submitButton) submitButton.disabled = true;
-      status.textContent = "Sending...";
+      status.textContent = t("contact_sending");
       status.setAttribute("aria-busy", "true");
       const payload = Object.fromEntries(new FormData(form).entries());
 
@@ -1541,10 +1770,10 @@
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.detail || "Unable to send message.");
-        status.textContent = data.message || "Thanks for reaching out!";
+        status.textContent = data.message || t("contact_success");
         form.reset();
       } catch (err) {
-        status.textContent = err.message || "Unable to send right now. Please try again later.";
+        status.textContent = err.message || t("contact_error");
       } finally {
         status.setAttribute("aria-busy", "false");
         if (submitButton) submitButton.disabled = false;
