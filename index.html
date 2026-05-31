@@ -192,14 +192,14 @@
       isolation: isolate;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 239, 232, 0.78)),
-        radial-gradient(circle at 14% 18%, rgba(239, 123, 45, 0.18) 0%, transparent 34%),
-        radial-gradient(circle at 88% 12%, rgba(31, 111, 92, 0.16) 0%, transparent 32%),
-        linear-gradient(115deg, rgba(227, 179, 255, 0.14), transparent 54%);
+        radial-gradient(circle at 12% 18%, rgba(239, 123, 45, 0.24) 0%, transparent 36%),
+        radial-gradient(circle at 88% 14%, rgba(31, 111, 92, 0.22) 0%, transparent 34%),
+        linear-gradient(115deg, rgba(227, 179, 255, 0.22), transparent 54%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(246, 239, 232, 0.8));
       border: 1px solid rgba(255, 255, 255, 0.68);
       border-radius: calc(var(--radius) + 6px);
       box-shadow: 0 28px 70px rgba(18, 18, 18, 0.16);
-      padding: 36px;
+      padding: 50px 36px 36px;
       transform: rotate(-0.4deg);
       position: relative;
     }
@@ -209,9 +209,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(20, 20, 20, 0.055) 1px, transparent 1px) 0 0 / 34px 34px,
-        linear-gradient(180deg, rgba(20, 20, 20, 0.045) 1px, transparent 1px) 0 0 / 34px 34px,
-        radial-gradient(circle at 58% 46%, transparent 0 30%, rgba(255, 255, 255, 0.28) 31%, transparent 48%);
+        linear-gradient(90deg, rgba(20, 20, 20, 0.075) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(180deg, rgba(20, 20, 20, 0.065) 1px, transparent 1px) 0 0 / 34px 34px,
+        radial-gradient(circle at 58% 46%, transparent 0 26%, rgba(255, 255, 255, 0.42) 27%, transparent 48%);
       opacity: 0.85;
       pointer-events: none;
       z-index: 0;
@@ -279,8 +279,8 @@
 
     .studio-stamp {
       position: absolute;
-      top: -18px;
-      left: -18px;
+      top: 18px;
+      left: 18px;
       background: #111;
       color: #fff;
       padding: 8px 14px;
@@ -299,9 +299,9 @@
 
     [data-theme="dark"] .hero-card {
       background:
-        linear-gradient(135deg, rgba(31, 31, 31, 0.94), rgba(14, 14, 14, 0.9)),
         radial-gradient(circle at 14% 18%, rgba(255, 145, 77, 0.16) 0%, transparent 34%),
-        radial-gradient(circle at 88% 12%, rgba(124, 232, 198, 0.12) 0%, transparent 32%);
+        radial-gradient(circle at 88% 12%, rgba(124, 232, 198, 0.12) 0%, transparent 32%),
+        linear-gradient(135deg, rgba(31, 31, 31, 0.94), rgba(14, 14, 14, 0.9));
       border-color: rgba(255, 255, 255, 0.1);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.5);
     }
@@ -883,7 +883,7 @@
 
     @media (max-width: 768px) {
       .hero { padding: 120px 0 70px; }
-      .hero-card { padding: 26px; transform: none; }
+      .hero-card { padding: 50px 26px 26px; transform: none; }
       .hero::after {
         inset: 16px 12px 16px;
         border-radius: 28px;
