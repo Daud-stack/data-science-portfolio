@@ -225,6 +225,10 @@ def seed_data():
       "UPDATE projects SET case_study_url = '' WHERE case_study_url = ?",
       [(url,) for url in BROKEN_PROJECT_DEMO_URLS],
     )
+    cur.execute(
+      "UPDATE projects SET case_study_url = 'https://personal-productivity-app-3ml0.onrender.com' "
+      "WHERE title = 'Personal Productivity App' AND (case_study_url = '' OR case_study_url IS NULL)"
+    )
     sample_posts = [
       (
         "From Raw Data to Reliable KPIs",
