@@ -1,7 +1,9 @@
 import json
 import os
+import secrets
 import sqlite3
 import smtplib
+from hmac import compare_digest
 from contextlib import contextmanager, asynccontextmanager
 from datetime import datetime
 from email.message import EmailMessage
@@ -11,7 +13,7 @@ from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.responses import JSONResponse, RedirectResponse, FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -23,8 +25,21 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 APP_HOST = os.getenv("APP_HOST", "127.0.0.1")
 APP_PORT = int(os.getenv("APP_PORT", "9000"))
-SECRET_KEY = os.getenv("SECRET_KEY", "change-me")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "change-me")
+IS_PRODUCTION = (
+  os.getenv("APP_ENV", "").lower() == "production"
+  or os.getenv("RENDER", "").lower() == "true"
+)
+
+
+def env_secret(name: str, local_default: str) -> str:
+  value = os.getenv(name)
+  if IS_PRODUCTION and (not value or value == local_default):
+    raise RuntimeError(f"{name} must be configured in production.")
+  return value or local_default
+
+
+SECRET_KEY = env_secret("SECRET_KEY", "change-me")
+ADMIN_PASSWORD = env_secret("ADMIN_PASSWORD", "change-me")
 
 SMTP_HOST = os.getenv("SMTP_HOST", "")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587") or 587)
@@ -32,6 +47,10 @@ SMTP_USERNAME = os.getenv("SMTP_USERNAME", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 SMTP_FROM_EMAIL = os.getenv("SMTP_FROM_EMAIL", "")
 SMTP_TO_EMAIL = os.getenv("SMTP_TO_EMAIL", "")
+
+BROKEN_PROJECT_DEMO_URLS = {
+  "https://personal-productivity-app-3ml0.onrender.com",
+}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -54,7 +73,7 @@ class ContactIn(BaseModel):
 class TrackIn(BaseModel):
   event_name: str
   path: str
-  meta: dict = {}
+  meta: dict = Field(default_factory=dict)
 
 
 @contextmanager
@@ -204,6 +223,10 @@ def seed_data():
           """,
           sample_projects[-1],
         )
+    cur.executemany(
+      "UPDATE projects SET case_study_url = '' WHERE case_study_url = ?",
+      [(url,) for url in BROKEN_PROJECT_DEMO_URLS],
+    )
     cur.execute("SELECT COUNT(*) FROM posts")
     posts_count = cur.fetchone()[0]
     if posts_count == 0:
@@ -302,6 +325,55 @@ def require_admin(request: Request):
     raise HTTPException(status_code=403, detail="Unauthorized")
 
 
+def csrf_token(request: Request) -> str:
+  token = request.session.get("csrf_token")
+  if not token:
+    token = secrets.token_urlsafe(32)
+    request.session["csrf_token"] = token
+  return token
+
+
+def validate_csrf_token(request: Request, submitted_token: str):
+  expected_token = request.session.get("csrf_token")
+  if not expected_token or not compare_digest(expected_token, submitted_token):
+    raise HTTPException(status_code=403, detail="Invalid CSRF token")
+
+
+def admin_template(request: Request, template_name: str, context: dict | None = None, status_code: int = 200):
+  template_context = {"request": request, "csrf_token": csrf_token(request)}
+  if context:
+    template_context.update(context)
+  return templates.TemplateResponse(template_name, template_context, status_code=status_code)
+
+
+def safe_frontend_file(path: str) -> Path | None:
+  try:
+    frontend_root = FRONTEND_DIR.resolve()
+    requested_file = (frontend_root / path).resolve()
+    requested_file.relative_to(frontend_root)
+  except (OSError, ValueError):
+    return None
+  if requested_file.exists() and requested_file.is_file():
+    return requested_file
+  return None
+
+
+def validate_tracking_payload(payload: TrackIn):
+  if not payload.event_name or len(payload.event_name) > 80:
+    raise HTTPException(status_code=400, detail="Invalid event name.")
+  if not (
+    payload.event_name == "pageview"
+    or payload.event_name == "contact-submit"
+    or payload.event_name.startswith("link-")
+  ):
+    raise HTTPException(status_code=400, detail="Unsupported event.")
+  if not payload.path.startswith("/") or len(payload.path) > 200:
+    raise HTTPException(status_code=400, detail="Invalid path.")
+  meta_json = json.dumps(payload.meta)
+  if len(meta_json) > 1000:
+    raise HTTPException(status_code=400, detail="Metadata too large.")
+
+
 @app.get("/api/health")
 def api_health():
   return {"status": "ok"}
@@ -361,6 +433,7 @@ def api_contact(payload: ContactIn, request: Request):
 
 @app.post("/api/track")
 def api_track(payload: TrackIn, request: Request):
+  validate_tracking_payload(payload)
   with get_db() as conn:
     cur = conn.cursor()
     cur.execute(
@@ -383,15 +456,17 @@ def api_track(payload: TrackIn, request: Request):
 
 @app.get("/admin/login", response_class=HTMLResponse)
 def admin_login(request: Request):
-  return templates.TemplateResponse("admin_login.html", {"request": request})
+  return admin_template(request, "admin_login.html")
 
 
 @app.post("/admin/login")
-def admin_login_post(request: Request, password: str = Form(...)):
-  if password != ADMIN_PASSWORD:
-    return templates.TemplateResponse(
+def admin_login_post(request: Request, password: str = Form(...), csrf: str = Form("")):
+  validate_csrf_token(request, csrf)
+  if not compare_digest(password, ADMIN_PASSWORD):
+    return admin_template(
+      request,
       "admin_login.html",
-      {"request": request, "error": "Invalid password."},
+      {"error": "Invalid password."},
       status_code=401,
     )
   request.session["admin"] = True
@@ -399,7 +474,9 @@ def admin_login_post(request: Request, password: str = Form(...)):
 
 
 @app.post("/admin/logout")
-def admin_logout(request: Request):
+def admin_logout(request: Request, csrf: str = Form("")):
+  require_admin(request)
+  validate_csrf_token(request, csrf)
   request.session.clear()
   return RedirectResponse("/admin/login", status_code=303)
 
@@ -417,10 +494,10 @@ def admin_dashboard(request: Request):
     contacts_count = cur.fetchone()[0]
     cur.execute("SELECT COUNT(*) FROM analytics")
     analytics_count = cur.fetchone()[0]
-  return templates.TemplateResponse(
+  return admin_template(
+    request,
     "admin_dashboard.html",
     {
-      "request": request,
       "projects_count": projects_count,
       "posts_count": posts_count,
       "contacts_count": contacts_count,
@@ -437,9 +514,7 @@ def admin_projects(request: Request):
     cur.execute("SELECT * FROM projects ORDER BY id DESC")
     rows = cur.fetchall()
   projects = [row_to_project(row) for row in rows]
-  return templates.TemplateResponse(
-    "admin_projects.html", {"request": request, "projects": projects}
-  )
+  return admin_template(request, "admin_projects.html", {"projects": projects})
 
 
 @app.post("/admin/projects/create")
@@ -452,8 +527,10 @@ def admin_projects_create(
   tags: str = Form(""),
   case_study_url: str = Form(""),
   source_url: str = Form(""),
+  csrf: str = Form(""),
 ):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   tag_list = [t.strip() for t in tags.split(",") if t.strip()]
   with get_db() as conn:
     cur = conn.cursor()
@@ -488,8 +565,10 @@ def admin_projects_update(
   tags: str = Form(""),
   case_study_url: str = Form(""),
   source_url: str = Form(""),
+  csrf: str = Form(""),
 ):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   tag_list = [t.strip() for t in tags.split(",") if t.strip()]
   with get_db() as conn:
     cur = conn.cursor()
@@ -515,8 +594,9 @@ def admin_projects_update(
 
 
 @app.post("/admin/projects/delete")
-def admin_projects_delete(request: Request, project_id: int = Form(...)):
+def admin_projects_delete(request: Request, project_id: int = Form(...), csrf: str = Form("")):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   with get_db() as conn:
     cur = conn.cursor()
     cur.execute("DELETE FROM projects WHERE id = ?", (project_id,))
@@ -532,7 +612,7 @@ def admin_posts(request: Request):
     cur.execute("SELECT * FROM posts ORDER BY id DESC")
     rows = cur.fetchall()
   posts = [row_to_post(row) for row in rows]
-  return templates.TemplateResponse("admin_posts.html", {"request": request, "posts": posts})
+  return admin_template(request, "admin_posts.html", {"posts": posts})
 
 
 @app.get("/post/{slug}", response_class=HTMLResponse)
@@ -557,8 +637,10 @@ def admin_posts_create(
   url: str = Form(""),
   tags: str = Form(""),
   published_at: str = Form(""),
+  csrf: str = Form(""),
 ):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   tag_list = [t.strip() for t in tags.split(",") if t.strip()]
   with get_db() as conn:
     cur = conn.cursor()
@@ -593,8 +675,10 @@ def admin_posts_update(
   url: str = Form(""),
   tags: str = Form(""),
   published_at: str = Form(""),
+  csrf: str = Form(""),
 ):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   tag_list = [t.strip() for t in tags.split(",") if t.strip()]
   with get_db() as conn:
     cur = conn.cursor()
@@ -620,8 +704,9 @@ def admin_posts_update(
 
 
 @app.post("/admin/posts/delete")
-def admin_posts_delete(request: Request, post_id: int = Form(...)):
+def admin_posts_delete(request: Request, post_id: int = Form(...), csrf: str = Form("")):
   require_admin(request)
+  validate_csrf_token(request, csrf)
   with get_db() as conn:
     cur = conn.cursor()
     cur.execute("DELETE FROM posts WHERE id = ?", (post_id,))
@@ -647,7 +732,7 @@ def admin_analytics(request: Request):
     }
     for row in rows
   ]
-  return templates.TemplateResponse("admin_analytics.html", {"request": request, "events": events})
+  return admin_template(request, "admin_analytics.html", {"events": events})
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -660,8 +745,8 @@ def serve_index():
 def serve_static(path: str):
   if path.startswith("api") or path.startswith("admin"):
     raise HTTPException(status_code=404)
-  file_path = FRONTEND_DIR / path
-  if file_path.exists() and file_path.is_file():
+  file_path = safe_frontend_file(path)
+  if file_path:
     return FileResponse(file_path)
   index_path = FRONTEND_DIR / "index.html"
   if index_path.exists():

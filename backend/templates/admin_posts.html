@@ -4,6 +4,7 @@
   <div class="card">
     <h3>Add Post</h3>
     <form action="/admin/posts/create" method="post">
+      <input type="hidden" name="csrf" value="{{ csrf_token }}">
       <label>Title</label>
       <input type="text" name="title" required>
       <label>Excerpt</label>
@@ -45,6 +46,7 @@
           <td>{{ post.tags | join(", ") }}</td>
           <td>
             <form action="/admin/posts/delete" method="post" style="display:inline;">
+              <input type="hidden" name="csrf" value="{{ csrf_token }}">
               <input type="hidden" name="post_id" value="{{ post.id }}">
               <button type="submit" class="danger">Delete</button>
             </form>
@@ -53,6 +55,7 @@
         <tr>
           <td colspan="5">
             <form action="/admin/posts/update" method="post">
+              <input type="hidden" name="csrf" value="{{ csrf_token }}">
               <input type="hidden" name="post_id" value="{{ post.id }}">
               <label>Title</label>
               <input type="text" name="title" value="{{ post.title }}" required>
