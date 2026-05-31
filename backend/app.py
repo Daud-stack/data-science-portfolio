@@ -48,9 +48,7 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 SMTP_FROM_EMAIL = os.getenv("SMTP_FROM_EMAIL", "")
 SMTP_TO_EMAIL = os.getenv("SMTP_TO_EMAIL", "")
 
-BROKEN_PROJECT_DEMO_URLS = {
-  "https://personal-productivity-app-3ml0.onrender.com",
-}
+BROKEN_PROJECT_DEMO_URLS = set()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
