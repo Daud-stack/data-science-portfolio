@@ -1416,7 +1416,7 @@
         timeline_3_body: "Data visualization and BI dashboards for operations teams.",
         projects_label: "Projects",
         projects_title: "Focused work with measurable impact",
-        project_live_demo: "Live Demo",
+        project_live_demo: "Web App",
         project_source_code: "Source Code",
         projects_empty: "Projects will appear here soon.",
         capabilities_label: "Capabilities",
@@ -1849,8 +1849,6 @@
           const links = node.querySelector(".project-links");
           const liveDemoLink = createLink(project.case_study_url, t("project_live_demo"), true);
           if (liveDemoLink) links.appendChild(liveDemoLink);
-          const sourceLink = createLink(project.source_url, t("project_source_code"));
-          if (sourceLink) links.appendChild(sourceLink);
           grid.appendChild(node);
         });
       } catch (err) {
