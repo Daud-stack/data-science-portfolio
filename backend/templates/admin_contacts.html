@@ -1,0 +1,41 @@
+{% extends "admin_base.html" %}
+{% block content %}
+  <h1>Contact Messages</h1>
+  <div class="card">
+    <p class="muted">Messages submitted through the portfolio contact form (most recent first).</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Received</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in contacts %}
+          <tr>
+            <td>{{ item.created_at }}</td>
+            <td>{{ item.name }}</td>
+            <td><a href="mailto:{{ item.email }}" style="color: #38BDF8;">{{ item.email }}</a></td>
+            <td style="white-space: pre-wrap;">{{ item.message }}</td>
+            <td>
+              <form action="/admin/contacts/delete" method="post" style="display:inline;">
+                <input type="hidden" name="csrf" value="{{ csrf_token }}">
+                <input type="hidden" name="contact_id" value="{{ item.id }}">
+                <button type="submit" class="danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="5" class="muted">No contact messages yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

@@ -1,145 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital SHE &amp; Audit Compliance Intelligence Platform | Daud Sibanda</title>
   <meta name="description" content="Automating ISO 45001 and ISO 9001 statutory auditing for heavy industry and mining operations." />
-  <meta name="theme-color" content="#f6f2ee" />
+  <meta name="theme-color" content="#0B0F17" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous">
   <style>
     :root {
-      --bg: #f7f2ea;
-      --ink: #141414;
-      --muted: #4f4f4f;
-      --surface-2: rgba(255, 255, 255, 0.72);
-      --surface-3: rgba(255, 255, 255, 0.88);
-      --line: rgba(20, 20, 20, 0.12);
-      --line-strong: rgba(20, 20, 20, 0.2);
-      --inverse-bg: #121212;
-      --inverse-ink: #f2f2f2;
-      --accent: #ef7b2d;
-      --accent-2: #1f6f5c;
-      --accent-3: #e3b3ff;
-      --card: #ffffff;
-      --shadow: 0 12px 30px rgba(10, 10, 10, 0.08);
-      --radius: 22px;
-      --grid: rgba(20, 20, 20, 0.06);
+      --bg: #0B0F17;
+      --bg-secondary: #0F172A;
+      --ink: #F8FAFC;
+      --muted: #94A3B8;
+      --panel: rgba(30, 41, 59, 0.85);
+      --border: rgba(255, 255, 255, 0.12);
+      --sky: #38BDF8;
+      --emerald: #10B981;
+      --orange: #F97316;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --radius: 20px;
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
     }
 
-    [data-theme="dark"] {
-      --bg: #111111;
-      --ink: #f5f5f5;
-      --muted: #c7c7c7;
-      --surface-2: rgba(20, 20, 20, 0.72);
-      --surface-3: rgba(27, 27, 27, 0.92);
-      --line: rgba(255, 255, 255, 0.18);
-      --line-strong: rgba(255, 255, 255, 0.26);
-      --inverse-bg: #f2f2f2;
-      --inverse-ink: #121212;
-      --accent: #ff914d;
-      --accent-2: #7ce8c6;
-      --accent-3: #ffb3d9;
-      --card: #1b1b1b;
-      --shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
-      --grid: rgba(255, 255, 255, 0.08);
+    [data-theme="light"] {
+      --bg: #f7f2ea;
+      --bg-secondary: #efe7dc;
+      --ink: #141414;
+      --muted: #4f4f4f;
+      --panel: rgba(255, 255, 255, 0.88);
+      --border: rgba(20, 20, 20, 0.14);
+      --sky: #0284C7;
+      --emerald: #1f6f5c;
+      --orange: #ef7b2d;
+      --red: #DC2626;
+      --purple: #7E22CE;
+      --shadow: 0 12px 30px rgba(10, 10, 10, 0.08);
     }
 
     html { scroll-behavior: smooth; }
     body {
-      position: relative;
       background:
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 28px 28px,
-        linear-gradient(180deg, var(--grid) 1px, transparent 1px) 0 0 / 28px 28px,
-        radial-gradient(900px 500px at 8% -10%, rgba(239, 123, 45, 0.18) 0%, transparent 60%),
-        radial-gradient(900px 520px at 95% 0%, rgba(31, 111, 92, 0.18) 0%, transparent 60%),
+        radial-gradient(900px 500px at 8% -10%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+        radial-gradient(900px 520px at 95% 0%, rgba(16, 185, 129, 0.14) 0%, transparent 60%),
         var(--bg);
       color: var(--ink);
-      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      font-family: "Inter", "Space Grotesk", sans-serif;
+      margin: 0;
+    }
+
+    h1, h2, h3, h4, .navbar-brand {
+      font-family: "Outfit", "Fraunces", sans-serif;
     }
 
     .text-muted { color: var(--muted) !important; }
-    h1, h2, h3, .navbar-brand, .big-title { font-family: "Fraunces", "Georgia", serif; }
 
     .navbar {
-      backdrop-filter: blur(10px);
-      background: rgba(12, 12, 12, 0.92);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      background: rgba(11, 15, 23, 0.9);
+      border-bottom: 1px solid var(--border);
     }
 
-    .case-hero {
-      padding: 130px 0 60px;
+    .case-hero { padding: 120px 0 60px; }
+
+    .glass-panel {
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .glass-panel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
     .tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(239, 123, 45, 0.12);
-      color: #7a3e24;
-      border: 1px solid rgba(239, 123, 45, 0.35);
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--orange);
+      border: 1px solid rgba(249, 115, 22, 0.35);
       font-weight: 600;
       font-size: 0.85rem;
     }
 
-    [data-theme="dark"] .tag {
-      color: #ffd1b2;
-      border-color: rgba(255, 145, 77, 0.42);
-      background: rgba(255, 145, 77, 0.14);
-    }
-
     .pill {
-      background: rgba(31, 111, 92, 0.12);
-      color: #1f4a3f;
-      border: 1px solid rgba(31, 111, 92, 0.3);
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--sky);
+      border: 1px solid rgba(56, 189, 248, 0.3);
       padding: 5px 12px;
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 600;
     }
 
-    [data-theme="dark"] .pill {
-      color: #baf4e1;
-      background: rgba(124, 232, 198, 0.12);
-      border-color: rgba(124, 232, 198, 0.28);
-    }
-
-    .card {
-      border: 2px solid rgba(20, 20, 20, 0.08);
-      border-radius: var(--radius);
+    .stat-box {
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
       box-shadow: var(--shadow);
-      background: var(--card);
-      color: var(--ink);
-      position: relative;
-      overflow: hidden;
+      height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius);
-      padding: 2px;
-      background: linear-gradient(135deg, rgba(239, 123, 45, 0.5), rgba(31, 111, 92, 0.5), rgba(227, 179, 255, 0.6));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0.5;
+    .stat-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
+
+    .stat-value {
+      font-family: "Outfit", sans-serif;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--emerald);
+      margin-bottom: 4px;
+    }
+
+    .stat-value.amber { color: var(--orange); }
+    .stat-value.sky { color: var(--sky); }
 
     .dashboard-preview {
       border-radius: var(--radius);
       overflow: hidden;
-      border: 2px solid var(--line-strong);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-      background: #0d0d0d;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: #080B11;
     }
 
     .dashboard-preview img {
@@ -148,65 +147,290 @@
       display: block;
     }
 
-    .stat-box {
-      background: var(--card);
-      border: 2px dashed var(--line-strong);
-      border-radius: 18px;
-      padding: 24px 18px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      height: 100%;
+    /* Interactive Blueprint Canvas Styles */
+    .blueprint-shell {
+      background: #0B0F17;
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
     }
 
-    .stat-value {
-      font-family: "Fraunces", "Georgia", serif;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 700;
-      color: var(--accent-2);
-      margin-bottom: 4px;
+    .blueprint-toolbar {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 14px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .stat-value.accent-amber {
-      color: var(--accent);
+    .lane-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .lane-tab {
+      background: rgba(30, 41, 59, 0.85);
+      color: #CBD5E1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lane-tab:hover,
+    .lane-tab.active {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38BDF8;
+      border-color: #38BDF8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .blueprint-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .bp-search {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #F8FAFC;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      width: 185px;
+    }
+
+    .bp-search:focus {
+      outline: 2px solid #38BDF8;
+      border-color: transparent;
+    }
+
+    .bp-btn {
+      background: rgba(30, 41, 59, 0.9);
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .bp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border-color: #38BDF8;
+    }
+
+    .bp-btn.heatmap-active {
+      background: rgba(239, 68, 68, 0.22);
+      border-color: #EF4444;
+      color: #FCA5A5;
+    }
+
+    .bp-btn.sim-active {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #10B981;
+      color: #A7F3D0;
+    }
+
+    .canvas-viewport {
+      position: relative;
+      height: 560px;
+      width: 100%;
+      overflow: hidden;
+      cursor: grab;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 28px 28px,
+        #0B0F17;
+      user-select: none;
+    }
+
+    .canvas-viewport.dragging { cursor: grabbing; }
+
+    .canvas-stage {
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+
+    .floating-zoom {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      padding: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 10;
+    }
+
+    .minimap-box {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 180px;
+      height: 112px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 10;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .minimap-label {
+      position: absolute;
+      top: 4px;
+      left: 8px;
+      font-size: 0.65rem;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.06rem;
+      pointer-events: none;
+    }
+
+    #minimap-viewbox {
+      position: absolute;
+      border: 1.5px solid #38BDF8;
+      background: rgba(56, 189, 248, 0.15);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+
+    .sim-banner {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #F8FAFC;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* SVG Node Styling */
+    .bp-node {
+      cursor: pointer;
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    .bp-node:hover rect,
+    .bp-node:hover polygon {
+      stroke: #38BDF8 !important;
+      stroke-width: 2.5px !important;
+      filter: drop-shadow(0 8px 18px rgba(56, 189, 248, 0.35));
+    }
+
+    .bp-node.sim-step-active rect,
+    .bp-node.sim-step-active polygon {
+      stroke: #10B981 !important;
+      stroke-width: 3.5px !important;
+      filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.85));
+    }
+
+    .bp-node.search-hit text {
+      fill: #EF4444 !important;
+      font-weight: 800 !important;
+    }
+
+    .bp-node.search-hit rect,
+    .bp-node.search-hit polygon {
+      stroke: #EF4444 !important;
+      stroke-width: 3px !important;
+    }
+
+    /* Node Inspector Modal */
+    .node-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 15, 23, 0.78);
+      backdrop-filter: blur(10px);
+      display: none;
+      place-items: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .node-modal-backdrop.open { display: grid; }
+
+    .node-modal-card {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      max-width: 620px;
+      width: 100%;
+      padding: 28px;
+      color: #F8FAFC;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
     }
 
     .btn-accent {
-      background: var(--accent);
+      background: var(--orange);
       color: #fff;
-      border: 2px solid rgba(20, 20, 20, 0.12);
-      padding: 10px 18px;
+      border: 0;
+      padding: 10px 20px;
       border-radius: 999px;
       font-weight: 600;
-      box-shadow: 0 8px 18px rgba(239, 123, 45, 0.25);
       text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-accent:hover {
-      background: #d9691d;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
       color: #fff;
     }
 
     .btn-outline-ink {
-      border: 2px solid var(--ink);
+      border: 1px solid var(--border);
       color: var(--ink);
-      padding: 10px 18px;
+      background: var(--panel);
+      padding: 10px 20px;
       border-radius: 999px;
       font-weight: 600;
-      background: transparent;
       text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-outline-ink:hover {
-      background: var(--ink);
-      color: var(--bg);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      color: var(--sky);
     }
 
     .footer-shell {
-      background: var(--inverse-bg);
-      color: var(--inverse-ink);
+      background: #080B11;
+      border-top: 1px solid var(--border);
+      color: #94A3B8;
     }
-
-    .footer-shell a { color: inherit; }
   </style>
 </head>
 <body>
@@ -214,8 +438,9 @@
     <div class="container">
       <a class="navbar-brand fw-bold" href="/index.html">Daud Sibanda</a>
       <div class="d-flex align-items-center gap-2 ms-auto">
+        <a href="#interactive-blueprint" class="btn btn-outline-info btn-sm">Interactive Blueprint</a>
         <a href="/index.html#projects" class="btn btn-outline-light btn-sm">Back to Projects</a>
-        <button id="theme-toggle" class="btn btn-outline-light btn-sm" type="button">Theme</button>
+        <button id="theme-toggle" class="btn btn-outline-light btn-sm" type="button">Light</button>
       </div>
     </div>
   </nav>
@@ -223,7 +448,7 @@
   <main class="case-hero">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-11">
           <span class="tag mb-3"><i class="fa-solid fa-helmet-safety"></i> Industrial &amp; Mining Case Study</span>
           <h1 class="display-5 fw-bold mb-3">Digital SHE &amp; Audit Compliance Intelligence Platform</h1>
           <p class="lead text-muted mb-4">
@@ -240,10 +465,6 @@
             <span class="pill">SQL</span>
           </div>
 
-          <div class="dashboard-preview mb-5">
-            <img src="/Images/mining_she_compliance_dashboard.png" alt="Digital SHE and Audit Compliance Intelligence Platform Dashboard" />
-          </div>
-
           <!-- Quantifiable Impact Metrics -->
           <div class="row g-4 mb-5">
             <div class="col-md-4">
@@ -255,24 +476,237 @@
             </div>
             <div class="col-md-4">
               <div class="stat-box">
-                <div class="stat-value">142 Days</div>
+                <div class="stat-value sky">142 Days</div>
                 <div class="fw-bold mb-1">Consecutive LTI-Free</div>
                 <p class="small text-muted mb-0">Continuous shift-level safety tracking</p>
               </div>
             </div>
             <div class="col-md-4">
               <div class="stat-box">
-                <div class="stat-value accent-amber">98.2%</div>
+                <div class="stat-value amber">98.2%</div>
                 <div class="fw-bold mb-1">CAPA Closure Rate</div>
                 <p class="small text-muted mb-0">Automated threshold alerts for high-risk hazards</p>
               </div>
             </div>
           </div>
 
+          <div class="dashboard-preview mb-5">
+            <img src="/Images/mining_she_compliance_dashboard.png" alt="Digital SHE and Audit Compliance Intelligence Platform Dashboard" />
+          </div>
+
+          <!-- Interactive Blueprint Architecture Section -->
+          <section id="interactive-blueprint" class="mb-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-end mb-3">
+              <div>
+                <span class="tag mb-2"><i class="fa-solid fa-diagram-project"></i> Interactive System Blueprint</span>
+                <h2 class="h3 mb-1">ISO 45001 &amp; ISO 9001 Automated Compliance Architecture</h2>
+                <p class="small text-muted mb-0">Drag to pan, scroll to zoom, toggle the Operational Risk Heatmap, run the real-time workflow simulation, or click any node to inspect ISO clauses and data mechanics.</p>
+              </div>
+            </div>
+
+            <div class="blueprint-shell">
+              <div class="blueprint-toolbar">
+                <!-- Swimlane Jump Tabs -->
+                <div class="lane-tabs" role="tablist" aria-label="Architecture Swimlanes">
+                  <button class="lane-tab active" data-lane="all" type="button">All Lanes</button>
+                  <button class="lane-tab" data-lane="admissions" type="button">Admissions</button>
+                  <button class="lane-tab" data-lane="wards" type="button">Wards</button>
+                  <button class="lane-tab" data-lane="pharmacy" type="button">Pharmacy &amp; OT</button>
+                  <button class="lane-tab" data-lane="lab" type="button">Lab</button>
+                  <button class="lane-tab" data-lane="shift" type="button">Shift Audit</button>
+                  <button class="lane-tab" data-lane="billing" type="button">Billing EDI</button>
+                </div>
+
+                <!-- Search, Heatmap & Simulation Controls -->
+                <div class="blueprint-controls">
+                  <input id="bp-search" type="search" class="bp-search" placeholder="Search nodes (e.g. CAPA, EMA)..." aria-label="Search architecture nodes" />
+                  <button id="heatmap-toggle" class="bp-btn" type="button">🔥 Heatmap Mode</button>
+                  <button id="sim-toggle" class="bp-btn" type="button">▶ Run Simulation</button>
+                </div>
+              </div>
+
+              <div id="canvas-viewport" class="canvas-viewport">
+                <div id="sim-banner" class="sim-banner">Click any node for ISO 45001/9001 SOP details or press ▶ Run Simulation</div>
+
+                <div id="canvas-stage" class="canvas-stage">
+                  <svg id="blueprint-svg" width="1320" height="860" viewBox="0 0 1320 860" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <marker id="arrow-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8" />
+                      </marker>
+                      <marker id="arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+                      </marker>
+                      <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1 L 10 5 L 0 9 z" fill="#F97316" />
+                      </marker>
+                    </defs>
+
+                    <!-- Swimlane Backgrounds -->
+                    <g id="swimlanes">
+                      <rect x="20" y="20" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="48" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 1: ADMISSIONS &amp; CONTRACTOR GATE ACCESS (ISO 45001 CL. 8.1.4)</text>
+
+                      <rect x="20" y="160" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="188" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 2: WARDS / OCCUPATIONAL TRIAGE &amp; LTIFR TELEMETRY (ISO 45001 CL. 10.2)</text>
+
+                      <rect x="20" y="300" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="328" fill="#F97316" font-size="12" font-weight="700" letter-spacing="1.5">LANE 3: PHARMACY &amp; OT / EMERGENCY TRAUMA &amp; PPE INVENTORY (ISO 45001 CL. 8.2)</text>
+
+                      <rect x="20" y="440" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="468" fill="#A855F7" font-size="12" font-weight="700" letter-spacing="1.5">LANE 4: LAB / EMA EFFLUENT &amp; OCCUPATIONAL HYGIENE ASSAYS (ISO 15189 / EMA)</text>
+
+                      <rect x="20" y="580" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="608" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 5: SHIFT AUDIT / PRE-SHIFT INSPECTIONS &amp; CAPA ENGINE (ISO 9001 CL. 9.2)</text>
+
+                      <rect x="20" y="720" width="1280" height="120" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
+                      <text x="40" y="748" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 6: BILLING EDI &amp; STATUTORY REGISTRY VAULT (ISO 9001 CL. 7.5 / MINISTRY OF MINES)</text>
+                    </g>
+
+                    <!-- Connectors -->
+                    <g stroke-width="2" fill="none">
+                      <path d="M 330 92 L 450 92" stroke="#38BDF8" marker-end="url(#arrow-sky)" />
+                      <path d="M 720 92 L 840 92" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 975 128 L 975 196" stroke="#38BDF8" marker-end="url(#arrow-sky)" />
+                      <path d="M 330 232 L 450 232" stroke="#F97316" marker-end="url(#arrow-orange)" />
+                      <path d="M 720 232 L 840 232" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 585 268 L 585 336" stroke="#F97316" marker-end="url(#arrow-orange)" />
+                      <path d="M 330 372 L 450 372" stroke="#38BDF8" marker-end="url(#arrow-sky)" />
+                      <path d="M 720 372 L 840 372" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 330 512 L 450 512" stroke="#38BDF8" marker-end="url(#arrow-sky)" />
+                      <path d="M 720 512 L 840 512" stroke="#F97316" marker-end="url(#arrow-orange)" />
+                      <path d="M 975 548 L 975 616" stroke="#F97316" marker-end="url(#arrow-orange)" />
+                      <path d="M 330 652 L 450 652" stroke="#38BDF8" marker-end="url(#arrow-sky)" />
+                      <path d="M 720 652 L 840 652" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 975 688 L 975 756" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 330 790 L 450 790" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                      <path d="M 720 790 L 840 790" stroke="#10B981" marker-end="url(#arrow-emerald)" />
+                    </g>
+
+                    <!-- Lane 1 Nodes -->
+                    <g class="bp-node" data-id="N1" data-risk="high" data-step="1">
+                      <rect x="60" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
+                      <text x="78" y="84" fill="#F8FAFC" font-size="13" font-weight="700">1. Paper Gate &amp; Shift Log</text>
+                      <text x="78" y="106" fill="#94A3B8" font-size="11">Legacy manual contractor check-in</text>
+                    </g>
+                    <g class="bp-node" data-id="N2" data-risk="safe" data-step="2">
+                      <rect x="450" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
+                      <text x="468" y="84" fill="#F8FAFC" font-size="13" font-weight="700">2. Biometric &amp; Cert Gate</text>
+                      <text x="468" y="106" fill="#94A3B8" font-size="11">Automated ISO 45001 medical check</text>
+                    </g>
+                    <g class="bp-node" data-id="N3" data-risk="safe" data-step="3">
+                      <rect x="840" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="84" fill="#F8FAFC" font-size="13" font-weight="700">3. Contractor Scorecard Engine</text>
+                      <text x="858" y="106" fill="#94A3B8" font-size="11">Haulage &amp; drilling compliance score</text>
+                    </g>
+
+                    <!-- Lane 2 Nodes -->
+                    <g class="bp-node" data-id="N4" data-risk="high" data-step="4">
+                      <rect x="60" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
+                      <text x="78" y="224" fill="#F8FAFC" font-size="13" font-weight="700">4. Near-Miss &amp; Triage Intake</text>
+                      <text x="78" y="246" fill="#94A3B8" font-size="11">Unbarcoded shift incident reports</text>
+                    </g>
+                    <g class="bp-node" data-id="N5" data-risk="safe" data-step="5">
+                      <rect x="450" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
+                      <text x="468" y="224" fill="#F8FAFC" font-size="13" font-weight="700">5. LTIFR Telemetry Aggregator</text>
+                      <text x="468" y="246" fill="#94A3B8" font-size="11">Real-time 0.28 LTIFR &amp; 142d counter</text>
+                    </g>
+                    <g class="bp-node" data-id="N6" data-risk="safe" data-step="6">
+                      <rect x="840" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="224" fill="#F8FAFC" font-size="13" font-weight="700">6. Leading Indicator Correlation</text>
+                      <text x="858" y="246" fill="#94A3B8" font-size="11">Near-miss volume vs CAPA velocity</text>
+                    </g>
+
+                    <!-- Lane 3 Nodes -->
+                    <g class="bp-node" data-id="N7" data-risk="high" data-step="7">
+                      <rect x="60" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
+                      <text x="78" y="364" fill="#F8FAFC" font-size="13" font-weight="700">7. Manual PPE &amp; Trauma Kit Log</text>
+                      <text x="78" y="386" fill="#94A3B8" font-size="11">Stockout &amp; expiry risk exposure</text>
+                    </g>
+                    <g class="bp-node" data-id="N8" data-risk="safe" data-step="8">
+                      <rect x="450" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="468" y="364" fill="#F8FAFC" font-size="13" font-weight="700">8. Emergency Kit BCMA Barcode</text>
+                      <text x="468" y="386" fill="#94A3B8" font-size="11">Automated antidote &amp; trauma readiness</text>
+                    </g>
+                    <g class="bp-node" data-id="N9" data-risk="safe" data-step="9">
+                      <rect x="840" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="364" fill="#F8FAFC" font-size="13" font-weight="700">9. ISO 45001 Cl. 8.2 Readiness</text>
+                      <text x="858" y="386" fill="#94A3B8" font-size="11">Automated drill &amp; stock sign-off</text>
+                    </g>
+
+                    <!-- Lane 4 Nodes -->
+                    <g class="bp-node" data-id="N10" data-risk="safe" data-step="10">
+                      <rect x="60" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#A855F7" stroke-width="1.8" />
+                      <text x="78" y="504" fill="#F8FAFC" font-size="13" font-weight="700">10. Effluent &amp; Dust Telemetry</text>
+                      <text x="78" y="526" fill="#94A3B8" font-size="11">pH, heavy metals, silica sensor feed</text>
+                    </g>
+                    <g class="bp-node" data-id="N11" data-risk="high" data-step="11">
+                      <rect x="450" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
+                      <text x="468" y="504" fill="#F8FAFC" font-size="13" font-weight="700">11. EMA Threshold Gate</text>
+                      <text x="468" y="526" fill="#94A3B8" font-size="11">Statutory effluent breach detector</text>
+                    </g>
+                    <g class="bp-node" data-id="N12" data-risk="safe" data-step="12">
+                      <rect x="840" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="504" fill="#F8FAFC" font-size="13" font-weight="700">12. Automated Lab QC Sign-Off</text>
+                      <text x="858" y="526" fill="#94A3B8" font-size="11">Validated environmental assay log</text>
+                    </g>
+
+                    <!-- Lane 5 Nodes -->
+                    <g class="bp-node" data-id="N13" data-risk="safe" data-step="13">
+                      <rect x="60" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
+                      <text x="78" y="644" fill="#F8FAFC" font-size="13" font-weight="700">13. Digital Pre-Shift Checklist</text>
+                      <text x="78" y="666" fill="#94A3B8" font-size="11">Mobile plant &amp; pit safety verification</text>
+                    </g>
+                    <g class="bp-node" data-id="N14" data-risk="safe" data-step="14">
+                      <rect x="450" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
+                      <text x="468" y="644" fill="#F8FAFC" font-size="13" font-weight="700">14. Automated CAPA Router</text>
+                      <text x="468" y="666" fill="#94A3B8" font-size="11">98.2% closure rate with SLA alerts</text>
+                    </g>
+                    <g class="bp-node" data-id="N15" data-risk="safe" data-step="15">
+                      <rect x="840" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="644" fill="#F8FAFC" font-size="13" font-weight="700">15. ISO 9001 NCR Verification</text>
+                      <text x="858" y="666" fill="#94A3B8" font-size="11">Root-cause &amp; effectiveness sign-off</text>
+                    </g>
+
+                    <!-- Lane 6 Nodes -->
+                    <g class="bp-node" data-id="N16" data-risk="safe" data-step="16">
+                      <rect x="60" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="78" y="782" fill="#F8FAFC" font-size="13" font-weight="700">16. Penalty &amp; Cost Recovery EDI</text>
+                      <text x="78" y="804" fill="#94A3B8" font-size="11">Contractor safety SLA chargeback</text>
+                    </g>
+                    <g class="bp-node" data-id="N17" data-risk="safe" data-step="17">
+                      <rect x="450" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="468" y="782" fill="#F8FAFC" font-size="13" font-weight="700">17. Ministry of Mines Statutory Pack</text>
+                      <text x="468" y="804" fill="#94A3B8" font-size="11">Automated statutory deadline filing</text>
+                    </g>
+                    <g class="bp-node" data-id="N18" data-risk="safe" data-step="18">
+                      <rect x="840" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
+                      <text x="858" y="782" fill="#F8FAFC" font-size="13" font-weight="700">18. Digital Audit Vault</text>
+                      <text x="858" y="804" fill="#94A3B8" font-size="11">Indexed ISO 9001/45001 evidence store</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Floating Zoom Controls -->
+                <div class="floating-zoom">
+                  <button id="zoom-in" class="bp-btn" type="button" title="Zoom In (+)">Zoom In (+)</button>
+                  <button id="zoom-out" class="bp-btn" type="button" title="Zoom Out (-)">Zoom Out (-)</button>
+                  <button id="zoom-reset" class="bp-btn" type="button" title="Reset View">Reset View (&#10226;)</button>
+                </div>
+
+                <!-- Interactive Minimap Navigator -->
+                <div class="minimap-box" aria-label="Blueprint Minimap">
+                  <span class="minimap-label">Minimap Navigator</span>
+                  <div id="minimap-viewbox"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!-- Detailed Breakdown -->
           <div class="row g-4 mb-5">
             <div class="col-lg-5">
-              <div class="card h-100 p-4">
+              <div class="glass-panel h-100 p-4">
                 <h2 class="h4 mb-3"><i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>The Challenge</h2>
                 <p class="text-muted mb-0">
                   Heavy industrial and mining operations face strict regulatory compliance requirements under national environmental policies (EMA) and international standards (ISO 45001 for Safety, ISO 9001 for Quality). Most sites rely on paper shift logs and fragmented spreadsheets, resulting in delayed hazard response, unmonitored lost-time injuries, and frantic, error-prone preparation during external audit seasons.
@@ -281,7 +715,7 @@
             </div>
 
             <div class="col-lg-7">
-              <div class="card h-100 p-4">
+              <div class="glass-panel h-100 p-4">
                 <h2 class="h4 mb-3"><i class="fa-solid fa-gears text-success me-2"></i>The Engineered Solution</h2>
                 <p class="text-muted">
                   Designed a real-time operational dashboard architecture that consolidates daily pre-shift equipment inspections, near-miss incident logs, and statutory environmental monitoring into a centralized intelligence platform:
@@ -296,8 +730,8 @@
             </div>
           </div>
 
-          <div class="card p-4 mb-5">
-            <h2 class="h4 mb-3"><i class="fa-solid fa-chart-line me-2" style="color: var(--accent);"></i>Quantifiable Impact</h2>
+          <div class="glass-panel p-4 mb-5">
+            <h2 class="h4 mb-3"><i class="fa-solid fa-chart-line me-2" style="color: var(--orange);"></i>Quantifiable Impact</h2>
             <ul class="text-muted mb-0">
               <li class="mb-2"><strong>142 Consecutive LTI-Free Days</strong> tracked with real-time Lost Time Injury Frequency Rate (LTIFR) benchmarked at <strong>0.28</strong> (well below the 0.50 risk ceiling).</li>
               <li class="mb-2"><strong>98.2% CAPA Closure Rate</strong> with automated threshold alerts for high-risk hazards.</li>
@@ -314,6 +748,29 @@
     </div>
   </main>
 
+  <!-- Interactive Node Inspector Modal (#nodeModal) -->
+  <div id="nodeModal" class="node-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-node-title">
+    <div class="node-modal-card">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <span id="modal-node-badge" class="pill mb-2 d-inline-block">ISO Standard</span>
+          <h3 id="modal-node-title" class="h4 mb-0">Node Title</h3>
+        </div>
+        <button id="modal-close" class="bp-btn" type="button" aria-label="Close modal">&times; Close</button>
+      </div>
+      <p id="modal-node-desc" class="text-muted mb-3"></p>
+      <div class="p-3 rounded-3 mb-3" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="small text-uppercase fw-bold mb-1" style="color: #38BDF8;">SOP &amp; Data Pipeline Reference</div>
+        <code id="modal-node-sop" class="small text-light d-block mb-2"></code>
+        <div class="small text-uppercase fw-bold mb-1" style="color: #10B981;">Compliance &amp; Audit Control Point</div>
+        <div id="modal-node-compliance" class="small text-muted"></div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button id="modal-ack" class="btn-accent btn-sm" type="button">Got It</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer-shell text-center py-4">
     <div class="container">
       <p class="mb-1">&copy; <span id="current-year">2026</span> Daud Sibanda. All rights reserved.</p>
@@ -321,30 +778,375 @@
   </footer>
 
   <script>
+    const NODE_METADATA = {
+      N1: {
+        title: "1. Paper Gate & Shift Log",
+        badge: "High Risk Bottleneck • Manual Entry",
+        desc: "Legacy paper shift entry registers cause delayed contractor verification and unindexed induction records during statutory inspections.",
+        sop: "file:///SOP-SHE-001/legacy-gate-intake.py",
+        compliance: "ISO 45001:2018 Clause 8.1.4.2 (Contractors) - Flagged in Heatmap Mode for digital replacement."
+      },
+      N2: {
+        title: "2. Biometric & Cert Gate",
+        badge: "ISO 45001 Clause 7.2 & 8.1.4",
+        desc: "Automated gate control cross-checking operator medical fitness certificates and safety induction expiry dates before pit access.",
+        sop: "file:///SOP-SHE-002/contractor-biometric-gate.sql",
+        compliance: "Blocks expired medical or pneumoconiosis certificates automatically at shift check-in."
+      },
+      N3: {
+        title: "3. Contractor Scorecard Engine",
+        badge: "ISO 9001 Clause 8.4 • External Providers",
+        desc: "Python/Pandas pipeline aggregating daily haulage and drilling contractor compliance scores into executive rankings.",
+        sop: "file:///SOP-SHE-003/contractor-scorecard-etl.py",
+        compliance: "Generates automated weekly supplier conformance scorecards for procurement and SHE leadership."
+      },
+      N4: {
+        title: "4. Near-Miss & Triage Intake",
+        badge: "Risk Capture Point • ISO 45001 Cl. 10.2",
+        desc: "Field capture of near-miss hazards, first-aid triage events, and unsafe conditions across surface and underground work zones.",
+        sop: "file:///SOP-SHE-004/incident-intake-schema.sql",
+        compliance: "Enforces mandatory hazard classification within 15 minutes of shift observation."
+      },
+      N5: {
+        title: "5. LTIFR Telemetry Aggregator",
+        badge: "Core KPI Engine • 0.28 LTIFR",
+        desc: "Computes rolling Lost Time Injury Frequency Rate (0.28 vs 0.50 ceiling) and tracks the 142 consecutive LTI-free day counter.",
+        sop: "file:///SOP-SHE-005/ltifr-rolling-window.py",
+        compliance: "ISO 45001 Clause 9.1.1 (Monitoring, Measurement, Analysis and Performance Evaluation)."
+      },
+      N6: {
+        title: "6. Leading Indicator Correlation",
+        badge: "Predictive Safety Analytics",
+        desc: "Dual-axis statistical engine correlating employee near-miss reporting volume against CAPA closure velocity.",
+        sop: "file:///SOP-SHE-006/leading-lagging-correlation.py",
+        compliance: "Identifies under-reporting zones before lagging injury spikes occur."
+      },
+      N7: {
+        title: "7. Manual PPE & Trauma Kit Log",
+        badge: "High Risk Bottleneck • Unbarcoded Stock",
+        desc: "Manual clipboard tallies of emergency trauma kits and specialized PPE expose operations to unmonitored stockouts.",
+        sop: "file:///SOP-SHE-007/manual-inventory-audit.csv",
+        compliance: "Highlighted in Heatmap Mode as an operational risk requiring barcode automation."
+      },
+      N8: {
+        title: "8. Emergency Kit BCMA Barcode",
+        badge: "Automated Inventory Control",
+        desc: "Barcode-verified replenishment for cyanide antidote kits, trauma consumables, and self-contained self-rescuers (SCSRs).",
+        sop: "file:///SOP-SHE-008/bcma-emergency-stock.py",
+        compliance: "ISO 45001 Clause 8.2 (Emergency Preparedness and Response) Lot/Expiry traceability."
+      },
+      N9: {
+        title: "9. ISO 45001 Cl. 8.2 Readiness",
+        badge: "Audit-Ready Emergency Verification",
+        desc: "Consolidates emergency drill timestamps, response times, and trauma station readiness into live compliance indicators.",
+        sop: "file:///SOP-SHE-009/emergency-readiness-view.sql",
+        compliance: "Provides instant external auditor verification for ISO 45001 Clause 8.2."
+      },
+      N10: {
+        title: "10. Effluent & Dust Telemetry",
+        badge: "Environmental Monitoring • EMA",
+        desc: "Ingests daily laboratory assays for tailings effluent pH, dissolved heavy metals, and respirable crystalline silica dust.",
+        sop: "file:///SOP-SHE-010/ema-effluent-ingest.py",
+        compliance: "Aligned with ISO 15189 pre-examination traceability and national EMA statutory limits."
+      },
+      N11: {
+        title: "11. EMA Threshold Gate",
+        badge: "Statutory Breach Guardrail",
+        desc: "Automated rule engine comparing laboratory effluent values against Environmental Management Agency (EMA) upper control limits.",
+        sop: "file:///SOP-SHE-011/ema-threshold-alerts.py",
+        compliance: "Triggers immediate containment CAPA if effluent parameters approach 85% of statutory ceiling."
+      },
+      N12: {
+        title: "12. Automated Lab QC Sign-Off",
+        badge: "Validated Assay Registry",
+        desc: "Cryptographically timestamped laboratory quality control sign-off for statutory environmental returns.",
+        sop: "file:///SOP-SHE-012/lab-qc-verification.sql",
+        compliance: "Eliminates transcription errors between laboratory sheets and statutory filings."
+      },
+      N13: {
+        title: "13. Digital Pre-Shift Checklist",
+        badge: "ISO 45001 Clause 8.1 • Operational Control",
+        desc: "Standardized digital pre-shift inspection forms for dump trucks, Load-Haul-Dump (LHD) units, and fixed plant.",
+        sop: "file:///SOP-SHE-013/preshift-equipment-check.py",
+        compliance: "Auto-locks equipment dispatch when critical brake, steering, or fire-suppression defects are logged."
+      },
+      N14: {
+        title: "14. Automated CAPA Router",
+        badge: "98.2% CAPA Closure Rate",
+        desc: "Routes non-conformances to accountable engineering and SHE owners with automated escalation alerts before SLA breach.",
+        sop: "file:///SOP-SHE-014/capa-sla-router.py",
+        compliance: "ISO 9001:2015 Clause 10.2 & ISO 45001:2018 Clause 10.2 (Nonconformity and Corrective Action)."
+      },
+      N15: {
+        title: "15. ISO 9001 NCR Verification",
+        badge: "Internal Audit Sign-Off",
+        desc: "Requires root-cause documentation and 30-day effectiveness verification before closing any high-risk non-conformance.",
+        sop: "file:///SOP-SHE-015/ncr-effectiveness-gate.sql",
+        compliance: "ISO 9001 Clause 9.2 (Internal Audit) & Clause 10.2.1."
+      },
+      N16: {
+        title: "16. Penalty & Cost Recovery EDI",
+        badge: "Commercial SLA Governance",
+        desc: "Reconciles contractor safety infractions and unreturned PPE issuances against monthly contractor payment certificates.",
+        sop: "file:///SOP-SHE-016/contractor-sla-edi.py",
+        compliance: "Links SHE performance directly to commercial contract governance."
+      },
+      N17: {
+        title: "17. Ministry of Mines Statutory Pack",
+        badge: "Zero-Late Statutory Filings",
+        desc: "Compiles monthly safety statistics, LTIFR calculations, and environmental returns into regulator-ready submission packages.",
+        sop: "file:///SOP-SHE-017/ministry-statutory-export.py",
+        compliance: "Ensures 100% on-time statutory reporting compliance."
+      },
+      N18: {
+        title: "18. Digital Audit Vault",
+        badge: "ISO 9001 Clause 7.5 • Documented Information",
+        desc: "Searchable, immutable registry replacing paper binders for external ISO 9001 and ISO 45001 surveillance audits.",
+        sop: "file:///SOP-SHE-018/digital-audit-vault.sql",
+        compliance: "Reduces external audit preparation time from weeks of binder assembly to instant query retrieval."
+      }
+    };
+
+    const LANE_OFFSETS = {
+      all: { x: 0, y: 0, scale: 0.82 },
+      admissions: { x: 20, y: -10, scale: 1.0 },
+      wards: { x: 20, y: -140, scale: 1.0 },
+      pharmacy: { x: 20, y: -280, scale: 1.0 },
+      lab: { x: 20, y: -420, scale: 1.0 },
+      shift: { x: 20, y: -530, scale: 1.0 },
+      billing: { x: 20, y: -620, scale: 1.0 }
+    };
+
     function applyTheme(theme) {
       const root = document.documentElement;
-      if (theme === "dark") {
-        root.setAttribute("data-theme", "dark");
+      if (theme === "light") {
+        root.setAttribute("data-theme", "light");
       } else {
-        root.removeAttribute("data-theme");
+        root.setAttribute("data-theme", "dark");
       }
       localStorage.setItem("theme", theme);
       const toggle = document.getElementById("theme-toggle");
       if (toggle) {
-        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+        toggle.textContent = theme === "light" ? "Dark" : "Light";
       }
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
+      const savedTheme = localStorage.getItem("theme") || "dark";
       applyTheme(savedTheme);
-      const toggle = document.getElementById("theme-toggle");
-      if (toggle) {
-        toggle.addEventListener("click", () => {
-          const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-          applyTheme(next);
+      const themeToggle = document.getElementById("theme-toggle");
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const current = document.documentElement.getAttribute("data-theme");
+          applyTheme(current === "light" ? "dark" : "light");
         });
       }
+
+      // Pan, Zoom & Minimap State
+      const viewport = document.getElementById("canvas-viewport");
+      const stage = document.getElementById("canvas-stage");
+      const minimapBox = document.getElementById("minimap-viewbox");
+      const simBanner = document.getElementById("sim-banner");
+      const minScale = 0.5;
+      const maxScale = 1.8;
+      let scale = 0.82;
+      let panX = 16;
+      let panY = 12;
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+
+      function updateTransform(smooth = false) {
+        stage.style.transition = smooth ? "transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)" : "none";
+        stage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+
+        // Update Minimap Viewbox (180x112 maps 1320x860)
+        const mapW = 180;
+        const mapH = 112;
+        const svgW = 1320 * scale;
+        const svgH = 860 * scale;
+        const vpW = viewport.clientWidth;
+        const vpH = viewport.clientHeight;
+
+        const boxW = Math.min(mapW, Math.max(24, (vpW / svgW) * mapW));
+        const boxH = Math.min(mapH, Math.max(18, (vpH / svgH) * mapH));
+        const boxX = Math.min(mapW - boxW, Math.max(0, (-panX / svgW) * mapW));
+        const boxY = Math.min(mapH - boxH, Math.max(0, (-panY / svgH) * mapH));
+
+        minimapBox.style.width = `${boxW}px`;
+        minimapBox.style.height = `${boxH}px`;
+        minimapBox.style.left = `${boxX}px`;
+        minimapBox.style.top = `${boxY}px`;
+      }
+
+      updateTransform();
+
+      viewport.addEventListener("mousedown", (e) => {
+        if (e.target.closest(".floating-zoom") || e.target.closest(".minimap-box")) return;
+        isDragging = true;
+        viewport.classList.add("dragging");
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        panX = e.clientX - startX;
+        panY = e.clientY - startY;
+        updateTransform(false);
+      });
+
+      window.addEventListener("mouseup", () => {
+        isDragging = false;
+        viewport.classList.remove("dragging");
+      });
+
+      viewport.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.08 : 0.92;
+        scale = Math.min(Math.max(scale * factor, minScale), maxScale);
+        updateTransform(false);
+      }, { passive: false });
+
+      document.getElementById("zoom-in").addEventListener("click", () => {
+        scale = Math.min(scale * 1.15, maxScale);
+        updateTransform(true);
+      });
+
+      document.getElementById("zoom-out").addEventListener("click", () => {
+        scale = Math.max(scale * 0.85, minScale);
+        updateTransform(true);
+      });
+
+      document.getElementById("zoom-reset").addEventListener("click", () => {
+        scale = 0.82;
+        panX = 16;
+        panY = 12;
+        updateTransform(true);
+      });
+
+      // Swimlane Jump Tabs
+      document.querySelectorAll(".lane-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".lane-tab").forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const target = LANE_OFFSETS[tab.dataset.lane] || LANE_OFFSETS.all;
+          panX = target.x;
+          panY = target.y;
+          scale = target.scale;
+          updateTransform(true);
+        });
+      });
+
+      // Live Keyword Search
+      const searchInput = document.getElementById("bp-search");
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim().toLowerCase();
+        document.querySelectorAll(".bp-node").forEach((node) => {
+          const text = node.textContent.toLowerCase();
+          if (query && text.includes(query)) {
+            node.classList.add("search-hit");
+          } else {
+            node.classList.remove("search-hit");
+          }
+        });
+      });
+
+      // Heatmap Mode Toggle
+      let heatmapActive = false;
+      const heatmapBtn = document.getElementById("heatmap-toggle");
+      heatmapBtn.addEventListener("click", () => {
+        heatmapActive = !heatmapActive;
+        heatmapBtn.classList.toggle("heatmap-active", heatmapActive);
+        document.querySelectorAll(".bp-node").forEach((node) => {
+          const rect = node.querySelector("rect");
+          if (!rect) return;
+          if (!heatmapActive) {
+            rect.setAttribute("fill", "#1E293B");
+          } else if (node.dataset.risk === "high") {
+            rect.setAttribute("fill", "rgba(252, 165, 165, 0.25)");
+            rect.setAttribute("stroke", "#FCA5A5");
+          } else {
+            rect.setAttribute("fill", "rgba(187, 247, 208, 0.2)");
+            rect.setAttribute("stroke", "#BBF7D0");
+          }
+        });
+        simBanner.textContent = heatmapActive
+          ? "🔥 Heatmap Mode Active: Red (#FCA5A5) = Manual Risk Bottlenecks | Green (#BBF7D0) = Automated ISO Controls"
+          : "Click any node for ISO 45001/9001 SOP details or press ▶ Run Simulation";
+      });
+
+      // Execution Simulation Mode
+      let simInterval = null;
+      let simStep = 0;
+      const simBtn = document.getElementById("sim-toggle");
+      const allNodes = Array.from(document.querySelectorAll(".bp-node"));
+
+      function stopSimulation() {
+        if (simInterval) clearInterval(simInterval);
+        simInterval = null;
+        simBtn.classList.remove("sim-active");
+        simBtn.textContent = "▶ Run Simulation";
+        allNodes.forEach((n) => n.classList.remove("sim-step-active"));
+      }
+
+      simBtn.addEventListener("click", () => {
+        if (simInterval) {
+          stopSimulation();
+          simBanner.textContent = "Simulation paused. Click any node to inspect ISO 45001/9001 controls.";
+          return;
+        }
+        simStep = 0;
+        simBtn.classList.add("sim-active");
+        simBtn.textContent = "⏹ Stop Simulation";
+
+        simInterval = setInterval(() => {
+          allNodes.forEach((n) => n.classList.remove("sim-step-active"));
+          if (simStep >= allNodes.length) {
+            stopSimulation();
+            simBanner.textContent = "Simulation complete: 100% statutory & CAPA checkpoints verified.";
+            return;
+          }
+          const currentNode = allNodes[simStep];
+          currentNode.classList.add("sim-step-active");
+          const meta = NODE_METADATA[currentNode.dataset.id];
+          if (meta) {
+            simBanner.textContent = `Simulating Step ${simStep + 1}/18: ${meta.title} (${meta.badge})`;
+          }
+          simStep += 1;
+        }, 900);
+      });
+
+      // Interactive Node Inspector Modal (#nodeModal)
+      const modal = document.getElementById("nodeModal");
+      const modalTitle = document.getElementById("modal-node-title");
+      const modalBadge = document.getElementById("modal-node-badge");
+      const modalDesc = document.getElementById("modal-node-desc");
+      const modalSop = document.getElementById("modal-node-sop");
+      const modalCompliance = document.getElementById("modal-node-compliance");
+
+      allNodes.forEach((node) => {
+        node.addEventListener("click", () => {
+          const meta = NODE_METADATA[node.dataset.id];
+          if (!meta) return;
+          modalTitle.textContent = meta.title;
+          modalBadge.textContent = meta.badge;
+          modalDesc.textContent = meta.desc;
+          modalSop.textContent = meta.sop;
+          modalCompliance.textContent = meta.compliance;
+          modal.classList.add("open");
+        });
+      });
+
+      function closeModal() {
+        modal.classList.remove("open");
+      }
+
+      document.getElementById("modal-close").addEventListener("click", closeModal);
+      document.getElementById("modal-ack").addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
     });
   </script>
 </body>

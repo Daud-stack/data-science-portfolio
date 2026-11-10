@@ -3,13 +3,15 @@ import os
 import secrets
 import sqlite3
 import smtplib
+import time
+from collections import defaultdict, deque
 from hmac import compare_digest
 from contextlib import contextmanager, asynccontextmanager
 from datetime import datetime
 from email.message import EmailMessage
 from pathlib import Path
 
-from fastapi import FastAPI, Request, Form, HTTPException
+from fastapi import FastAPI, Request, Form, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse, RedirectResponse, FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
@@ -58,8 +60,29 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Portfolio Backend", lifespan=lifespan)
-app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
+app.add_middleware(
+  SessionMiddleware,
+  secret_key=SECRET_KEY,
+  same_site="lax",
+  https_only=IS_PRODUCTION,
+)
 templates = Jinja2Templates(directory=str(BASE_DIR / "backend" / "templates"))
+
+RATE_LIMIT_BUCKETS: dict[str, deque[float]] = defaultdict(deque)
+ALLOWED_STATIC_PREFIXES = ("Images/", "projects/")
+ALLOWED_STATIC_FILES = {"index.html"}
+
+
+def enforce_rate_limit(request: Request, scope: str, max_requests: int, window_seconds: int):
+  client_ip = request.client.host if request.client else "unknown"
+  key = f"{scope}:{client_ip}"
+  now = time.monotonic()
+  bucket = RATE_LIMIT_BUCKETS[key]
+  while bucket and now - bucket[0] > window_seconds:
+    bucket.popleft()
+  if len(bucket) >= max_requests:
+    raise HTTPException(status_code=429, detail="Too many requests. Please try again shortly.")
+  bucket.append(now)
 
 
 class ContactIn(BaseModel):
@@ -76,8 +99,9 @@ class TrackIn(BaseModel):
 
 @contextmanager
 def get_db():
-  conn = sqlite3.connect(DB_PATH)
+  conn = sqlite3.connect(DB_PATH, timeout=15)
   conn.row_factory = sqlite3.Row
+  conn.execute("PRAGMA journal_mode=WAL;")
   try:
     yield conn
   finally:
@@ -153,6 +177,7 @@ def init_db():
       )
       """
     )
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts(slug)")
     conn.commit()
 
 
@@ -340,12 +365,15 @@ def send_email(subject: str, body: str):
   msg["To"] = SMTP_TO_EMAIL
   msg.set_content(body)
 
-  with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-    server.starttls()
-    if SMTP_USERNAME and SMTP_PASSWORD:
-      server.login(SMTP_USERNAME, SMTP_PASSWORD)
-    server.send_message(msg)
-  return True
+  try:
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
+      server.starttls()
+      if SMTP_USERNAME and SMTP_PASSWORD:
+        server.login(SMTP_USERNAME, SMTP_PASSWORD)
+      server.send_message(msg)
+    return True
+  except Exception:
+    return False
 
 
 def is_admin(request: Request) -> bool:
@@ -379,9 +407,14 @@ def admin_template(request: Request, template_name: str, context: dict | None = 
 
 
 def safe_frontend_file(path: str) -> Path | None:
+  clean_rel = path.lstrip("/").replace("\\", "/")
+  if not clean_rel or any(part.startswith(".") for part in clean_rel.split("/")):
+    return None
+  if clean_rel not in ALLOWED_STATIC_FILES and not clean_rel.startswith(ALLOWED_STATIC_PREFIXES):
+    return None
   try:
     frontend_root = FRONTEND_DIR.resolve()
-    requested_file = (frontend_root / path).resolve()
+    requested_file = (frontend_root / clean_rel).resolve()
     requested_file.relative_to(frontend_root)
   except (OSError, ValueError):
     return None
@@ -430,7 +463,8 @@ def api_posts():
 
 
 @app.post("/api/contact")
-def api_contact(payload: ContactIn, request: Request):
+def api_contact(payload: ContactIn, request: Request, background_tasks: BackgroundTasks):
+  enforce_rate_limit(request, "contact", max_requests=8, window_seconds=300)
   name = payload.name.strip()
   message = payload.message.strip()
   if len(name) < 2 or len(message) < 5:
@@ -449,22 +483,19 @@ def api_contact(payload: ContactIn, request: Request):
     )
     conn.commit()
 
-  email_sent = False
-  try:
-    email_sent = send_email(
-      subject=f"New Portfolio Message from {payload.name}",
-      body=f"Name: {payload.name}\nEmail: {payload.email}\n\n{payload.message}",
+  if SMTP_HOST and SMTP_FROM_EMAIL and SMTP_TO_EMAIL:
+    background_tasks.add_task(
+      send_email,
+      f"New Portfolio Message from {payload.name}",
+      f"Name: {payload.name}\nEmail: {payload.email}\n\n{payload.message}",
     )
-  except Exception:
-    email_sent = False
-
-  if email_sent:
-    return JSONResponse({"message": "Message sent successfully."})
-  return JSONResponse({"message": "Message saved. Email delivery not configured yet."})
+    return JSONResponse({"message": "Message sent and saved successfully."})
+  return JSONResponse({"message": "Message received and saved."})
 
 
 @app.post("/api/track")
 def api_track(payload: TrackIn, request: Request):
+  enforce_rate_limit(request, "track", max_requests=60, window_seconds=60)
   validate_tracking_payload(payload)
   with get_db() as conn:
     cur = conn.cursor()
@@ -493,6 +524,7 @@ def admin_login(request: Request):
 
 @app.post("/admin/login")
 def admin_login_post(request: Request, password: str = Form(...), csrf: str = Form("")):
+  enforce_rate_limit(request, "admin_login", max_requests=10, window_seconds=300)
   validate_csrf_token(request, csrf)
   if not compare_digest(password, ADMIN_PASSWORD):
     return admin_template(
@@ -765,6 +797,37 @@ def admin_analytics(request: Request):
     for row in rows
   ]
   return admin_template(request, "admin_analytics.html", {"events": events})
+
+
+@app.get("/admin/contacts", response_class=HTMLResponse)
+def admin_contacts(request: Request):
+  require_admin(request)
+  with get_db() as conn:
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM contacts ORDER BY id DESC LIMIT 200")
+    rows = cur.fetchall()
+  contacts = [
+    {
+      "id": row["id"],
+      "name": row["name"],
+      "email": row["email"],
+      "message": row["message"],
+      "created_at": row["created_at"],
+    }
+    for row in rows
+  ]
+  return admin_template(request, "admin_contacts.html", {"contacts": contacts})
+
+
+@app.post("/admin/contacts/delete")
+def admin_contacts_delete(request: Request, contact_id: int = Form(...), csrf: str = Form("")):
+  require_admin(request)
+  validate_csrf_token(request, csrf)
+  with get_db() as conn:
+    cur = conn.cursor()
+    cur.execute("DELETE FROM contacts WHERE id = ?", (contact_id,))
+    conn.commit()
+  return RedirectResponse("/admin/contacts", status_code=303)
 
 
 @app.get("/", response_class=HTMLResponse)

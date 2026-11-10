@@ -3,36 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title or "Admin" }}</title>
+  <title>{{ title or "Portfolio Admin" }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: "Segoe UI", sans-serif; background: #f4f1ed; color: #1f1f1f; margin: 0; }
-    header { background: #1f1f1f; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-    header a { color: #fff; text-decoration: none; margin-right: 14px; }
-    main { padding: 24px; max-width: 1100px; margin: 0 auto; }
-    .card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); margin-bottom: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    label { display: block; font-weight: 600; margin-bottom: 6px; }
-    input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 12px; }
-    button { background: #d07a4f; color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+    :root {
+      --bg: #0B0F17;
+      --panel: rgba(30, 41, 59, 0.85);
+      --border: rgba(255, 255, 255, 0.12);
+      --ink: #F8FAFC;
+      --muted: #94A3B8;
+      --accent: #F97316;
+      --sky: #38BDF8;
+      --emerald: #10B981;
+      --danger: #EF4444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: radial-gradient(900px 500px at 10% -10%, rgba(56, 189, 248, 0.12), transparent 60%), var(--bg);
+      color: var(--ink);
+      margin: 0;
+      min-height: 100vh;
+    }
+    h1, h2, h3 { font-family: "Outfit", sans-serif; margin-top: 0; }
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      color: var(--ink);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand { font-family: "Outfit", sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--sky); }
+    header nav { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    header a:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-1px); }
+    main { padding: 28px 20px; max-width: 1180px; margin: 0 auto; }
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      margin-bottom: 22px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    label { display: block; font-weight: 600; font-size: 0.88rem; color: var(--muted); margin-bottom: 6px; }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-family: "Inter", sans-serif;
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--sky); border-color: transparent; }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(249, 115, 22, 0.35); }
+    .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
-    .muted { color: #666; font-size: 0.9rem; }
-    .danger { background: #f2dede; color: #a94442; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
+    th { color: var(--sky); font-weight: 600; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.05rem; }
+    .muted { color: var(--muted); font-size: 0.9rem; }
+    .danger { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4); }
+    .danger:hover { background: var(--danger); color: #fff; }
   </style>
 </head>
 <body>
   <header>
-    <div>Portfolio Admin</div>
-    <div>
+    <div class="brand">Portfolio Studio Admin</div>
+    <nav>
       <a href="/admin">Dashboard</a>
       <a href="/admin/projects">Projects</a>
       <a href="/admin/posts">Posts</a>
+      <a href="/admin/contacts">Contacts</a>
       <a href="/admin/analytics">Analytics</a>
+      <a href="/" target="_blank">View Site &nearr;</a>
       <form action="/admin/logout" method="post" style="display:inline;">
         <input type="hidden" name="csrf" value="{{ csrf_token }}">
         <button type="submit">Logout</button>
       </form>
-    </div>
+    </nav>
   </header>
   <main>
     {% block content %}{% endblock %}

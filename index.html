@@ -1608,9 +1608,9 @@
         nav_contact: "Contact",
         studio_panel_title: "Pratique studio",
         studio_panel_body: "Analytics, systèmes qualité et exécution réfléchie.",
-        hero_tag: "Science des données • Workflows IA • Qualité",
+        hero_tag: "Data Scientist & Spécialiste Systèmes Qualité (ISO 9001 / ISO 45001)",
         hero_title: "La science des données au service de décisions <span class=\"underline\">plus claires</span>.",
-        hero_body: "Je suis Daud Sibanda—aspirant data scientist et entrepreneur en devenir. Je mise sur l’apprentissage continu, une analyse structurée et des solutions éthiques centrées sur l’humain.",
+        hero_body: "Je transforme les flux opérationnels et de conformité complexes en tableaux de bord décisionnels à fort impact et en systèmes de reporting automatisés. Alliant rigueur d’audit interne et science des données moderne, j’aide les équipes industrielles, minières et PME à éliminer les temps d’arrêt et à maintenir une préparation continue aux audits.",
         hero_badge_1: "Analytics façon studio",
         hero_badge_2: "Éthique d’abord",
         hero_badge_3: "Workflows prêts pour l’IA",
@@ -1621,7 +1621,7 @@
         profile_image_alt: "Daud Sibanda",
         profile_caption: "Studio Daud Sibanda",
         profile_kicker: "Profil",
-        profile_role: "Data scientist • Analytics avec IA • Systèmes qualité",
+        profile_role: "Data Scientist & Spécialiste Systèmes Qualité (ISO 9001 / ISO 45001)",
         profile_pill_2: "Audits internes",
         profile_pill_3: "Dashboards",
         profile_pill_4: "Workflows IA",
@@ -1699,9 +1699,9 @@
         nav_contact: "Bata",
         studio_panel_title: "Maitiro eStudio",
         studio_panel_body: "Analytics, masisitimu eunyanzvi, nekuita kwakarongeka.",
-        hero_tag: "Data Science • AI Workflows • Masisitimu eQuality",
+        hero_tag: "Data Scientist & Nyanzvi yeMasisitimu eQuality (ISO 9001 / ISO 45001)",
         hero_title: "Data science ine hanya nevanhu kuitira sarudzo <span class=\"underline\">dzakajeka</span>.",
-        hero_body: "Ndini Daud Sibanda, mudzidzi we data science uye muzvinabhizimisi ari kukura. Ndinotarisa pakudzidza nguva dzose, kuongorora kwakarongeka, uye mhinduro dzine tsika dzakanaka dzinokoshesa vanhu.",
+        hero_body: "Ndinoshinyira mafambiro ebasa nemitemo yekutevedzera kuita ma-dashboard esarudzo nemasisitimu emishumo anozvishandira. Ndichibatanidza unyanzvi hwekuongorora (internal auditing) ne-data science yemazuva ano, ndinobatsira maindasitiri, migodhi, nema-SME kubvisa kukanganisika kwebasa nekugara vakagadzirira ma-audit nguva dzose.",
         hero_badge_1: "Analytics yemhando ye studio",
         hero_badge_2: "Tsika dzakanaka pakutanga",
         hero_badge_3: "AI workflows dzakagadzirira",
@@ -1712,7 +1712,7 @@
         profile_image_alt: "Daud Sibanda",
         profile_caption: "Studio yaDaud Sibanda",
         profile_kicker: "Profile",
-        profile_role: "Data Scientist • AI Analytics • Muvaki weMasisitimu eQuality",
+        profile_role: "Data Scientist & Nyanzvi yeMasisitimu eQuality (ISO 9001 / ISO 45001)",
         profile_pill_2: "MaAudit eMukati",
         profile_pill_3: "Dashboards",
         profile_pill_4: "AI Workflows",
@@ -1790,9 +1790,9 @@
         nav_contact: "Xhumana",
         studio_panel_title: "Indlela yeStudio",
         studio_panel_body: "Analytics, amasistimu equality, lokusebenza okucabangiweyo.",
-        hero_tag: "Data Science • AI Workflows • Amasistimu eQuality",
+        hero_tag: "Data Scientist & Ingcwethi yamaSistimu eQuality (ISO 9001 / ISO 45001)",
         hero_title: "Data science elobuntu ukuze izinqumo <span class=\"underline\">zicace</span>.",
-        hero_body: "NginguDaud Sibanda, umfundi we data science losomabhizimusi osakhulayo. Ngigxile ekufundeni okuqhubekayo, ukuhlaziya okuhlelekileyo, lezixazululo ezilungileyo ezigxile ebantwini.",
+        hero_body: "Ngiguqula indlela zokusebenza lezokulandela imithetho zibe ngama-dashboard ezinqumo lamasistimu okubika azenzakalelayo. Ngihlanganisa ubuciko bama-audit angaphakathi le-data science yanamuhla, ngisiza amafekthri, izimayini, lama-SME ukuqeda ukumiswa komsebenzi lokuhlala belungiselele ama-audit ngesikhathi sonke.",
         hero_badge_1: "Analytics yesitayela se studio",
         hero_badge_2: "Izimiso kuqala",
         hero_badge_3: "AI workflows ezilungiselelweyo",
@@ -1803,7 +1803,7 @@
         profile_image_alt: "Daud Sibanda",
         profile_caption: "Studio kaDaud Sibanda",
         profile_kicker: "Profile",
-        profile_role: "Data Scientist • AI Analytics • Umakhi wamaSistimu eQuality",
+        profile_role: "Data Scientist & Ingcwethi yamaSistimu eQuality (ISO 9001 / ISO 45001)",
         profile_pill_2: "AmaAudit Angaphakathi",
         profile_pill_3: "AmaDashboards",
         profile_pill_4: "AI Workflows",
@@ -1944,19 +1944,73 @@
       return link;
     }
 
-    async function loadProjects() {
-      const grid = document.getElementById("projects-grid");
-      const tpl = document.getElementById("project-card-template");
-      if (!grid || !tpl) return;
+    const FALLBACK_PROJECTS = [
+      {
+        title: "OpsHub Intranet",
+        description: "A healthcare operations intranet with secure staff sign-in, centralized access, and a polished admin-first experience.",
+        image: "Images/Projects/opshub.svg",
+        icon_class: "fa-solid fa-user-doctor",
+        tags: ["Healthcare", "Intranet", "Operations"],
+        case_study_url: "https://mdh-intranet.onrender.com"
+      },
+      {
+        title: "MedMarket Starter",
+        description: "A starter template for a healthcare marketplace experience with scalable data foundations.",
+        image: "Images/Projects/medmarket.svg",
+        icon_class: "fa-solid fa-shop",
+        tags: ["Healthcare", "Marketplace", "Data"],
+        case_study_url: "https://medmarket-starter.onrender.com"
+      },
+      {
+        title: "MDH MIS Platform",
+        description: "A management information system concept to centralize reporting, tracking, and operational visibility.",
+        image: "Images/Projects/mdh-mis.svg",
+        icon_class: "fa-solid fa-gauge-high",
+        tags: ["MIS", "Reporting", "Operations"],
+        case_study_url: "https://mdh-mis-platform.vercel.app/"
+      },
+      {
+        title: "Personal Productivity App",
+        description: "A focused task and habit tracker designed to help users plan, execute, and reflect on daily goals.",
+        image: "Images/Projects/personal-productivity.svg",
+        icon_class: "fa-solid fa-calendar-check",
+        tags: ["Productivity", "UX", "Planning"],
+        case_study_url: "https://personal-productivity-app-3ml0.onrender.com"
+      }
+    ];
 
-      try {
-        const res = await fetch(`${API_BASE}/projects`);
-        if (!res.ok) throw new Error("Failed to load projects");
-        const data = await res.json();
-        grid.innerHTML = "";
-        data
-          .filter((project) => project.case_study_url !== "/projects/digital-she-audit-compliance.html")
-          .forEach((project) => {
+    const FALLBACK_POSTS = [
+      {
+        title: "Bridging Data Science, Quality, and AI in Africa",
+        excerpt: "A reflection on building useful analytics and AI in African contexts by combining quality systems, local realities, governance, and practical deployment discipline.",
+        slug: "bridging-data-science-quality-ai-africa",
+        url: "/post/bridging-data-science-quality-ai-africa",
+        tags: ["AI", "Quality", "Africa", "Governance"],
+        published_at: "2025-03-01"
+      },
+      {
+        title: "Ethical Data Practice in Early-Stage Projects",
+        excerpt: "A deeper checklist for building analytics and AI workflows that respect privacy, reduce harm, and earn trust before a project scales.",
+        slug: "ethical-data-practice-in-early-stage-projects",
+        url: "/post/ethical-data-practice-in-early-stage-projects",
+        tags: ["Ethics", "Governance", "AI", "Privacy"],
+        published_at: "2025-02-05"
+      },
+      {
+        title: "From Raw Data to Reliable KPIs",
+        excerpt: "A practical reflection on turning scattered operational records into trusted metrics, governance rituals, and dashboards people can use with confidence.",
+        slug: "from-raw-data-to-reliable-kpis",
+        url: "/post/from-raw-data-to-reliable-kpis",
+        tags: ["KPIs", "Analytics", "Ops", "Dashboards"],
+        published_at: "2025-01-10"
+      }
+    ];
+
+    function renderProjectsList(grid, tpl, data) {
+      grid.innerHTML = "";
+      data
+        .filter((project) => project.case_study_url !== "/projects/digital-she-audit-compliance.html")
+        .forEach((project) => {
           const node = tpl.content.cloneNode(true);
           const card = node.querySelector(".project-card");
           const icon = node.querySelector(".project-icon-i");
@@ -1985,8 +2039,39 @@
           if (liveDemoLink) links.appendChild(liveDemoLink);
           grid.appendChild(node);
         });
+    }
+
+    function renderPostsList(grid, tpl, data) {
+      grid.innerHTML = "";
+      data.forEach((post) => {
+        const node = tpl.content.cloneNode(true);
+        node.querySelector(".post-date").textContent = post.published_at || t("post_draft");
+        node.querySelector(".post-title").textContent = post.title;
+        node.querySelector(".post-excerpt").textContent = post.excerpt;
+        const tags = node.querySelector(".post-tags");
+        (post.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
+        const links = node.querySelector(".post-links");
+        const postUrl = post.url || (post.slug ? `/post/${post.slug}` : "");
+        links.appendChild(createLink(postUrl, t("post_read_more"), true));
+        grid.appendChild(node);
+      });
+    }
+
+    async function loadProjects() {
+      const grid = document.getElementById("projects-grid");
+      const tpl = document.getElementById("project-card-template");
+      if (!grid || !tpl) return;
+
+      renderProjectsList(grid, tpl, FALLBACK_PROJECTS);
+      try {
+        const res = await fetch(`${API_BASE}/projects`);
+        if (!res.ok) throw new Error("Failed to load projects");
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          renderProjectsList(grid, tpl, data);
+        }
       } catch (err) {
-        grid.innerHTML = `<p class='text-muted text-center'>${t("projects_empty")}</p>`;
+        // Keep fallback projects visible when backend is waking up.
       }
     }
 
@@ -1995,25 +2080,16 @@
       const tpl = document.getElementById("post-card-template");
       if (!grid || !tpl) return;
 
+      renderPostsList(grid, tpl, FALLBACK_POSTS);
       try {
         const res = await fetch(`${API_BASE}/posts`);
         if (!res.ok) throw new Error("Failed to load posts");
         const data = await res.json();
-        grid.innerHTML = "";
-        data.forEach((post) => {
-          const node = tpl.content.cloneNode(true);
-          node.querySelector(".post-date").textContent = post.published_at || t("post_draft");
-          node.querySelector(".post-title").textContent = post.title;
-          node.querySelector(".post-excerpt").textContent = post.excerpt;
-          const tags = node.querySelector(".post-tags");
-          (post.tags || []).forEach((tag) => tags.appendChild(createTag(tag)));
-          const links = node.querySelector(".post-links");
-          const postUrl = post.url || (post.slug ? `/post/${post.slug}` : "");
-          links.appendChild(createLink(postUrl, t("post_read_more"), true));
-          grid.appendChild(node);
-        });
+        if (Array.isArray(data) && data.length > 0) {
+          renderPostsList(grid, tpl, data);
+        }
       } catch (err) {
-        grid.innerHTML = `<p class='text-muted text-center'>${t("posts_empty")}</p>`;
+        // Keep fallback posts visible when backend is waking up.
       }
     }
 
