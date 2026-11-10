@@ -403,7 +403,7 @@ def admin_template(request: Request, template_name: str, context: dict | None = 
   template_context = {"request": request, "csrf_token": csrf_token(request)}
   if context:
     template_context.update(context)
-  return templates.TemplateResponse(template_name, template_context, status_code=status_code)
+  return templates.TemplateResponse(request=request, name=template_name, context=template_context, status_code=status_code)
 
 
 def safe_frontend_file(path: str) -> Path | None:
@@ -688,7 +688,7 @@ def post_detail(request: Request, slug: str):
   if not row:
     raise HTTPException(status_code=404)
   post = row_to_post(row)
-  return templates.TemplateResponse("post_detail.html", {"request": request, "post": post})
+  return templates.TemplateResponse(request=request, name="post_detail.html", context={"request": request, "post": post})
 
 
 @app.post("/admin/posts/create")

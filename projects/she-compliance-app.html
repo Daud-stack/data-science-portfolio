@@ -2423,8 +2423,7 @@
           ...profile.preshift.map((p) => ["PRE_SHIFT", p.time, p.asset, p.notes, p.operator, p.status, p.shift]),
           ...profile.capas.map((c) => ["CAPA", c.id, c.zone, c.title, c.clause, c.severity, c.closed ? "30D_VERIFIED_CLOSED" : "OPEN"])
         ];
-        const csvContent = "data:text/csv;charset=utf-8," + rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("
-");
+        const csvContent = "data:text/csv;charset=utf-8," + rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
         const link = document.createElement("a");
         link.setAttribute("href", encodeURI(csvContent));
         link.setAttribute("download", `SHE_QMS_Audit_Pack_${currentSector}_2026.csv`);
