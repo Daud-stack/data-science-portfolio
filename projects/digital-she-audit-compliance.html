@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital SHE &amp; Audit Compliance Intelligence Platform | Daud Sibanda</title>
+  <meta name="description" content="Automating ISO 45001 and ISO 9001 statutory auditing for heavy industry and mining operations." />
+  <meta name="theme-color" content="#f6f2ee" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --ink: #141414;
+      --muted: #4f4f4f;
+      --surface-2: rgba(255, 255, 255, 0.72);
+      --surface-3: rgba(255, 255, 255, 0.88);
+      --line: rgba(20, 20, 20, 0.12);
+      --line-strong: rgba(20, 20, 20, 0.2);
+      --inverse-bg: #121212;
+      --inverse-ink: #f2f2f2;
+      --accent: #ef7b2d;
+      --accent-2: #1f6f5c;
+      --accent-3: #e3b3ff;
+      --card: #ffffff;
+      --shadow: 0 12px 30px rgba(10, 10, 10, 0.08);
+      --radius: 22px;
+      --grid: rgba(20, 20, 20, 0.06);
+    }
+
+    [data-theme="dark"] {
+      --bg: #111111;
+      --ink: #f5f5f5;
+      --muted: #c7c7c7;
+      --surface-2: rgba(20, 20, 20, 0.72);
+      --surface-3: rgba(27, 27, 27, 0.92);
+      --line: rgba(255, 255, 255, 0.18);
+      --line-strong: rgba(255, 255, 255, 0.26);
+      --inverse-bg: #f2f2f2;
+      --inverse-ink: #121212;
+      --accent: #ff914d;
+      --accent-2: #7ce8c6;
+      --accent-3: #ffb3d9;
+      --card: #1b1b1b;
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      --grid: rgba(255, 255, 255, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      position: relative;
+      background:
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(180deg, var(--grid) 1px, transparent 1px) 0 0 / 28px 28px,
+        radial-gradient(900px 500px at 8% -10%, rgba(239, 123, 45, 0.18) 0%, transparent 60%),
+        radial-gradient(900px 520px at 95% 0%, rgba(31, 111, 92, 0.18) 0%, transparent 60%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    }
+
+    .text-muted { color: var(--muted) !important; }
+    h1, h2, h3, .navbar-brand, .big-title { font-family: "Fraunces", "Georgia", serif; }
+
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(12, 12, 12, 0.92);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .case-hero {
+      padding: 130px 0 60px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(239, 123, 45, 0.12);
+      color: #7a3e24;
+      border: 1px solid rgba(239, 123, 45, 0.35);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    [data-theme="dark"] .tag {
+      color: #ffd1b2;
+      border-color: rgba(255, 145, 77, 0.42);
+      background: rgba(255, 145, 77, 0.14);
+    }
+
+    .pill {
+      background: rgba(31, 111, 92, 0.12);
+      color: #1f4a3f;
+      border: 1px solid rgba(31, 111, 92, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .pill {
+      color: #baf4e1;
+      background: rgba(124, 232, 198, 0.12);
+      border-color: rgba(124, 232, 198, 0.28);
+    }
+
+    .card {
+      border: 2px solid rgba(20, 20, 20, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--card);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(239, 123, 45, 0.5), rgba(31, 111, 92, 0.5), rgba(227, 179, 255, 0.6));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .dashboard-preview {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 2px solid var(--line-strong);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      background: #0d0d0d;
+    }
+
+    .dashboard-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .stat-box {
+      background: var(--card);
+      border: 2px dashed var(--line-strong);
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+
+    .stat-value {
+      font-family: "Fraunces", "Georgia", serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+
+    .stat-value.accent-amber {
+      color: var(--accent);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid rgba(20, 20, 20, 0.12);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      box-shadow: 0 8px 18px rgba(239, 123, 45, 0.25);
+      text-decoration: none;
+    }
+
+    .btn-accent:hover {
+      background: #d9691d;
+      color: #fff;
+    }
+
+    .btn-outline-ink {
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      background: transparent;
+      text-decoration: none;
+    }
+
+    .btn-outline-ink:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .footer-shell {
+      background: var(--inverse-bg);
+      color: var(--inverse-ink);
+    }
+
+    .footer-shell a { color: inherit; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/index.html">Daud Sibanda</a>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <a href="/index.html#projects" class="btn btn-outline-light btn-sm">Back to Projects</a>
+        <button id="theme-toggle" class="btn btn-outline-light btn-sm" type="button">Theme</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="case-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <span class="tag mb-3"><i class="fa-solid fa-helmet-safety"></i> Industrial &amp; Mining Case Study</span>
+          <h1 class="display-5 fw-bold mb-3">Digital SHE &amp; Audit Compliance Intelligence Platform</h1>
+          <p class="lead text-muted mb-4">
+            <em>Automating ISO 45001 &amp; ISO 9001 Statutory Auditing for Heavy Industry &amp; Mining</em>
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mb-5">
+            <span class="pill">Python</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Power BI / Dashboards</span>
+            <span class="pill">ISO 45001</span>
+            <span class="pill">ISO 9001</span>
+            <span class="pill">Regulatory Compliance</span>
+            <span class="pill">SQL</span>
+          </div>
+
+          <div class="dashboard-preview mb-5">
+            <img src="/Images/mining_she_compliance_dashboard.png" alt="Digital SHE and Audit Compliance Intelligence Platform Dashboard" />
+          </div>
+
+          <!-- Quantifiable Impact Metrics -->
+          <div class="row g-4 mb-5">
+            <div class="col-md-4">
+              <div class="stat-box">
+                <div class="stat-value">0.28</div>
+                <div class="fw-bold mb-1">Real-Time LTIFR</div>
+                <p class="small text-muted mb-0">Benchmarked well below the 0.50 risk ceiling</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-box">
+                <div class="stat-value">142 Days</div>
+                <div class="fw-bold mb-1">Consecutive LTI-Free</div>
+                <p class="small text-muted mb-0">Continuous shift-level safety tracking</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-box">
+                <div class="stat-value accent-amber">98.2%</div>
+                <div class="fw-bold mb-1">CAPA Closure Rate</div>
+                <p class="small text-muted mb-0">Automated threshold alerts for high-risk hazards</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Breakdown -->
+          <div class="row g-4 mb-5">
+            <div class="col-lg-5">
+              <div class="card h-100 p-4">
+                <h2 class="h4 mb-3"><i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>The Challenge</h2>
+                <p class="text-muted mb-0">
+                  Heavy industrial and mining operations face strict regulatory compliance requirements under national environmental policies (EMA) and international standards (ISO 45001 for Safety, ISO 9001 for Quality). Most sites rely on paper shift logs and fragmented spreadsheets, resulting in delayed hazard response, unmonitored lost-time injuries, and frantic, error-prone preparation during external audit seasons.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="card h-100 p-4">
+                <h2 class="h4 mb-3"><i class="fa-solid fa-gears text-success me-2"></i>The Engineered Solution</h2>
+                <p class="text-muted">
+                  Designed a real-time operational dashboard architecture that consolidates daily pre-shift equipment inspections, near-miss incident logs, and statutory environmental monitoring into a centralized intelligence platform:
+                </p>
+                <ul class="text-muted mb-0">
+                  <li class="mb-2"><strong>Leading Safety Analytics:</strong> Built dual-axis tracking correlating employee near-miss reporting volume with corrective action (CAPA) closure velocity.</li>
+                  <li class="mb-2"><strong>Statutory Compliance Guardrails:</strong> Integrated tracking for Environmental Management Agency (EMA) effluent thresholds and Ministry of Mines statutory filing deadlines.</li>
+                  <li class="mb-2"><strong>Contractor Scorecard:</strong> Automated safety and medical certification scoring across third-party haulage and drilling contractors.</li>
+                  <li><strong>Digital Audit Vault:</strong> Replaced paper binders with an indexed, searchable ISO 9001/45001 non-conformance registry.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-4 mb-5">
+            <h2 class="h4 mb-3"><i class="fa-solid fa-chart-line me-2" style="color: var(--accent);"></i>Quantifiable Impact</h2>
+            <ul class="text-muted mb-0">
+              <li class="mb-2"><strong>142 Consecutive LTI-Free Days</strong> tracked with real-time Lost Time Injury Frequency Rate (LTIFR) benchmarked at <strong>0.28</strong> (well below the 0.50 risk ceiling).</li>
+              <li class="mb-2"><strong>98.2% CAPA Closure Rate</strong> with automated threshold alerts for high-risk hazards.</li>
+              <li><strong>Zero-Licensing Overhead:</strong> Fully deployable using open-source Python data pipelines and lightweight dashboard frontends.</li>
+            </ul>
+          </div>
+
+          <div class="d-flex gap-3 flex-wrap justify-content-between align-items-center mb-5">
+            <a href="/index.html#projects" class="btn-outline-ink"><i class="fa-solid fa-arrow-left me-2"></i>Back to Portfolio</a>
+            <a href="/index.html#contact" class="btn-accent">Discuss Similar Industrial Solutions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-shell text-center py-4">
+    <div class="container">
+      <p class="mb-1">&copy; <span id="current-year">2026</span> Daud Sibanda. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      if (theme === "dark") {
+        root.setAttribute("data-theme", "dark");
+      } else {
+        root.removeAttribute("data-theme");
+      }
+      localStorage.setItem("theme", theme);
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      applyTheme(savedTheme);
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          applyTheme(next);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

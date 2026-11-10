@@ -200,6 +200,16 @@ def seed_data():
         "",
         datetime.utcnow().isoformat(),
       ),
+      (
+        "Digital SHE & Audit Compliance Intelligence Platform",
+        "Automated ISO 45001 & ISO 9001 compliance system consolidating daily safety logs, LTIFR trendlines, and EMA statutory filings into an audit-ready executive dashboard.",
+        "Images/mining_she_compliance_dashboard.png",
+        "fa-solid fa-helmet-safety",
+        json.dumps(["Python", "Pandas", "Power BI / Dashboards", "ISO 45001", "ISO 9001", "Regulatory Compliance", "SQL"]),
+        "/projects/digital-she-audit-compliance.html",
+        "",
+        datetime.utcnow().isoformat(),
+      ),
     ]
     cur.execute("SELECT COUNT(*) FROM projects")
     projects_count = cur.fetchone()[0]
@@ -212,15 +222,16 @@ def seed_data():
         sample_projects,
       )
     else:
-      cur.execute("SELECT 1 FROM projects WHERE case_study_url = ?", ("https://mdh-intranet.onrender.com",))
-      if cur.fetchone() is None:
-        cur.execute(
-          """
-          INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-          """,
-          sample_projects[-1],
-        )
+      for seeded_project in sample_projects[-2:]:
+        cur.execute("SELECT 1 FROM projects WHERE case_study_url = ?", (seeded_project[5],))
+        if cur.fetchone() is None:
+          cur.execute(
+            """
+            INSERT INTO projects (title, description, image, icon_class, tags, case_study_url, source_url, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            seeded_project,
+          )
     cur.executemany(
       "UPDATE projects SET case_study_url = '' WHERE case_study_url = ?",
       [(url,) for url in BROKEN_PROJECT_DEMO_URLS],

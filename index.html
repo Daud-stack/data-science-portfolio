@@ -688,6 +688,92 @@
       font-size: 0.78rem;
     }
 
+    .featured-she-card {
+      border: 2px solid rgba(239, 123, 45, 0.28);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(239, 123, 45, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(31, 111, 92, 0.14) 0%, transparent 45%),
+        var(--card);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .featured-she-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(239, 123, 45, 0.55);
+      box-shadow: 0 20px 44px rgba(10, 10, 10, 0.14);
+    }
+
+    .featured-she-img-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--line-strong);
+      background: #0d0d0d;
+    }
+
+    .featured-she-img-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: 310px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .featured-she-card:hover .featured-she-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .featured-she-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border-radius: 999px;
+      background: rgba(18, 18, 18, 0.85);
+      color: #ff914d;
+      border: 1px solid rgba(255, 145, 77, 0.4);
+      padding: 4px 12px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      backdrop-filter: blur(6px);
+    }
+
+    .featured-she-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      border-top: 1px dashed var(--line-strong);
+      padding-top: 14px;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .featured-she-metric-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05rem;
+    }
+
+    .featured-she-metric-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .featured-she-metric-val.emerald {
+      color: var(--accent-2);
+    }
+
+    .featured-she-metric-val.amber {
+      color: var(--accent);
+    }
+
     .studio-strip {
       overflow: hidden;
       border-top: 1px solid rgba(20, 20, 20, 0.08);
@@ -1010,14 +1096,13 @@
               <span data-i18n="studio_panel_body">Analytics, quality systems, and thoughtful execution.</span>
             </div>
           </div>
-          <span class="tag mb-3" data-i18n="hero_tag">Data Science • AI Workflows • Quality Systems</span>
+          <span class="tag mb-3" data-i18n="hero_tag">Data Scientist &amp; Quality Systems Specialist (ISO 9001 / ISO 45001)</span>
           <svg class="scribble" viewBox="0 0 120 18" aria-hidden="true">
             <path d="M4 10 C18 2, 34 16, 52 8 C70 0, 86 16, 116 6" />
           </svg>
           <h1 id="home-title" class="big-title mb-3" data-i18n-html="hero_title">Human‑centered data science for <span class="underline">clearer</span> decisions.</h1>
           <p class="lead text-muted mb-4" data-i18n="hero_body">
-            I’m Daud Sibanda—an aspiring data scientist and entrepreneur-in-progress. I focus on continuous
-            learning, structured analysis, and ethical, people-aware solutions that create measurable value.
+            I turn complex operational and compliance workflows into high-impact decision dashboards and automated reporting systems. Combining internal auditing rigor with modern data science, I help industrial, mining, and SME teams eliminate operational downtime and achieve continuous audit readiness.
           </p>
           <div class="hero-badges">
             <span class="hero-badge" data-i18n="hero_badge_1">Studio‑style analytics</span>
@@ -1043,9 +1128,10 @@
               <div class="profile-copy">
                 <div class="profile-kicker" data-i18n="profile_kicker">Profile</div>
                 <h2 class="h3 mb-2">Daud Sibanda</h2>
-                <p class="mb-2 text-muted" data-i18n="profile_role">Data Scientist • AI-Enabled Analytics • Quality Systems</p>
+                <p class="mb-2 text-muted" data-i18n="profile_role">Data Scientist &amp; Quality Systems Specialist (ISO 9001 / ISO 45001)</p>
                 <div class="d-flex gap-2 flex-wrap">
                   <span class="pill">ISO 9001</span>
+                  <span class="pill">ISO 45001</span>
                   <span class="pill" data-i18n="profile_pill_2">Internal Audits</span>
                   <span class="pill" data-i18n="profile_pill_3">Dashboards</span>
                   <span class="pill" data-i18n="profile_pill_4">AI Workflows</span>
@@ -1139,6 +1225,52 @@
   <div class="container">
     <p class="section-title text-center mb-2" data-i18n="projects_label">Projects</p>
     <h2 id="projects-title" class="mb-5 display-5 text-center" data-i18n="projects_title">Focused work with measurable impact</h2>
+
+    <!-- Featured Industrial & Mining Case Study Card -->
+    <div class="featured-she-card mb-5 fade-up">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="featured-she-img-wrap">
+            <img src="Images/mining_she_compliance_dashboard.png" alt="Digital SHE and Audit Compliance Intelligence Platform" />
+            <span class="featured-she-badge">Industrial &amp; Mining</span>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex flex-column">
+          <span class="tag mb-2 align-self-start">Featured Case Study</span>
+          <h3 class="h3 mb-2">Digital SHE &amp; Audit Compliance Intelligence Platform</h3>
+          <p class="small text-muted fst-italic mb-2">Automating ISO 45001 &amp; ISO 9001 Statutory Auditing for Heavy Industry &amp; Mining</p>
+          <p class="text-muted mb-3">
+            Automated ISO 45001 &amp; ISO 9001 compliance system consolidating daily safety logs, LTIFR trendlines, and EMA statutory filings into an audit-ready executive dashboard.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="pill">Python</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Power BI / Dashboards</span>
+            <span class="pill">ISO 45001</span>
+            <span class="pill">ISO 9001</span>
+            <span class="pill">Regulatory Compliance</span>
+            <span class="pill">SQL</span>
+          </div>
+          <div class="featured-she-metrics mb-3">
+            <div>
+              <div class="featured-she-metric-label">LTIFR</div>
+              <div class="featured-she-metric-val emerald">0.28</div>
+            </div>
+            <div>
+              <div class="featured-she-metric-label">LTI-Free</div>
+              <div class="featured-she-metric-val">142 Days</div>
+            </div>
+            <div>
+              <div class="featured-she-metric-label">CAPA Closure</div>
+              <div class="featured-she-metric-val amber">98.2%</div>
+            </div>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="projects/digital-she-audit-compliance.html" class="btn btn-accent btn-sm" data-track="link-she-case-study">Read Case Study</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="projects-grid" class="row justify-content-center gx-3 gy-3"></div>
   </div>
@@ -1385,9 +1517,9 @@
         nav_contact: "Contact",
         studio_panel_title: "Studio Practice",
         studio_panel_body: "Analytics, quality systems, and thoughtful execution.",
-        hero_tag: "Data Science • AI Workflows • Quality Systems",
+        hero_tag: "Data Scientist & Quality Systems Specialist (ISO 9001 / ISO 45001)",
         hero_title: "Human‑centered data science for <span class=\"underline\">clearer</span> decisions.",
-        hero_body: "I’m Daud Sibanda—an aspiring data scientist and entrepreneur-in-progress. I focus on continuous learning, structured analysis, and ethical, people-aware solutions that create measurable value.",
+        hero_body: "I turn complex operational and compliance workflows into high-impact decision dashboards and automated reporting systems. Combining internal auditing rigor with modern data science, I help industrial, mining, and SME teams eliminate operational downtime and achieve continuous audit readiness.",
         hero_badge_1: "Studio-style analytics",
         hero_badge_2: "Ethics-first",
         hero_badge_3: "AI-ready workflows",
@@ -1398,7 +1530,7 @@
         profile_image_alt: "Daud Sibanda",
         profile_caption: "Daud Sibanda Studio",
         profile_kicker: "Profile",
-        profile_role: "Data Scientist • AI-Enabled Analytics • Quality Systems",
+        profile_role: "Data Scientist & Quality Systems Specialist (ISO 9001 / ISO 45001)",
         profile_pill_2: "Internal Audits",
         profile_pill_3: "Dashboards",
         profile_pill_4: "AI Workflows",
@@ -1822,7 +1954,9 @@
         if (!res.ok) throw new Error("Failed to load projects");
         const data = await res.json();
         grid.innerHTML = "";
-        data.forEach((project) => {
+        data
+          .filter((project) => project.case_study_url !== "/projects/digital-she-audit-compliance.html")
+          .forEach((project) => {
           const node = tpl.content.cloneNode(true);
           const card = node.querySelector(".project-card");
           const icon = node.querySelector(".project-icon-i");
