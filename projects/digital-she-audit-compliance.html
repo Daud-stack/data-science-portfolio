@@ -509,24 +509,24 @@
                 <!-- Swimlane Jump Tabs -->
                 <div class="lane-tabs" role="tablist" aria-label="Architecture Swimlanes">
                   <button class="lane-tab active" data-lane="all" type="button">All Lanes</button>
-                  <button class="lane-tab" data-lane="admissions" type="button">Admissions</button>
-                  <button class="lane-tab" data-lane="wards" type="button">Wards</button>
-                  <button class="lane-tab" data-lane="pharmacy" type="button">Pharmacy &amp; OT</button>
-                  <button class="lane-tab" data-lane="lab" type="button">Lab</button>
-                  <button class="lane-tab" data-lane="shift" type="button">Shift Audit</button>
-                  <button class="lane-tab" data-lane="billing" type="button">Billing EDI</button>
+                  <button class="lane-tab" data-lane="fleet" type="button">Pre-Shift &amp; Fleet</button>
+                  <button class="lane-tab" data-lane="safety" type="button">Safety &amp; LTIFR</button>
+                  <button class="lane-tab" data-lane="contractors" type="button">Contractors</button>
+                  <button class="lane-tab" data-lane="ema" type="button">EMA &amp; Tailings</button>
+                  <button class="lane-tab" data-lane="capa" type="button">CAPA &amp; Audits</button>
+                  <button class="lane-tab" data-lane="vault" type="button">Statutory Vault</button>
                 </div>
 
                 <!-- Search, Heatmap & Simulation Controls -->
                 <div class="blueprint-controls">
-                  <input id="bp-search" type="search" class="bp-search" placeholder="Search nodes (e.g. CAPA, EMA)..." aria-label="Search architecture nodes" />
+                  <input id="bp-search" type="search" class="bp-search" placeholder="Search nodes (e.g. LTIFR, EMA)..." aria-label="Search architecture nodes" />
                   <button id="heatmap-toggle" class="bp-btn" type="button">🔥 Heatmap Mode</button>
                   <button id="sim-toggle" class="bp-btn" type="button">▶ Run Simulation</button>
                 </div>
               </div>
 
               <div id="canvas-viewport" class="canvas-viewport">
-                <div id="sim-banner" class="sim-banner">Click any node for ISO 45001/9001 SOP details or press ▶ Run Simulation</div>
+                <div id="sim-banner" class="sim-banner">Click any node for ISO 45001/9001 mining SOP details or press ▶ Run Simulation</div>
 
                 <div id="canvas-stage" class="canvas-stage">
                   <svg id="blueprint-svg" width="1320" height="860" viewBox="0 0 1320 860" xmlns="http://www.w3.org/2000/svg">
@@ -545,22 +545,22 @@
                     <!-- Swimlane Backgrounds -->
                     <g id="swimlanes">
                       <rect x="20" y="20" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="48" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 1: ADMISSIONS &amp; CONTRACTOR GATE ACCESS (ISO 45001 CL. 8.1.4)</text>
+                      <text x="40" y="48" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 1: PRE-SHIFT PLANT &amp; MOBILE FLEET INSPECTIONS (ISO 45001 CL. 8.1)</text>
 
                       <rect x="20" y="160" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="188" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 2: WARDS / OCCUPATIONAL TRIAGE &amp; LTIFR TELEMETRY (ISO 45001 CL. 10.2)</text>
+                      <text x="40" y="188" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 2: LEADING SAFETY ANALYTICS &amp; LTIFR TELEMETRY (ISO 45001 CL. 9.1 &amp; 10.2)</text>
 
                       <rect x="20" y="300" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="328" fill="#F97316" font-size="12" font-weight="700" letter-spacing="1.5">LANE 3: PHARMACY &amp; OT / EMERGENCY TRAUMA &amp; PPE INVENTORY (ISO 45001 CL. 8.2)</text>
+                      <text x="40" y="328" fill="#F97316" font-size="12" font-weight="700" letter-spacing="1.5">LANE 3: HAULAGE &amp; DRILLING CONTRACTOR SCORECARDS (ISO 45001 CL. 8.1.4 / ISO 9001 CL. 8.4)</text>
 
                       <rect x="20" y="440" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="468" fill="#A855F7" font-size="12" font-weight="700" letter-spacing="1.5">LANE 4: LAB / EMA EFFLUENT &amp; OCCUPATIONAL HYGIENE ASSAYS (ISO 15189 / EMA)</text>
+                      <text x="40" y="468" fill="#A855F7" font-size="12" font-weight="700" letter-spacing="1.5">LANE 4: EMA EFFLUENT, TAILINGS &amp; DUST GUARDRAILS (EMA STATUTORY THRESHOLDS)</text>
 
                       <rect x="20" y="580" width="1280" height="125" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="608" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 5: SHIFT AUDIT / PRE-SHIFT INSPECTIONS &amp; CAPA ENGINE (ISO 9001 CL. 9.2)</text>
+                      <text x="40" y="608" fill="#38BDF8" font-size="12" font-weight="700" letter-spacing="1.5">LANE 5: CAPA CLOSURE ENGINE &amp; ISO 9001/45001 INTERNAL AUDITS (CL. 9.2 &amp; 10.2)</text>
 
                       <rect x="20" y="720" width="1280" height="120" rx="12" fill="rgba(30,41,59,0.45)" stroke="rgba(255,255,255,0.08)" />
-                      <text x="40" y="748" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 6: BILLING EDI &amp; STATUTORY REGISTRY VAULT (ISO 9001 CL. 7.5 / MINISTRY OF MINES)</text>
+                      <text x="40" y="748" fill="#10B981" font-size="12" font-weight="700" letter-spacing="1.5">LANE 6: DIGITAL AUDIT VAULT &amp; MINISTRY OF MINES STATUTORY FILINGS (ISO 9001 CL. 7.5)</text>
                     </g>
 
                     <!-- Connectors -->
@@ -583,106 +583,106 @@
                       <path d="M 720 790 L 840 790" stroke="#10B981" marker-end="url(#arrow-emerald)" />
                     </g>
 
-                    <!-- Lane 1 Nodes -->
+                    <!-- Lane 1 Nodes: Pre-Shift Plant & Mobile Fleet -->
                     <g class="bp-node" data-id="N1" data-risk="high" data-step="1">
                       <rect x="60" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
-                      <text x="78" y="84" fill="#F8FAFC" font-size="13" font-weight="700">1. Paper Gate &amp; Shift Log</text>
-                      <text x="78" y="106" fill="#94A3B8" font-size="11">Legacy manual contractor check-in</text>
+                      <text x="78" y="84" fill="#F8FAFC" font-size="13" font-weight="700">1. Paper Pre-Shift Logbooks</text>
+                      <text x="78" y="106" fill="#94A3B8" font-size="11">Manual dump truck &amp; LHD defect sheets</text>
                     </g>
                     <g class="bp-node" data-id="N2" data-risk="safe" data-step="2">
                       <rect x="450" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
-                      <text x="468" y="84" fill="#F8FAFC" font-size="13" font-weight="700">2. Biometric &amp; Cert Gate</text>
-                      <text x="468" y="106" fill="#94A3B8" font-size="11">Automated ISO 45001 medical check</text>
+                      <text x="468" y="84" fill="#F8FAFC" font-size="13" font-weight="700">2. Digital Pre-Shift Checklist</text>
+                      <text x="468" y="106" fill="#94A3B8" font-size="11">Mobile pit, crusher &amp; hoist verification</text>
                     </g>
                     <g class="bp-node" data-id="N3" data-risk="safe" data-step="3">
                       <rect x="840" y="58" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="84" fill="#F8FAFC" font-size="13" font-weight="700">3. Contractor Scorecard Engine</text>
-                      <text x="858" y="106" fill="#94A3B8" font-size="11">Haulage &amp; drilling compliance score</text>
+                      <text x="858" y="84" fill="#F8FAFC" font-size="13" font-weight="700">3. Automated Fleet Interlock</text>
+                      <text x="858" y="106" fill="#94A3B8" font-size="11">Holds dispatch on critical brake/fire faults</text>
                     </g>
 
-                    <!-- Lane 2 Nodes -->
+                    <!-- Lane 2 Nodes: Leading Safety Analytics & LTIFR -->
                     <g class="bp-node" data-id="N4" data-risk="high" data-step="4">
                       <rect x="60" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
-                      <text x="78" y="224" fill="#F8FAFC" font-size="13" font-weight="700">4. Near-Miss &amp; Triage Intake</text>
-                      <text x="78" y="246" fill="#94A3B8" font-size="11">Unbarcoded shift incident reports</text>
+                      <text x="78" y="224" fill="#F8FAFC" font-size="13" font-weight="700">4. Fragmented Shift Incident Logs</text>
+                      <text x="78" y="246" fill="#94A3B8" font-size="11">Delayed near-miss &amp; hazard spreadsheets</text>
                     </g>
                     <g class="bp-node" data-id="N5" data-risk="safe" data-step="5">
                       <rect x="450" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
-                      <text x="468" y="224" fill="#F8FAFC" font-size="13" font-weight="700">5. LTIFR Telemetry Aggregator</text>
-                      <text x="468" y="246" fill="#94A3B8" font-size="11">Real-time 0.28 LTIFR &amp; 142d counter</text>
+                      <text x="468" y="224" fill="#F8FAFC" font-size="13" font-weight="700">5. Real-Time LTIFR Engine (0.28)</text>
+                      <text x="468" y="246" fill="#94A3B8" font-size="11">Tracks 142 LTI-free days vs 0.50 ceiling</text>
                     </g>
                     <g class="bp-node" data-id="N6" data-risk="safe" data-step="6">
                       <rect x="840" y="198" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="224" fill="#F8FAFC" font-size="13" font-weight="700">6. Leading Indicator Correlation</text>
-                      <text x="858" y="246" fill="#94A3B8" font-size="11">Near-miss volume vs CAPA velocity</text>
+                      <text x="858" y="224" fill="#F8FAFC" font-size="13" font-weight="700">6. Leading Safety Analytics</text>
+                      <text x="858" y="246" fill="#94A3B8" font-size="11">Near-miss volume vs CAPA closure velocity</text>
                     </g>
 
-                    <!-- Lane 3 Nodes -->
+                    <!-- Lane 3 Nodes: Contractor Scorecards -->
                     <g class="bp-node" data-id="N7" data-risk="high" data-step="7">
                       <rect x="60" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
-                      <text x="78" y="364" fill="#F8FAFC" font-size="13" font-weight="700">7. Manual PPE &amp; Trauma Kit Log</text>
-                      <text x="78" y="386" fill="#94A3B8" font-size="11">Stockout &amp; expiry risk exposure</text>
+                      <text x="78" y="364" fill="#F8FAFC" font-size="13" font-weight="700">7. Manual Contractor Files</text>
+                      <text x="78" y="386" fill="#94A3B8" font-size="11">Unverified blasting &amp; pneumoconiosis certs</text>
                     </g>
                     <g class="bp-node" data-id="N8" data-risk="safe" data-step="8">
                       <rect x="450" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="468" y="364" fill="#F8FAFC" font-size="13" font-weight="700">8. Emergency Kit BCMA Barcode</text>
-                      <text x="468" y="386" fill="#94A3B8" font-size="11">Automated antidote &amp; trauma readiness</text>
+                      <text x="468" y="364" fill="#F8FAFC" font-size="13" font-weight="700">8. Permit-to-Work &amp; Cert Gate</text>
+                      <text x="468" y="386" fill="#94A3B8" font-size="11">Automated safety &amp; medical expiry checks</text>
                     </g>
                     <g class="bp-node" data-id="N9" data-risk="safe" data-step="9">
                       <rect x="840" y="338" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="364" fill="#F8FAFC" font-size="13" font-weight="700">9. ISO 45001 Cl. 8.2 Readiness</text>
-                      <text x="858" y="386" fill="#94A3B8" font-size="11">Automated drill &amp; stock sign-off</text>
+                      <text x="858" y="364" fill="#F8FAFC" font-size="13" font-weight="700">9. Contractor Scorecard Matrix</text>
+                      <text x="858" y="386" fill="#94A3B8" font-size="11">Haulage &amp; drilling SLA compliance ranking</text>
                     </g>
 
-                    <!-- Lane 4 Nodes -->
+                    <!-- Lane 4 Nodes: EMA Effluent, Tailings & Dust -->
                     <g class="bp-node" data-id="N10" data-risk="safe" data-step="10">
                       <rect x="60" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#A855F7" stroke-width="1.8" />
-                      <text x="78" y="504" fill="#F8FAFC" font-size="13" font-weight="700">10. Effluent &amp; Dust Telemetry</text>
-                      <text x="78" y="526" fill="#94A3B8" font-size="11">pH, heavy metals, silica sensor feed</text>
+                      <text x="78" y="504" fill="#F8FAFC" font-size="13" font-weight="700">10. Tailings &amp; Effluent Telemetry</text>
+                      <text x="78" y="526" fill="#94A3B8" font-size="11">pH, cyanide, heavy metals &amp; silica dust feed</text>
                     </g>
                     <g class="bp-node" data-id="N11" data-risk="high" data-step="11">
                       <rect x="450" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
-                      <text x="468" y="504" fill="#F8FAFC" font-size="13" font-weight="700">11. EMA Threshold Gate</text>
-                      <text x="468" y="526" fill="#94A3B8" font-size="11">Statutory effluent breach detector</text>
+                      <text x="468" y="504" fill="#F8FAFC" font-size="13" font-weight="700">11. EMA Statutory Threshold Gate</text>
+                      <text x="468" y="526" fill="#94A3B8" font-size="11">Detects effluent &amp; emissions limit breaches</text>
                     </g>
                     <g class="bp-node" data-id="N12" data-risk="safe" data-step="12">
                       <rect x="840" y="478" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="504" fill="#F8FAFC" font-size="13" font-weight="700">12. Automated Lab QC Sign-Off</text>
-                      <text x="858" y="526" fill="#94A3B8" font-size="11">Validated environmental assay log</text>
+                      <text x="858" y="504" fill="#F8FAFC" font-size="13" font-weight="700">12. Environmental Assay Sign-Off</text>
+                      <text x="858" y="526" fill="#94A3B8" font-size="11">Validated EMA quarterly return dataset</text>
                     </g>
 
-                    <!-- Lane 5 Nodes -->
+                    <!-- Lane 5 Nodes: CAPA Closure & ISO Audits -->
                     <g class="bp-node" data-id="N13" data-risk="safe" data-step="13">
                       <rect x="60" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
-                      <text x="78" y="644" fill="#F8FAFC" font-size="13" font-weight="700">13. Digital Pre-Shift Checklist</text>
-                      <text x="78" y="666" fill="#94A3B8" font-size="11">Mobile plant &amp; pit safety verification</text>
+                      <text x="78" y="644" fill="#F8FAFC" font-size="13" font-weight="700">13. ISO 9001/45001 NCR Intake</text>
+                      <text x="78" y="666" fill="#94A3B8" font-size="11">Indexes pit, plant &amp; audit non-conformances</text>
                     </g>
                     <g class="bp-node" data-id="N14" data-risk="safe" data-step="14">
                       <rect x="450" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.8" />
-                      <text x="468" y="644" fill="#F8FAFC" font-size="13" font-weight="700">14. Automated CAPA Router</text>
-                      <text x="468" y="666" fill="#94A3B8" font-size="11">98.2% closure rate with SLA alerts</text>
+                      <text x="468" y="644" fill="#F8FAFC" font-size="13" font-weight="700">14. Automated CAPA Router (98.2%)</text>
+                      <text x="468" y="666" fill="#94A3B8" font-size="11">Threshold alerts &amp; owner SLA escalation</text>
                     </g>
                     <g class="bp-node" data-id="N15" data-risk="safe" data-step="15">
                       <rect x="840" y="618" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="644" fill="#F8FAFC" font-size="13" font-weight="700">15. ISO 9001 NCR Verification</text>
-                      <text x="858" y="666" fill="#94A3B8" font-size="11">Root-cause &amp; effectiveness sign-off</text>
+                      <text x="858" y="644" fill="#F8FAFC" font-size="13" font-weight="700">15. Root-Cause Effectiveness Gate</text>
+                      <text x="858" y="666" fill="#94A3B8" font-size="11">30-day engineering control verification</text>
                     </g>
 
-                    <!-- Lane 6 Nodes -->
-                    <g class="bp-node" data-id="N16" data-risk="safe" data-step="16">
-                      <rect x="60" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="78" y="782" fill="#F8FAFC" font-size="13" font-weight="700">16. Penalty &amp; Cost Recovery EDI</text>
-                      <text x="78" y="804" fill="#94A3B8" font-size="11">Contractor safety SLA chargeback</text>
+                    <!-- Lane 6 Nodes: Digital Audit Vault & Statutory Filings -->
+                    <g class="bp-node" data-id="N16" data-risk="high" data-step="16">
+                      <rect x="60" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#F97316" stroke-width="1.8" />
+                      <text x="78" y="782" fill="#F8FAFC" font-size="13" font-weight="700">16. Legacy Paper Audit Binders</text>
+                      <text x="78" y="804" fill="#94A3B8" font-size="11">Slow manual external audit preparation</text>
                     </g>
                     <g class="bp-node" data-id="N17" data-risk="safe" data-step="17">
                       <rect x="450" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
                       <text x="468" y="782" fill="#F8FAFC" font-size="13" font-weight="700">17. Ministry of Mines Statutory Pack</text>
-                      <text x="468" y="804" fill="#94A3B8" font-size="11">Automated statutory deadline filing</text>
+                      <text x="468" y="804" fill="#94A3B8" font-size="11">Automated statutory deadline calendar</text>
                     </g>
                     <g class="bp-node" data-id="N18" data-risk="safe" data-step="18">
                       <rect x="840" y="756" width="270" height="68" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.8" />
-                      <text x="858" y="782" fill="#F8FAFC" font-size="13" font-weight="700">18. Digital Audit Vault</text>
-                      <text x="858" y="804" fill="#94A3B8" font-size="11">Indexed ISO 9001/45001 evidence store</text>
+                      <text x="858" y="782" fill="#F8FAFC" font-size="13" font-weight="700">18. Digital ISO Audit Vault</text>
+                      <text x="858" y="804" fill="#94A3B8" font-size="11">Searchable ISO 9001/45001 evidence registry</text>
                     </g>
                   </svg>
                 </div>
@@ -780,141 +780,141 @@
   <script>
     const NODE_METADATA = {
       N1: {
-        title: "1. Paper Gate & Shift Log",
-        badge: "High Risk Bottleneck • Manual Entry",
-        desc: "Legacy paper shift entry registers cause delayed contractor verification and unindexed induction records during statutory inspections.",
-        sop: "file:///SOP-SHE-001/legacy-gate-intake.py",
-        compliance: "ISO 45001:2018 Clause 8.1.4.2 (Contractors) - Flagged in Heatmap Mode for digital replacement."
+        title: "1. Paper Pre-Shift Logbooks",
+        badge: "High Risk Bottleneck • Manual Fleet Sheets",
+        desc: "Legacy paper pre-shift defect sheets for dump trucks, LHD loaders, and drill rigs cause delayed maintenance handovers and unmonitored mechanical hazards.",
+        sop: "file:///SOP-MINE-001/legacy-preshift-logbook.csv",
+        compliance: "ISO 45001:2018 Clause 8.1.1 (Operational Planning and Control) - Flagged in Heatmap Mode for digital replacement."
       },
       N2: {
-        title: "2. Biometric & Cert Gate",
-        badge: "ISO 45001 Clause 7.2 & 8.1.4",
-        desc: "Automated gate control cross-checking operator medical fitness certificates and safety induction expiry dates before pit access.",
-        sop: "file:///SOP-SHE-002/contractor-biometric-gate.sql",
-        compliance: "Blocks expired medical or pneumoconiosis certificates automatically at shift check-in."
+        title: "2. Digital Pre-Shift Checklist",
+        badge: "ISO 45001 Clause 8.1 • Plant & Pit Inspection",
+        desc: "Standardized mobile pre-shift inspection forms covering haul trucks, underground LHD units, primary crushers, and shaft hoist systems.",
+        sop: "file:///SOP-MINE-002/preshift-fleet-ingest.py",
+        compliance: "Captures timestamped operator sign-offs and defect severity codes before shift start."
       },
       N3: {
-        title: "3. Contractor Scorecard Engine",
-        badge: "ISO 9001 Clause 8.4 • External Providers",
-        desc: "Python/Pandas pipeline aggregating daily haulage and drilling contractor compliance scores into executive rankings.",
-        sop: "file:///SOP-SHE-003/contractor-scorecard-etl.py",
-        compliance: "Generates automated weekly supplier conformance scorecards for procurement and SHE leadership."
+        title: "3. Automated Fleet Interlock",
+        badge: "Zero-Fault Dispatch Control",
+        desc: "Automated rule gate that blocks equipment dispatch when critical brake, steering, proximity-detection, or fire-suppression defects are logged.",
+        sop: "file:///SOP-MINE-003/fleet-dispatch-interlock.sql",
+        compliance: "Enforces mandatory engineering sign-off before defective mobile equipment returns to pit operations."
       },
       N4: {
-        title: "4. Near-Miss & Triage Intake",
-        badge: "Risk Capture Point • ISO 45001 Cl. 10.2",
-        desc: "Field capture of near-miss hazards, first-aid triage events, and unsafe conditions across surface and underground work zones.",
-        sop: "file:///SOP-SHE-004/incident-intake-schema.sql",
-        compliance: "Enforces mandatory hazard classification within 15 minutes of shift observation."
+        title: "4. Fragmented Shift Incident Logs",
+        badge: "High Risk Bottleneck • Delayed Spreadsheets",
+        desc: "Disconnected shift supervisor spreadsheets delay hazard visibility and obscure early warning signs across underground and open-pit zones.",
+        sop: "file:///SOP-MINE-004/manual-shift-incidents.xlsx",
+        compliance: "ISO 45001 Clause 10.2 (Incident, Nonconformity and Corrective Action) - Replaced by centralized intake."
       },
       N5: {
-        title: "5. LTIFR Telemetry Aggregator",
-        badge: "Core KPI Engine • 0.28 LTIFR",
-        desc: "Computes rolling Lost Time Injury Frequency Rate (0.28 vs 0.50 ceiling) and tracks the 142 consecutive LTI-free day counter.",
-        sop: "file:///SOP-SHE-005/ltifr-rolling-window.py",
+        title: "5. Real-Time LTIFR Engine (0.28)",
+        badge: "Core KPI Engine • 142 LTI-Free Days",
+        desc: "Python/Pandas pipeline computing rolling Lost Time Injury Frequency Rate (0.28 vs 0.50 risk ceiling) and tracking consecutive LTI-free shift hours.",
+        sop: "file:///SOP-MINE-005/ltifr-telemetry-engine.py",
         compliance: "ISO 45001 Clause 9.1.1 (Monitoring, Measurement, Analysis and Performance Evaluation)."
       },
       N6: {
-        title: "6. Leading Indicator Correlation",
-        badge: "Predictive Safety Analytics",
-        desc: "Dual-axis statistical engine correlating employee near-miss reporting volume against CAPA closure velocity.",
-        sop: "file:///SOP-SHE-006/leading-lagging-correlation.py",
-        compliance: "Identifies under-reporting zones before lagging injury spikes occur."
+        title: "6. Leading Safety Analytics",
+        badge: "Predictive Safety Correlation",
+        desc: "Dual-axis analytics correlating employee near-miss reporting volume against corrective action (CAPA) closure velocity.",
+        sop: "file:///SOP-MINE-006/leading-safety-correlation.py",
+        compliance: "Surfaces under-reporting pit sectors before lagging lost-time injuries occur."
       },
       N7: {
-        title: "7. Manual PPE & Trauma Kit Log",
-        badge: "High Risk Bottleneck • Unbarcoded Stock",
-        desc: "Manual clipboard tallies of emergency trauma kits and specialized PPE expose operations to unmonitored stockouts.",
-        sop: "file:///SOP-SHE-007/manual-inventory-audit.csv",
-        compliance: "Highlighted in Heatmap Mode as an operational risk requiring barcode automation."
+        title: "7. Manual Contractor Files",
+        badge: "High Risk Bottleneck • Paper Compliance Folders",
+        desc: "Paper contractor folders risk allowing third-party haulage or drilling crews onto site with expired blasting licenses or pneumoconiosis medicals.",
+        sop: "file:///SOP-MINE-007/manual-contractor-register.csv",
+        compliance: "Highlighted in Heatmap Mode as a statutory compliance risk under ISO 45001 Clause 8.1.4.2."
       },
       N8: {
-        title: "8. Emergency Kit BCMA Barcode",
-        badge: "Automated Inventory Control",
-        desc: "Barcode-verified replenishment for cyanide antidote kits, trauma consumables, and self-contained self-rescuers (SCSRs).",
-        sop: "file:///SOP-SHE-008/bcma-emergency-stock.py",
-        compliance: "ISO 45001 Clause 8.2 (Emergency Preparedness and Response) Lot/Expiry traceability."
+        title: "8. Permit-to-Work & Cert Gate",
+        badge: "ISO 45001 Clause 8.1.4 • Contractor Control",
+        desc: "Automated verification of contractor medical fitness certificates, blasting tickets, and high-risk Permits-to-Work (confined space, hot work, working at heights).",
+        sop: "file:///SOP-MINE-008/contractor-permit-gate.sql",
+        compliance: "Auto-flags expiring contractor certifications 30 days ahead of statutory lapse."
       },
       N9: {
-        title: "9. ISO 45001 Cl. 8.2 Readiness",
-        badge: "Audit-Ready Emergency Verification",
-        desc: "Consolidates emergency drill timestamps, response times, and trauma station readiness into live compliance indicators.",
-        sop: "file:///SOP-SHE-009/emergency-readiness-view.sql",
-        compliance: "Provides instant external auditor verification for ISO 45001 Clause 8.2."
+        title: "9. Contractor Scorecard Matrix",
+        badge: "ISO 9001 Clause 8.4 • Third-Party Governance",
+        desc: "Automated safety, equipment availability, and statutory compliance scoring across third-party haulage and exploration drilling contractors.",
+        sop: "file:///SOP-MINE-009/contractor-scorecard-etl.py",
+        compliance: "Directly feeds monthly contract review boards and supplier audit schedules."
       },
       N10: {
-        title: "10. Effluent & Dust Telemetry",
-        badge: "Environmental Monitoring • EMA",
-        desc: "Ingests daily laboratory assays for tailings effluent pH, dissolved heavy metals, and respirable crystalline silica dust.",
-        sop: "file:///SOP-SHE-010/ema-effluent-ingest.py",
-        compliance: "Aligned with ISO 15189 pre-examination traceability and national EMA statutory limits."
+        title: "10. Tailings & Effluent Telemetry",
+        badge: "Environmental Monitoring • EMA & ISO 14001/45001",
+        desc: "Consolidates daily environmental monitoring for tailings dam seepage pH, cyanide destruction, dissolved heavy metals, and respirable silica dust.",
+        sop: "file:///SOP-MINE-010/tailings-effluent-ingest.py",
+        compliance: "Standardizes field and laboratory environmental telemetry into a single audit schema."
       },
       N11: {
-        title: "11. EMA Threshold Gate",
-        badge: "Statutory Breach Guardrail",
-        desc: "Automated rule engine comparing laboratory effluent values against Environmental Management Agency (EMA) upper control limits.",
-        sop: "file:///SOP-SHE-011/ema-threshold-alerts.py",
-        compliance: "Triggers immediate containment CAPA if effluent parameters approach 85% of statutory ceiling."
+        title: "11. EMA Statutory Threshold Gate",
+        badge: "Statutory Environmental Guardrail",
+        desc: "Automated rule engine comparing effluent discharge and dust readings against Environmental Management Agency (EMA) upper statutory limits.",
+        sop: "file:///SOP-MINE-011/ema-threshold-guardrail.py",
+        compliance: "Triggers immediate containment CAPA when readings exceed 85% of the EMA statutory threshold."
       },
       N12: {
-        title: "12. Automated Lab QC Sign-Off",
-        badge: "Validated Assay Registry",
-        desc: "Cryptographically timestamped laboratory quality control sign-off for statutory environmental returns.",
-        sop: "file:///SOP-SHE-012/lab-qc-verification.sql",
-        compliance: "Eliminates transcription errors between laboratory sheets and statutory filings."
+        title: "12. Environmental Assay Sign-Off",
+        badge: "Validated Statutory Return Dataset",
+        desc: "Produces quality-checked environmental compliance tables ready for quarterly EMA statutory returns and external environmental audits.",
+        sop: "file:///SOP-MINE-012/ema-statutory-validation.sql",
+        compliance: "Eliminates manual transcription errors between sampling logs and regulatory filings."
       },
       N13: {
-        title: "13. Digital Pre-Shift Checklist",
-        badge: "ISO 45001 Clause 8.1 • Operational Control",
-        desc: "Standardized digital pre-shift inspection forms for dump trucks, Load-Haul-Dump (LHD) units, and fixed plant.",
-        sop: "file:///SOP-SHE-013/preshift-equipment-check.py",
-        compliance: "Auto-locks equipment dispatch when critical brake, steering, or fire-suppression defects are logged."
+        title: "13. ISO 9001/45001 NCR Intake",
+        badge: "Centralized Non-Conformance Registry",
+        desc: "Digital intake indexing internal audit findings, pit inspection defects, and process deviations by ISO 9001 and ISO 45001 clause.",
+        sop: "file:///SOP-MINE-013/iso-ncr-registry.sql",
+        compliance: "ISO 9001:2015 Clause 10.2 & ISO 45001:2018 Clause 10.2."
       },
       N14: {
-        title: "14. Automated CAPA Router",
-        badge: "98.2% CAPA Closure Rate",
-        desc: "Routes non-conformances to accountable engineering and SHE owners with automated escalation alerts before SLA breach.",
-        sop: "file:///SOP-SHE-014/capa-sla-router.py",
-        compliance: "ISO 9001:2015 Clause 10.2 & ISO 45001:2018 Clause 10.2 (Nonconformity and Corrective Action)."
+        title: "14. Automated CAPA Router (98.2%)",
+        badge: "98.2% CAPA Closure Velocity",
+        desc: "Assigns corrective and preventive actions to mine captains, plant engineers, and SHE officers with automated SLA threshold alerts.",
+        sop: "file:///SOP-MINE-014/capa-closure-router.py",
+        compliance: "Maintains a 98.2% on-time CAPA closure rate across high-risk hazards."
       },
       N15: {
-        title: "15. ISO 9001 NCR Verification",
-        badge: "Internal Audit Sign-Off",
-        desc: "Requires root-cause documentation and 30-day effectiveness verification before closing any high-risk non-conformance.",
-        sop: "file:///SOP-SHE-015/ncr-effectiveness-gate.sql",
-        compliance: "ISO 9001 Clause 9.2 (Internal Audit) & Clause 10.2.1."
+        title: "15. Root-Cause Effectiveness Gate",
+        badge: "ISO 9001 Clause 9.2 • Internal Audit Verification",
+        desc: "Mandates 5-Why / Fishbone root-cause evidence and 30-day control effectiveness sign-off before closing any critical non-conformance.",
+        sop: "file:///SOP-MINE-015/capa-effectiveness-audit.sql",
+        compliance: "Prevents premature closure of recurring mechanical or safety hazards."
       },
       N16: {
-        title: "16. Penalty & Cost Recovery EDI",
-        badge: "Commercial SLA Governance",
-        desc: "Reconciles contractor safety infractions and unreturned PPE issuances against monthly contractor payment certificates.",
-        sop: "file:///SOP-SHE-016/contractor-sla-edi.py",
-        compliance: "Links SHE performance directly to commercial contract governance."
+        title: "16. Legacy Paper Audit Binders",
+        badge: "High Risk Bottleneck • Manual Audit Prep",
+        desc: "Physical lever-arch binders across shaft offices create frantic, error-prone preparation during external ISO surveillance audits.",
+        sop: "file:///SOP-MINE-016/legacy-binder-archive.txt",
+        compliance: "Flagged in Heatmap Mode; replaced by the indexed Digital ISO Audit Vault."
       },
       N17: {
         title: "17. Ministry of Mines Statutory Pack",
-        badge: "Zero-Late Statutory Filings",
-        desc: "Compiles monthly safety statistics, LTIFR calculations, and environmental returns into regulator-ready submission packages.",
-        sop: "file:///SOP-SHE-017/ministry-statutory-export.py",
-        compliance: "Ensures 100% on-time statutory reporting compliance."
+        badge: "Statutory Filing Automation",
+        desc: "Automated calendar and report generator for Ministry of Mines safety returns, LTIFR declarations, and statutory inspection schedules.",
+        sop: "file:///SOP-MINE-017/ministry-mines-pack.py",
+        compliance: "Guarantees zero missed statutory filing deadlines."
       },
       N18: {
-        title: "18. Digital Audit Vault",
+        title: "18. Digital ISO Audit Vault",
         badge: "ISO 9001 Clause 7.5 • Documented Information",
-        desc: "Searchable, immutable registry replacing paper binders for external ISO 9001 and ISO 45001 surveillance audits.",
-        sop: "file:///SOP-SHE-018/digital-audit-vault.sql",
-        compliance: "Reduces external audit preparation time from weeks of binder assembly to instant query retrieval."
+        desc: "Searchable, audit-ready repository indexing SOPs, pre-shift logs, contractor certs, and CAPA closure evidence for external auditors.",
+        sop: "file:///SOP-MINE-018/digital-audit-vault.sql",
+        compliance: "Cuts external ISO 9001 & ISO 45001 audit retrieval time from days to seconds."
       }
     };
 
     const LANE_OFFSETS = {
       all: { x: 0, y: 0, scale: 0.82 },
-      admissions: { x: 20, y: -10, scale: 1.0 },
-      wards: { x: 20, y: -140, scale: 1.0 },
-      pharmacy: { x: 20, y: -280, scale: 1.0 },
-      lab: { x: 20, y: -420, scale: 1.0 },
-      shift: { x: 20, y: -530, scale: 1.0 },
-      billing: { x: 20, y: -620, scale: 1.0 }
+      fleet: { x: 20, y: -10, scale: 1.0 },
+      safety: { x: 20, y: -140, scale: 1.0 },
+      contractors: { x: 20, y: -280, scale: 1.0 },
+      ema: { x: 20, y: -420, scale: 1.0 },
+      capa: { x: 20, y: -530, scale: 1.0 },
+      vault: { x: 20, y: -620, scale: 1.0 }
     };
 
     function applyTheme(theme) {
