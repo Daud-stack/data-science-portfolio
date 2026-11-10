@@ -778,6 +778,7 @@
               <tbody id="hira-tbody"></tbody>
             </table>
           </div>
+            <div id="hira-pagination-container" class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3 pt-3 border-top border-secondary"></div>
         </div>
       </section>
 
@@ -900,7 +901,7 @@
                   </div>
                   <p class="small text-muted mb-2">Evaluate each mandatory statutory checkpoint. Failing any Critical parameter triggers a mandatory stop-work lockout.</p>
                   
-                  <div id="insp-checkpoints-container" class="d-flex flex-column gap-2 mb-2">
+                  <div id="insp-checkpoints-container" class="d-flex flex-column gap-2 mb-2" style="max-height: 285px; overflow-y: auto; padding-right: 4px;">
                     <!-- Injected dynamically by JS -->
                   </div>
                 </div>
@@ -1020,6 +1021,7 @@
                   <tbody id="insp-tbody"></tbody>
                 </table>
               </div>
+              <div id="insp-pagination-container" class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3 pt-3 border-top border-secondary"></div>
             </div>
           </div>
         </div>
@@ -1197,6 +1199,7 @@
                   <tbody id="capa-tbody"></tbody>
                 </table>
               </div>
+              <div id="capa-pagination-container" class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3 pt-3 border-top border-secondary"></div>
             </div>
           </div>
         </div>
@@ -2032,6 +2035,96 @@
 
     let activeCheckpointsState = [];
 
+    
+    // =========================================================================
+    // MODULAR PAGINATION ENGINE (PREVENTS TABLES STRETCHING DOWN)
+    // =========================================================================
+    let currentInspPage = 1;
+    let currentInspPageSize = 5;
+
+    let currentHiraPage = 1;
+    let currentHiraPageSize = 5;
+
+    let currentCapaPage = 1;
+    let currentCapaPageSize = 5;
+
+    function renderPaginationUI(containerId, currentPage, totalPages, totalItems, pageSize, onPageFn, onPageSizeFn) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      if (totalItems === 0) {
+        container.innerHTML = '<span class="small text-muted">No records to display</span>';
+        return;
+      }
+
+      const start = (currentPage - 1) * pageSize + 1;
+      const end = Math.min(currentPage * pageSize, totalItems);
+
+      let pageBtnsHtml = '';
+      for (let p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1)) {
+          const isActive = p === currentPage;
+          pageBtnsHtml += `<button type="button" class="btn ${isActive ? 'btn-info text-dark fw-bold' : 'btn-outline-secondary text-light'} py-0 px-2" style="font-size:0.75rem;" onclick="${onPageFn}(${p})">${p}</button>`;
+        } else if (p === currentPage - 2 || p === currentPage + 2) {
+          pageBtnsHtml += `<span class="text-muted px-1" style="font-size:0.75rem;">...</span>`;
+        }
+      }
+
+      const prevDisabled = currentPage <= 1 ? 'disabled' : '';
+      const nextDisabled = currentPage >= totalPages ? 'disabled' : '';
+
+      container.innerHTML = `
+        <div class="small text-muted">
+          Showing <span class="fw-semibold text-white">${start}</span> to <span class="fw-semibold text-white">${end}</span> of <span class="fw-semibold text-white">${totalItems}</span> entries
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <select class="app-select py-0 px-2" style="width: auto; font-size: 0.75rem; height: 28px;" onchange="${onPageSizeFn}(parseInt(this.value, 10))">
+            <option value="5" ${pageSize === 5 ? 'selected' : ''}>5 / page</option>
+            <option value="10" ${pageSize === 10 ? 'selected' : ''}>10 / page</option>
+            <option value="20" ${pageSize === 20 ? 'selected' : ''}>20 / page</option>
+          </select>
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-outline-secondary py-0 px-2" style="font-size:0.75rem;" ${prevDisabled} onclick="${onPageFn}(${currentPage - 1})"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+            ${pageBtnsHtml}
+            <button type="button" class="btn btn-outline-secondary py-0 px-2" style="font-size:0.75rem;" ${nextDisabled} onclick="${onPageFn}(${currentPage + 1})">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.goToInspPage = function(p) {
+      currentInspPage = p;
+      renderInspectionsTable();
+    };
+
+    window.setInspPageSize = function(s) {
+      currentInspPageSize = s;
+      currentInspPage = 1;
+      renderInspectionsTable();
+    };
+
+    window.goToHiraPage = function(p) {
+      currentHiraPage = p;
+      renderHiraTable();
+    };
+
+    window.setHiraPageSize = function(s) {
+      currentHiraPageSize = s;
+      currentHiraPage = 1;
+      renderHiraTable();
+    };
+
+    window.goToCapaPage = function(p) {
+      currentCapaPage = p;
+      renderAll();
+    };
+
+    window.setCapaPageSize = function(s) {
+      currentCapaPageSize = s;
+      currentCapaPage = 1;
+      renderAll();
+    };
+
     let currentSector = "mining";
     let appState = null;
     let capaFilter = "all";
@@ -2198,7 +2291,24 @@
       const tbody = document.getElementById("insp-tbody");
       if (!tbody) return;
 
-      tbody.innerHTML = filtered.map((i, idx) => {
+      const totalPages = Math.max(1, Math.ceil(filtered.length / currentInspPageSize));
+      if (currentInspPage > totalPages) currentInspPage = totalPages;
+      if (currentInspPage < 1) currentInspPage = 1;
+
+      const startIdx = (currentInspPage - 1) * currentInspPageSize;
+      const paginatedList = filtered.slice(startIdx, startIdx + currentInspPageSize);
+
+      renderPaginationUI(
+        "insp-pagination-container",
+        currentInspPage,
+        totalPages,
+        filtered.length,
+        currentInspPageSize,
+        "window.goToInspPage",
+        "window.setInspPageSize"
+      );
+
+      tbody.innerHTML = paginatedList.map((i, idx) => {
         const actualIdx = profile.inspections.indexOf(i);
         const gateBadge = i.status === "PASSED"
           ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> PASSED (${i.score}%)</span>`
@@ -2301,6 +2411,53 @@
 
       document.getElementById("inspDetailModal").style.display = "flex";
     };
+
+    
+    function renderHiraTable() {
+      const profile = appState[currentSector];
+      if (!profile || !profile.hira) return;
+
+      const hiraBody = document.getElementById("hira-tbody");
+      if (!hiraBody) return;
+
+      const totalItems = profile.hira.length;
+      const totalPages = Math.max(1, Math.ceil(totalItems / currentHiraPageSize));
+      if (currentHiraPage > totalPages) currentHiraPage = totalPages;
+      if (currentHiraPage < 1) currentHiraPage = 1;
+
+      const startIdx = (currentHiraPage - 1) * currentHiraPageSize;
+      const paginatedList = profile.hira.slice(startIdx, startIdx + currentHiraPageSize);
+
+      renderPaginationUI(
+        "hira-pagination-container",
+        currentHiraPage,
+        totalPages,
+        totalItems,
+        currentHiraPageSize,
+        "window.goToHiraPage",
+        "window.setHiraPageSize"
+      );
+
+      hiraBody.innerHTML = paginatedList.map((h) => {
+        const initRiskCls = h.irisk >= 15 ? "risk-crit" : (h.irisk >= 10 ? "risk-high" : "risk-med");
+        const resRiskCls = h.rrisk >= 15 ? "risk-crit" : (h.rrisk >= 10 ? "risk-high" : (h.rrisk >= 5 ? "risk-med" : "risk-low"));
+        const statusBadge = h.rrisk >= 15
+          ? `<span class="status-pill badge-red">CRITICAL RISK ALERT</span>`
+          : `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> BARRIER VERIFIED</span>`;
+        return `
+          <tr>
+            <td class="fw-bold text-info">${h.id}</td>
+            <td class="fw-semibold">${h.task}</td>
+            <td>${h.zone}</td>
+            <td><strong>${h.hazard}</strong><div class="small text-muted">${h.consequence}</div></td>
+            <td><span class="matrix-cell ${initRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.irisk}</span></td>
+            <td><span class="status-pill badge-sky">${h.controlType}</span><div class="small text-muted">${h.controls}</div></td>
+            <td><span class="matrix-cell ${resRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.rrisk}</span></td>
+            <td>${statusBadge}</td>
+          </tr>
+        `;
+      }).join("");
+    }
 
     function loadState() {
       const saved = localStorage.getItem("she_qms_app_state_v2");
@@ -2508,29 +2665,8 @@
         </tr>
       `).join("");
 
-      // Render HIRA Table
-      const hiraBody = document.getElementById("hira-tbody");
-      if (profile.hira) {
-        hiraBody.innerHTML = profile.hira.map((h) => {
-          const initRiskCls = h.irisk >= 15 ? "risk-crit" : (h.irisk >= 10 ? "risk-high" : "risk-med");
-          const resRiskCls = h.rrisk >= 15 ? "risk-crit" : (h.rrisk >= 10 ? "risk-high" : (h.rrisk >= 5 ? "risk-med" : "risk-low"));
-          const statusBadge = h.rrisk >= 15
-            ? `<span class="status-pill badge-red">CRITICAL RISK ALERT</span>`
-            : `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> BARRIER VERIFIED</span>`;
-          return `
-            <tr>
-              <td class="fw-bold text-info">${h.id}</td>
-              <td class="fw-semibold">${h.task}</td>
-              <td>${h.zone}</td>
-              <td><strong>${h.hazard}</strong><div class="small text-muted">${h.consequence}</div></td>
-              <td><span class="matrix-cell ${initRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.irisk}</span></td>
-              <td><span class="status-pill badge-sky">${h.controlType}</span><div class="small text-muted">${h.controls}</div></td>
-              <td><span class="matrix-cell ${resRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.rrisk}</span></td>
-              <td>${statusBadge}</td>
-            </tr>
-          `;
-        }).join("");
-      }
+      // Render HIRA Table with Pagination
+      renderHiraTable();
 
       // Render Inspections Table via Full Parameter Module
       renderInspectionsTable();
@@ -2553,7 +2689,7 @@
         `;
       }).join("");
 
-      // Render CAPA Table with Root Cause Analysis Stepper Button
+      // Render CAPA Table with Pagination
       const capaBody = document.getElementById("capa-tbody");
       const displayedCapas = capaFilter === "open" ? profile.capas.filter((c) => !c.closed) : profile.capas;
       document.getElementById("capa-stat-total").textContent = profile.capas.length;
@@ -2561,7 +2697,24 @@
       document.getElementById("capa-stat-rca").textContent = profile.capas.filter((c) => !c.closed && !c.rootCause).length;
       document.getElementById("capa-stat-verified").textContent = profile.capas.filter((c) => c.closed).length;
 
-      capaBody.innerHTML = displayedCapas.map((c, idx) => {
+      const totalCapaPages = Math.max(1, Math.ceil(displayedCapas.length / currentCapaPageSize));
+      if (currentCapaPage > totalCapaPages) currentCapaPage = totalCapaPages;
+      if (currentCapaPage < 1) currentCapaPage = 1;
+
+      const capaStartIdx = (currentCapaPage - 1) * currentCapaPageSize;
+      const paginatedCapas = displayedCapas.slice(capaStartIdx, capaStartIdx + currentCapaPageSize);
+
+      renderPaginationUI(
+        "capa-pagination-container",
+        currentCapaPage,
+        totalCapaPages,
+        displayedCapas.length,
+        currentCapaPageSize,
+        "window.goToCapaPage",
+        "window.setCapaPageSize"
+      );
+
+      capaBody.innerHTML = paginatedCapas.map((c, idx) => {
         const actualIdx = profile.capas.indexOf(c);
         const sevCls = c.severity === "HIGH" ? "badge-red" : (c.severity === "MEDIUM" ? "badge-orange" : "badge-sky");
         const rcaBadge = c.rcaCat
@@ -2740,6 +2893,9 @@
           document.querySelectorAll(".sector-btn[data-sector]").forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           currentSector = btn.dataset.sector;
+          currentInspPage = 1;
+          currentHiraPage = 1;
+          currentCapaPage = 1;
           renderAll();
         });
       });
