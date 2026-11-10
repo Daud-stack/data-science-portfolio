@@ -781,71 +781,240 @@
         </div>
       </section>
 
-      <!-- MODULE 3: PLANNED INSPECTIONS & PJOS -->
+      <!-- MODULE 3: FULL STATUTORY INSPECTION & AUDIT MODULE -->
       <section id="pane-inspections" class="module-pane">
+        <!-- Inspection Top KPI Summary Strip -->
+        <div class="row g-3 mb-4">
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card">
+              <div class="text-muted small fw-bold text-uppercase mb-1">Total Audits Conducted</div>
+              <div id="insp-stat-total" class="fs-4 fw-bold text-info">0</div>
+              <div class="small text-muted mt-1">Across active operating zones</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card">
+              <div class="text-muted small fw-bold text-uppercase mb-1">Average Conformance Yield</div>
+              <div id="insp-stat-avg-score" class="fs-4 fw-bold text-emerald">0.0%</div>
+              <div class="small text-muted mt-1">Weighted checkpoint score</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card">
+              <div class="text-muted small fw-bold text-uppercase mb-1">Statutory Red-Tags / Fails</div>
+              <div id="insp-stat-redtags" class="fs-4 fw-bold text-danger">0</div>
+              <div class="small text-muted mt-1">Immediate stop-work orders</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card">
+              <div class="text-muted small fw-bold text-uppercase mb-1">Pass / Compliance Rate</div>
+              <div id="insp-stat-pass-rate" class="fs-4 fw-bold text-warning">0.0%</div>
+              <div class="small text-muted mt-1">First-pass statutory clearance</div>
+            </div>
+          </div>
+        </div>
+
         <div class="row g-4 mb-4">
-          <div class="col-lg-4">
+          <!-- LEFT COLUMN: Comprehensive Inspection Intake Form -->
+          <div class="col-lg-5">
             <div class="glass-card">
-              <span class="status-pill badge-sky mb-2">Structured Audits</span>
-              <h2 class="h5 mb-3">Log Planned Inspection / PJO</h2>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span class="status-pill badge-sky mb-1">Full Parameter Audit Engine</span>
+                  <h2 class="h5 mb-0">Conduct Statutory Inspection</h2>
+                </div>
+                <span id="insp-form-score-badge" class="status-pill badge-emerald fs-6 fw-bold">Score: 100%</span>
+              </div>
+              <p class="small text-muted mb-3">Evaluates every physical and procedural checkpoint against statutory acts. Critical parameter failures automatically trigger equipment lockouts and CAPA escalation.</p>
+
               <form id="insp-form">
-                <div class="mb-2">
-                  <label class="small text-muted fw-bold mb-1">Inspection Type</label>
-                  <select id="insp-type" class="app-select">
-                    <option value="Planned Job Observation (PJO)">Planned Job Observation (PJO)</option>
-                    <option value="Statutory Pressure Vessel & Lifting">Statutory Pressure Vessel &amp; Lifting Audit</option>
-                    <option value="Workplace 5S & Housekeeping">Workplace 5S &amp; Housekeeping Audit</option>
-                    <option value="Environmental & Effluent Walkthrough">Environmental &amp; Effluent Walkthrough</option>
-                  </select>
+                <!-- Section A: Metadata Parameters -->
+                <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.7); border: 1px solid var(--border);">
+                  <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-sliders me-1"></i>1. Audit Scope & Location Parameters</div>
+                  
+                  <div class="mb-2">
+                    <label class="small text-muted fw-bold mb-1">Statutory Inspection Protocol</label>
+                    <select id="insp-type" class="app-select">
+                      <option value="Statutory Pressure Vessel & Lifting">Statutory Pressure Vessel & Lifting (Factories Act Cap 14:08)</option>
+                      <option value="Underground Ground Control & Secondary Support">Underground Ground Control & Stope Support (Mining Regs SI 109/1990)</option>
+                      <option value="Heavy Mobile Equipment & Haulage Fleet">Heavy Mobile Equipment & Haulage Fleet (SI 109/1990 & ISO 45001)</option>
+                      <option value="Electrical Substation, High-Voltage & LOTO">Electrical Substation, High-Voltage & LOTO (SI 109/1990 Part 5)</option>
+                      <option value="Hazardous Chemicals & Effluent Bunding">Hazardous Chemical Reagents & Effluent Bunding (EMA SI 268/2007)</option>
+                      <option value="Planned Job Observation (PJO)">Planned Job Observation (PJO) & Task Safety (ISO 45001 Cl. 8.1.2)</option>
+                      <option value="Workplace 5S & Housekeeping">SME Workshop 5S Housekeeping & Physical Guarding (Factories Act)</option>
+                    </select>
+                  </div>
+
+                  <div class="row g-2 mb-2">
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Asset Tag / Fleet ID</label>
+                      <input type="text" id="insp-asset-id" class="app-input" placeholder="e.g. CAT-777-DT04 or BOILER-ST-02" value="ASSET-EQ-01" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Asset or Operating Zone</label>
+                      <input type="text" id="insp-zone" class="app-input" placeholder="e.g. Crusher Plant / Boiler House" value="Zone 1 - Main Operational Bay" required />
+                    </div>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Operating Shift</label>
+                      <select id="insp-shift" class="app-select">
+                        <option value="Day Shift (07:00 - 15:00)" selected>Day Shift (07:00 - 15:00)</option>
+                        <option value="Afternoon Shift (15:00 - 23:00)">Afternoon Shift (15:00 - 23:00)</option>
+                        <option value="Night Shift (23:00 - 07:00)">Night Shift (23:00 - 07:00)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Ambient / Site Condition</label>
+                      <select id="insp-ambient" class="app-select">
+                        <option value="Normal / Dry Operational" selected>Normal / Dry Operational</option>
+                        <option value="High Dust / Low Visibility">High Dust / Low Visibility</option>
+                        <option value="Wet / High Moisture Condition">Wet / High Moisture Condition</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-2">
-                  <label class="small text-muted fw-bold mb-1">Asset or Operating Zone</label>
-                  <input type="text" id="insp-zone" class="app-input" placeholder="e.g. Crusher Plant / Boiler House" required />
+
+                <!-- Section B: Personnel & Accountability Parameters -->
+                <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.7); border: 1px solid var(--border);">
+                  <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-user-check me-1"></i>2. Inspection Personnel & Attestation</div>
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Lead Inspector</label>
+                      <input type="text" id="insp-inspector" class="app-input" placeholder="e.g. K. Ndlovu (SHE Officer)" value="K. Ndlovu (Lead SHE Inspector [Cert: SAZ-45001])" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Area Supervisor Witness</label>
+                      <input type="text" id="insp-supervisor" class="app-input" placeholder="e.g. M. Moyo (Shift Foreman)" value="M. Moyo (Shift Mechanical Foreman)" required />
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-2">
-                  <label class="small text-muted fw-bold mb-1">Lead Inspector</label>
-                  <input type="text" id="insp-inspector" class="app-input" placeholder="e.g. K. Ndlovu (SHE Officer)" required />
+
+                <!-- Section C: Dynamic Inspection Parameter Checkpoints -->
+                <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.7); border: 1px solid var(--border);">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="small fw-bold text-info"><i class="fa-solid fa-list-check me-1"></i>3. Checkpoint Parameter Evaluations</div>
+                    <span id="insp-checkpoints-count" class="badge bg-secondary text-light small">5 Parameters</span>
+                  </div>
+                  <p class="small text-muted mb-2">Evaluate each mandatory statutory checkpoint. Failing any Critical parameter triggers a mandatory stop-work lockout.</p>
+                  
+                  <div id="insp-checkpoints-container" class="d-flex flex-column gap-2 mb-2">
+                    <!-- Injected dynamically by JS -->
+                  </div>
                 </div>
-                <div class="mb-2">
-                  <label class="small text-muted fw-bold mb-1">Audit Score achieved (%)</label>
-                  <input type="number" id="insp-score" class="app-input" min="0" max="100" value="95" required />
+
+                <!-- Section D: Conformance Score & Verdict Output (Read-only / Calculated) -->
+                <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.7); border: 1px solid var(--border);">
+                  <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-calculator me-1"></i>4. Calculated Conformance & Gate Verdict</div>
+                  <div class="row g-2 align-items-center mb-2">
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Audit Score achieved (%)</label>
+                      <input type="number" id="insp-score" class="app-input fw-bold fs-5 text-info" min="0" max="100" value="100" readonly required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Statutory Gate Verdict</label>
+                      <div id="insp-verdict-display" class="status-pill badge-emerald d-block text-center py-2 fw-bold">CLEARED (FULL CONFORMANCE)</div>
+                    </div>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Findings / Defects Discovered</label>
+                      <select id="insp-defects" class="app-select">
+                        <option value="NONE" selected>Zero Defects - Full Compliance</option>
+                        <option value="MINOR">Minor Deviation (Housekeeping/Labels)</option>
+                        <option value="CRITICAL">Critical Finding (Auto-trigger NCR & CAPA)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small text-muted fw-bold mb-1">Mandatory Re-Audit Interval</label>
+                      <select id="insp-reinspection-interval" class="app-select">
+                        <option value="30 Days (Standard Statutory Cycle)" selected>30 Days (Standard Statutory Cycle)</option>
+                        <option value="7 Days (Post-Defect Rectification)">7 Days (Post-Defect Rectification)</option>
+                        <option value="24 Hours (Immediate Red-Tag Hold)">24 Hours (Immediate Red-Tag Hold)</option>
+                        <option value="90 Days (Quarterly Statutory Recertification)">90 Days (Quarterly Statutory Recertification)</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label class="small text-muted fw-bold mb-1">Findings / Defects Discovered</label>
-                  <select id="insp-defects" class="app-select">
-                    <option value="NONE">Zero Defects - Full Compliance</option>
-                    <option value="MINOR">Minor Deviation (Housekeeping/Labels)</option>
-                    <option value="CRITICAL">Critical Finding (Auto-trigger NCR &amp; CAPA)</option>
-                  </select>
+
+                <!-- Section E: Findings, Containment & Digital Evidence -->
+                <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.7); border: 1px solid var(--border);">
+                  <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-shield-virus me-1"></i>5. Defect Containment & Evidence</div>
+                  <div class="mb-2">
+                    <label class="small text-muted fw-bold mb-1">Inspection Notes & Evidence Reference</label>
+                    <input type="text" id="insp-notes" class="app-input" placeholder="e.g. Dual safety relief valves calibrated, tamper seal verified, pressure test tag valid" value="All statutory inspection checkpoints verified compliant with zero operational leaks" required />
+                  </div>
+                  <div>
+                    <label class="small text-muted fw-bold mb-1">Immediate Containment Action Applied (If defect found)</label>
+                    <input type="text" id="insp-containment" class="app-input" placeholder="e.g. Applied LOTO lockout padlock #42 and marked red-tag on main valve" value="None required; asset cleared for normal shift operations" />
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label class="small text-muted fw-bold mb-1">Inspection Notes &amp; Evidence Reference</label>
-                  <input type="text" id="insp-notes" class="app-input" placeholder="e.g. LOTO applied, permits verified, eye-wash clear" required />
-                </div>
-                <button type="submit" class="btn-action w-100"><i class="fa-solid fa-list-check me-1"></i>Record Inspection Result</button>
+
+                <button type="submit" class="btn-action w-100 py-2 fs-6"><i class="fa-solid fa-list-check me-2"></i>Record Inspection Result</button>
               </form>
             </div>
           </div>
 
-          <div class="col-lg-8">
+          <!-- RIGHT COLUMN: Inspection Registry Table & Filter Suite -->
+          <div class="col-lg-7">
             <div class="glass-card">
-              <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                 <div>
-                  <h2 class="h5 mb-0">Planned Job Observations &amp; Structured Inspections Registry</h2>
-                  <p class="small text-muted mb-0">Critical audit failures automatically generate non-conformance actions in the CAPA engine.</p>
+                  <h2 class="h5 mb-0">Planned Job Observations & Statutory Inspections Registry</h2>
+                  <p class="small text-muted mb-0">Permanent digital audit ledger compliant with ISO 9001 / ISO 45001 and statutory authorities.</p>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="btn-export-inspections" class="btn-glass py-1 px-3 text-nowrap" type="button" style="font-size:0.8rem;">
+                    <i class="fa-solid fa-file-arrow-down me-1"></i>Export Inspections CSV
+                  </button>
                 </div>
               </div>
+
+              <!-- Filter and Search Bar -->
+              <div class="row g-2 mb-3">
+                <div class="col-md-5">
+                  <div class="input-group">
+                    <span class="input-group-text bg-dark border-secondary text-muted" style="border-color: var(--border) !important;"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" id="insp-search-input" class="app-input" placeholder="Search by Asset ID, Zone, Inspector..." style="border-top-left-radius: 0; border-bottom-left-radius: 0;" />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <select id="insp-filter-type" class="app-select">
+                    <option value="ALL">All Inspection Protocols</option>
+                    <option value="Statutory Pressure Vessel & Lifting">Pressure Vessels & Lifting</option>
+                    <option value="Underground Ground Control & Secondary Support">Underground Ground Control</option>
+                    <option value="Heavy Mobile Equipment & Haulage Fleet">Heavy Mobile Equipment</option>
+                    <option value="Electrical Substation, High-Voltage & LOTO">Electrical & LOTO</option>
+                    <option value="Hazardous Chemicals & Effluent Bunding">Chemicals & Effluent</option>
+                    <option value="Planned Job Observation (PJO)">Planned Job Observations</option>
+                    <option value="Workplace 5S & Housekeeping">Workplace 5S & Housekeeping</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select id="insp-filter-verdict" class="app-select">
+                    <option value="ALL">All Gate Verdicts</option>
+                    <option value="PASSED">Passed / Cleared</option>
+                    <option value="FAILED">Failed / Red-Tagged</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Table -->
               <div class="table-responsive">
                 <table class="table-dark-glass">
                   <thead>
                     <tr>
                       <th>Audit ID</th>
-                      <th>Type</th>
-                      <th>Asset / Zone</th>
+                      <th>Protocol / Type</th>
+                      <th>Asset & Zone</th>
                       <th>Lead Inspector</th>
                       <th>Score</th>
-                      <th>Findings &amp; Notes</th>
-                      <th>Audit Gate</th>
+                      <th>Findings & Notes</th>
+                      <th>Gate Verdict</th>
+                      <th>Parameters</th>
                     </tr>
                   </thead>
                   <tbody id="insp-tbody"></tbody>
@@ -1313,6 +1482,91 @@
   </div>
 
   <!-- MODAL 2: 5-Why Root Cause Analysis (RCA) Modal -->
+    <!-- INSPECTION FULL PARAMETER DRILLDOWN MODAL -->
+  <div id="inspDetailModal" class="node-modal-backdrop" role="dialog" aria-modal="true" style="display:none;">
+    <div class="node-modal-card" style="max-width: 850px;">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <span id="insp-modal-verdict-pill" class="status-pill badge-emerald mb-1">STATUTORY INSPECTION RECORD</span>
+          <h3 id="insp-modal-title" class="h5 mb-0">Inspection Parameter Audit Breakdown</h3>
+          <div id="insp-modal-subtitle" class="small text-muted">Statutory Verification Ledger</div>
+        </div>
+        <button id="insp-modal-close" class="btn-glass py-1 px-2" type="button">&times; Close</button>
+      </div>
+
+      <!-- Audit Metadata Header Card -->
+      <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+        <div class="row g-2 small">
+          <div class="col-md-3">
+            <span class="text-muted d-block">Audit Reference ID:</span>
+            <span id="insp-modal-id" class="fw-bold text-info fs-6">INSP-000</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Asset Tag & Zone:</span>
+            <span id="insp-modal-asset" class="fw-bold text-white">Asset Bay</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Lead Auditor:</span>
+            <span id="insp-modal-inspector" class="fw-bold text-white">Inspector</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Witness / Supervisor:</span>
+            <span id="insp-modal-supervisor" class="fw-bold text-white">Supervisor</span>
+          </div>
+        </div>
+        <div class="row g-2 small mt-2 pt-2 border-top border-secondary">
+          <div class="col-md-3">
+            <span class="text-muted d-block">Shift & Ambient:</span>
+            <span id="insp-modal-shift" class="text-white">Day Shift</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Score Achieved:</span>
+            <span id="insp-modal-score" class="fw-bold text-emerald fs-6">100%</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Defect Status:</span>
+            <span id="insp-modal-defect-status" class="text-warning">Zero Defects</span>
+          </div>
+          <div class="col-md-3">
+            <span class="text-muted d-block">Re-Audit Due:</span>
+            <span id="insp-modal-reinspection" class="text-info">30 Days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parameter Checkpoints Table -->
+      <div class="mb-3">
+        <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-list-ol me-1"></i>Evaluated Statutory Checkpoint Parameters</div>
+        <div class="table-responsive">
+          <table class="table-dark-glass">
+            <thead>
+              <tr>
+                <th>Parameter / Checkpoint</th>
+                <th>Risk Tier</th>
+                <th>Statutory Ref</th>
+                <th>Evaluation Result</th>
+                <th>Auditor Notes</th>
+              </tr>
+            </thead>
+            <tbody id="insp-modal-checkpoints-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Defect Observations & Immediate Containment -->
+      <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+        <div class="small fw-bold text-warning mb-1"><i class="fa-solid fa-triangle-exclamation me-1"></i>Findings, Defect Analysis & Immediate Containment Applied</div>
+        <div class="small text-light mb-2"><strong>Findings & Notes:</strong> <span id="insp-modal-notes" class="text-muted">None</span></div>
+        <div class="small text-light"><strong>Containment Action:</strong> <span id="insp-modal-containment" class="text-muted">None</span></div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="small text-muted">Digital Auditor Attestation: <span class="badge bg-secondary text-light">ISO 19011 Compliant Audit Log</span></div>
+        <button id="insp-modal-ok" class="btn-action" type="button">Close Inspection Breakdown</button>
+      </div>
+    </div>
+  </div>
+
   <div id="rcaModal" class="node-modal-backdrop" role="dialog" aria-modal="true">
     <div class="node-modal-card">
       <div class="d-flex justify-content-between align-items-start mb-3">
@@ -1698,9 +1952,355 @@
       N18: { title: "18. Digital ISO Audit Vault", badge: "ISO 9001 Cl. 7.5", desc: "Instant clause-indexed evidence repository for external auditors.", sop: "file:///SOP-QMS-007/digital-vault.sql", comp: "Cuts audit retrieval time from days to seconds." }
     };
 
+    
+    // =========================================================================
+    // FULL STATUTORY INSPECTION PROTOCOLS & PARAMETERS REGISTRY
+    // =========================================================================
+    const INSPECTION_PROTOCOLS = {
+      "Statutory Pressure Vessel & Lifting": {
+        statutoryAuthority: "Factories and Works Act [Chapter 14:08] & SI 109 of 1990",
+        checkpoints: [
+          { id: "PV-01", name: "Pressure Relief Valve & Rupture Disc Integrity", tier: "Critical", ref: "Cap 14:08 Sec 18", desc: "Tamper seal intact, calibration certificate valid within 12 months, discharge route unblocked" },
+          { id: "PV-02", name: "Shell & Welded Seam Ultrasonic Thickness", tier: "Major", ref: "Cap 14:08 Sec 22", desc: "Wall thickness meets minimum corrosion allowance, zero visible pitting or blister deformation" },
+          { id: "PV-03", name: "Low-Water & Overpressure Automatic Tripping Interlock", tier: "Critical", ref: "SI 109/1990 Sec 84", desc: "Float chamber blowdown tested, emergency fuel/power shutoff actuates within 2 seconds" },
+          { id: "PV-04", name: "Dual Pressure Gauge Zero-Point Verification", tier: "Major", ref: "Cap 14:08 Sec 19", desc: "Gauge verified against master dead-weight tester, illumination clear, protective glass intact" },
+          { id: "PV-05", name: "Daily Boiler Blowdown & Statutory Register Logbook", tier: "Minor", ref: "Cap 14:08 Sec 24", desc: "Blowdown cycles signed off by certified boiler attendant, inspector stamp current" }
+        ]
+      },
+      "Underground Ground Control & Secondary Support": {
+        statutoryAuthority: "Mines and Minerals Act [Chapter 21:05] & SI 109 of 1990",
+        checkpoints: [
+          { id: "GC-01", name: "Bar-Down Scaling & Acoustic Rock Sounding", tier: "Critical", ref: "SI 109/1990 Sec 52", desc: "Sounding bar acoustic test performed, hanging wall and sidewalls cleared of loose drummy slabs" },
+          { id: "GC-02", name: "Resin & Split-Set Rock Bolt Torque Tensioning", tier: "Critical", ref: "SI 109/1990 Sec 54", desc: "Torque wrench verification meets minimum 120 Nm specification, face plates firmly seated" },
+          { id: "GC-03", name: "Weldmesh Overlap & Shotcrete Bond Integrity", tier: "Major", ref: "SI 109/1990 Sec 56", desc: "Mesh overlap >= 200mm, lacing cables tight, shotcrete thickness >= 50mm with zero shear cracks" },
+          { id: "GC-04", name: "Refuge Chamber Lifeline & Positive Pressure Fresh Air", tier: "Major", ref: "SI 109/1990 Sec 88", desc: "Continuous reflective lifeline intact, fresh air positive pressure verified, 36h O2 candles sealed" },
+          { id: "GC-05", name: "Multi-Gas Atmospheric Clearing (O2, CO, CH4, NOx)", tier: "Critical", ref: "SI 109/1990 Sec 92", desc: "Calibrated 4-gas detector reads O2 >= 19.5%, CO < 25 ppm, CH4 0.0%, NOx < 3 ppm" }
+        ]
+      },
+      "Heavy Mobile Equipment & Haulage Fleet": {
+        statutoryAuthority: "Mining Regulations (SI 109 of 1990) Sec 74 & ISO 45001",
+        checkpoints: [
+          { id: "ME-01", name: "Dual Circuit Service & Emergency Braking Test", tier: "Critical", ref: "SI 109/1990 Sec 76", desc: "Brake holding test verified on 10% ramp at 1500 RPM, pneumatic lines hold pressure with zero leak" },
+          { id: "ME-02", name: "Secondary Hydraulic Steering Accumulator", tier: "Critical", ref: "SI 109/1990 Sec 77", desc: "Engine kill-switch test confirms minimum 3 full steering lock cycles under accumulator reserve" },
+          { id: "ME-03", name: "ROPS / FOPS Cabin Structural Integrity & Harness", tier: "Critical", ref: "ISO 3471 / 3449", desc: "Roll-over structure free of uncertified weld modifications, 3-point inertia harness operational" },
+          { id: "ME-04", name: "Automated Engine Bay Fire Suppression (Ansul/Fogmaker)", tier: "Critical", ref: "SI 109/1990 Sec 81", desc: "Pressure gauge in green zone, actuation pin intact, optical flame detector clean" },
+          { id: "ME-05", name: "Proximity Detection (CAS), Reverse Camera & Horn", tier: "Major", ref: "SI 109/1990 Sec 79", desc: "Radar/RF collision avoidance triggers audio alarm within 12m, flashing beacon operational" },
+          { id: "ME-06", name: "Tyre Condition, Rim Lock Rings & Wheel Nut Torque", tier: "Major", ref: "SI 109/1990 Sec 80", desc: "Tread depth >= 15mm, wheel nut indicators aligned, zero rim flange fractures" }
+        ]
+      },
+      "Electrical Substation, High-Voltage & LOTO": {
+        statutoryAuthority: "Mining (Management & Safety) SI 109 of 1990 Part 5",
+        checkpoints: [
+          { id: "EL-01", name: "Lockout / Tagout (LOTO) Physical Isolation Barrier", tier: "Critical", ref: "ISO 45001 Cl. 8.1.2", desc: "Padlocks and danger tags attached to circuit isolators, zero voltage verified with calibrated tester" },
+          { id: "EL-02", name: "Earth Leakage & Sensitive Earth Fault Tripping", tier: "Critical", ref: "SI 109/1990 Sec 104", desc: "Primary injection test completed, tripping threshold <= 30mA within 40 milliseconds" },
+          { id: "EL-03", name: "Arc-Flash PPE Category 4 Boundary Signage", tier: "Major", ref: "NFPA 70E / ZWS ISO", desc: "Cal/cm2 incident energy rating signposted, arc-flash suit and rated face shield available" },
+          { id: "EL-04", name: "High-Voltage Rubber Insulation Mats & Rescue Hook", tier: "Major", ref: "SI 109/1990 Sec 108", desc: "15kV dielectric test date verified, rubber mats dry and undamaged, rescue hook unobstructed" },
+          { id: "EL-05", name: "Cable Trench Drainage & Sump Pump Auto-Switch", tier: "Minor", ref: "SI 109/1990 Sec 112", desc: "Zero water ponding around switchgear footings, trench fire-stop foam barriers intact" }
+        ]
+      },
+      "Hazardous Chemicals & Effluent Bunding": {
+        statutoryAuthority: "Environmental Management Act [Cap 20:27] & SI 268 of 2007",
+        checkpoints: [
+          { id: "CH-01", name: "Secondary Bund Capacity (110% Rule) & Impervious Liner", tier: "Critical", ref: "SI 268/2007 Sec 12", desc: "Bund wall volume holds >= 110% of largest tank capacity, zero cracks in acid-proof epoxy liner" },
+          { id: "CH-02", name: "Cyanide & Reagent Automatic pH Neutralization Interlock", tier: "Critical", ref: "SI 12/2007 Sec 8", desc: "pH probe reads >= 10.5 continuously, hypochlorite/peroxide auto-dosing interlock operational" },
+          { id: "CH-03", name: "Emergency Safety Shower & Eyewash 3-Second Flush", tier: "Critical", ref: "ANSI Z358.1 / EMA", desc: "Water temperature 15-30 deg C, hands-free stay-open valve activates in under 1 second, drain clear" },
+          { id: "CH-04", name: "Hazchem GHS Labelling & Safety Data Sheet (SDS) Station", tier: "Major", ref: "SI 268/2007 Sec 15", desc: "Current 16-section SDS in English and Shona accessible within 5 meters of mixing tank" },
+          { id: "CH-05", name: "Chemical Spill Kit & Neutralizing Absorbent Inventory", tier: "Minor", ref: "EMA Guidelines", desc: "Sorbent booms, neutralizing bags, and chemical splash suits fully sealed in yellow bin" }
+        ]
+      },
+      "Planned Job Observation (PJO)": {
+        statutoryAuthority: "ISO 45001 Cl. 8.1.2 & Continuous Field Quality Control",
+        checkpoints: [
+          { id: "PJO-01", name: "Standard Operating Procedure (SOP) Knowledge & Compliance", tier: "Major", ref: "ISO 45001 Cl. 8.1.2", desc: "Operator explains key safety steps and critical controls before task commencement" },
+          { id: "PJO-02", name: "Dynamic Risk Assessment (Take 5 / HIRA Review)", tier: "Major", ref: "ISO 45001 Cl. 6.1.2", desc: "Field Take-5 pocket card completed, task-specific hazards identified and signed off by crew" },
+          { id: "PJO-03", name: "Mandatory Task-Specific PPE Fitment & Inspection", tier: "Major", ref: "ISO 45001 Cl. 8.1.2", desc: "Fall arrest double lanyards, respirators, hearing protection correctly fitted and inspected" },
+          { id: "PJO-04", name: "Line-of-Fire & Stored Energy Barrier Verification", tier: "Critical", ref: "Golden Safety Rules", desc: "No worker positioned within swing radius, pinch points, or pressurized hydraulic trajectory" },
+          { id: "PJO-05", name: "Barricading, Exclusion Zones & Warning Signage", tier: "Minor", ref: "ISO 45001 Cl. 8.1", desc: "Rigid red/white barricading erected, warning signage visible from all approach corridors" }
+        ]
+      },
+      "Workplace 5S & Housekeeping": {
+        statutoryAuthority: "Factories and Works Act [Chapter 14:08] & SME Quality Standards",
+        checkpoints: [
+          { id: "5S-01", name: "Rotating Machine Guarding & Emergency Stop Cord", tier: "Critical", ref: "Cap 14:08 Sec 14", desc: "Lathe, mill, and conveyor nip points guarded; e-stop switches stop motor within 1 second" },
+          { id: "5S-02", name: "Welding Flash Shielding & Gas Cylinder Rigidity", tier: "Major", ref: "Cap 14:08 Sec 16", desc: "Oxy-acetylene bottles chained upright in wheeled cart, flashback arrestors fitted at torch & regulator" },
+          { id: "5S-03", name: "Electrical Cord Heavy-Duty Earthing & Socket Integrity", tier: "Critical", ref: "Cap 14:08 Sec 26", desc: "Extension leads heavy-duty industrial grade, continuous earth tested, no exposed copper or tape joins" },
+          { id: "5S-04", name: "Pedestrian Demarcation & 5S Walkway Housekeeping", tier: "Minor", ref: "ISO 9001 Cl. 7.1.3", desc: "Yellow walkway lines painted, clear of scrap metal, timber offcuts, and oil pools" },
+          { id: "5S-05", name: "First Aid Kit Inventory & Burn Treatment Dressings", tier: "Minor", ref: "Cap 14:08 Sec 30", desc: "Sterile eye-wash pods, burn dressings, and triangular bandages stocked and in date" }
+        ]
+      }
+    };
+
+    let activeCheckpointsState = [];
+
     let currentSector = "mining";
     let appState = null;
     let capaFilter = "all";
+
+    
+    // =========================================================================
+    // DYNAMIC INSPECTION CHECKPOINTS & PARAMETER LOGIC
+    // =========================================================================
+    function loadCheckpointsForType(protocolType) {
+      const proto = INSPECTION_PROTOCOLS[protocolType] || INSPECTION_PROTOCOLS["Statutory Pressure Vessel & Lifting"];
+      activeCheckpointsState = proto.checkpoints.map((cp) => ({
+        id: cp.id,
+        name: cp.name,
+        tier: cp.tier,
+        ref: cp.ref,
+        desc: cp.desc,
+        status: "PASS", // default
+        notes: ""
+      }));
+      renderCheckpointEvaluators();
+      calculateInspectionScore();
+    }
+
+    function renderCheckpointEvaluators() {
+      const container = document.getElementById("insp-checkpoints-container");
+      if (!container) return;
+
+      container.innerHTML = activeCheckpointsState.map((cp, idx) => {
+        const tierBadge = cp.tier === "Critical" 
+          ? '<span class="status-pill badge-red py-0 px-2" style="font-size:0.7rem;">CRITICAL</span>' 
+          : (cp.tier === "Major" ? '<span class="status-pill badge-orange py-0 px-2" style="font-size:0.7rem;">MAJOR</span>' : '<span class="status-pill badge-sky py-0 px-2" style="font-size:0.7rem;">MINOR</span>');
+        
+        const isPass = cp.status === "PASS";
+        const isFail = cp.status === "FAIL";
+        const isNA = cp.status === "NA";
+
+        return `
+          <div class="p-2 rounded-2 mb-1" style="background: rgba(30,41,59,0.7); border: 1px solid ${isFail ? 'rgba(239,68,68,0.5)' : 'var(--border)'};">
+            <div class="d-flex justify-content-between align-items-start gap-2">
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="text-info fw-bold small">${cp.id}</span>
+                  <span class="fw-semibold small text-white">${cp.name}</span>
+                  ${tierBadge}
+                </div>
+                <div class="small text-muted" style="font-size:0.75rem;">${cp.desc} <span class="text-secondary">(${cp.ref})</span></div>
+              </div>
+              <div class="btn-group btn-group-sm" role="group">
+                <button type="button" class="btn ${isPass ? 'btn-success' : 'btn-outline-secondary'} py-0 px-2" style="font-size:0.72rem;" onclick="setCheckpointStatus(${idx}, 'PASS')">PASS</button>
+                <button type="button" class="btn ${isFail ? 'btn-danger' : 'btn-outline-secondary'} py-0 px-2" style="font-size:0.72rem;" onclick="setCheckpointStatus(${idx}, 'FAIL')">FAIL</button>
+                <button type="button" class="btn ${isNA ? 'btn-secondary text-white' : 'btn-outline-secondary'} py-0 px-2" style="font-size:0.72rem;" onclick="setCheckpointStatus(${idx}, 'NA')">N/A</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const countBadge = document.getElementById("insp-checkpoints-count");
+      if (countBadge) countBadge.textContent = `${activeCheckpointsState.length} Parameters`;
+    }
+
+    window.setCheckpointStatus = function(idx, newStatus) {
+      if (activeCheckpointsState[idx]) {
+        activeCheckpointsState[idx].status = newStatus;
+        renderCheckpointEvaluators();
+        calculateInspectionScore();
+      }
+    };
+
+    function calculateInspectionScore() {
+      let totalWeight = 0;
+      let earnedWeight = 0;
+      let hasCriticalFail = false;
+      let failCount = 0;
+
+      activeCheckpointsState.forEach((cp) => {
+        if (cp.status === "NA") return; // skip NA
+        const weight = cp.tier === "Critical" ? 3 : (cp.tier === "Major" ? 2 : 1);
+        totalWeight += weight;
+        if (cp.status === "PASS") {
+          earnedWeight += weight;
+        } else if (cp.status === "FAIL") {
+          failCount++;
+          if (cp.tier === "Critical") hasCriticalFail = true;
+        }
+      });
+
+      const computedScore = totalWeight > 0 ? Math.round((earnedWeight / totalWeight) * 100) : 100;
+      
+      const scoreInput = document.getElementById("insp-score");
+      if (scoreInput) scoreInput.value = computedScore;
+
+      const scoreBadge = document.getElementById("insp-form-score-badge");
+      if (scoreBadge) {
+        scoreBadge.textContent = `Score: ${computedScore}%`;
+        scoreBadge.className = computedScore >= 90 ? "status-pill badge-emerald fs-6 fw-bold" : (computedScore >= 75 ? "status-pill badge-orange fs-6 fw-bold" : "status-pill badge-red fs-6 fw-bold");
+      }
+
+      const verdictDisplay = document.getElementById("insp-verdict-display");
+      const defectsSelect = document.getElementById("insp-defects");
+
+      if (hasCriticalFail || computedScore < 75) {
+        if (verdictDisplay) {
+          verdictDisplay.textContent = "STATUTORY SHUTDOWN / RED-TAG";
+          verdictDisplay.className = "status-pill badge-red d-block text-center py-2 fw-bold";
+        }
+        if (defectsSelect) defectsSelect.value = "CRITICAL";
+      } else if (failCount > 0 || computedScore < 90) {
+        if (verdictDisplay) {
+          verdictDisplay.textContent = "CONDITIONAL PASS (RE-AUDIT 7 DAYS)";
+          verdictDisplay.className = "status-pill badge-orange d-block text-center py-2 fw-bold";
+        }
+        if (defectsSelect) defectsSelect.value = "MINOR";
+      } else {
+        if (verdictDisplay) {
+          verdictDisplay.textContent = "CLEARED (FULL CONFORMANCE)";
+          verdictDisplay.className = "status-pill badge-emerald d-block text-center py-2 fw-bold";
+        }
+        if (defectsSelect) defectsSelect.value = "NONE";
+      }
+    }
+
+    let currentInspFilterType = "ALL";
+    let currentInspFilterVerdict = "ALL";
+    let currentInspSearch = "";
+
+    function renderInspectionsTable() {
+      const profile = appState[currentSector];
+      if (!profile || !profile.inspections) return;
+
+      // Calculate Inspection Top KPIs
+      const total = profile.inspections.length;
+      const passed = profile.inspections.filter((i) => i.status === "PASSED").length;
+      const redtags = profile.inspections.filter((i) => i.status === "FAILED").length;
+      const avg = total > 0 ? (profile.inspections.reduce((acc, i) => acc + i.score, 0) / total).toFixed(1) : "0.0";
+      const passRate = total > 0 ? ((passed / total) * 100).toFixed(1) : "0.0";
+
+      const elTotal = document.getElementById("insp-stat-total");
+      const elAvg = document.getElementById("insp-stat-avg-score");
+      const elRed = document.getElementById("insp-stat-redtags");
+      const elPass = document.getElementById("insp-stat-pass-rate");
+
+      if (elTotal) elTotal.textContent = total;
+      if (elAvg) elAvg.textContent = `${avg}%`;
+      if (elRed) elRed.textContent = redtags;
+      if (elPass) elPass.textContent = `${passRate}%`;
+
+      // Filter rows
+      let filtered = profile.inspections.filter((i) => {
+        if (currentInspFilterType !== "ALL" && i.type !== currentInspFilterType) return false;
+        if (currentInspFilterVerdict !== "ALL" && i.status !== currentInspFilterVerdict) return false;
+        if (currentInspSearch) {
+          const q = currentInspSearch.toLowerCase();
+          const match = (i.id && i.id.toLowerCase().includes(q)) ||
+                        (i.zone && i.zone.toLowerCase().includes(q)) ||
+                        (i.inspector && i.inspector.toLowerCase().includes(q)) ||
+                        (i.assetId && i.assetId.toLowerCase().includes(q)) ||
+                        (i.notes && i.notes.toLowerCase().includes(q));
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      const tbody = document.getElementById("insp-tbody");
+      if (!tbody) return;
+
+      tbody.innerHTML = filtered.map((i, idx) => {
+        const actualIdx = profile.inspections.indexOf(i);
+        const gateBadge = i.status === "PASSED"
+          ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> PASSED (${i.score}%)</span>`
+          : `<span class="status-pill badge-red"><i class="fa-solid fa-xmark"></i> FAILED (${i.score}%)</span>`;
+
+        const scorePill = i.score >= 90 
+          ? `<span class="fw-bold text-emerald">${i.score}%</span>`
+          : (i.score >= 75 ? `<span class="fw-bold text-warning">${i.score}%</span>` : `<span class="fw-bold text-danger">${i.score}%</span>`);
+
+        const assetDisplay = i.assetId ? `<div class="text-info small fw-bold">${i.assetId}</div>` : '';
+        const dateShift = i.shift ? `<div class="small text-muted">${i.shift}</div>` : '';
+
+        return `
+          <tr>
+            <td class="fw-bold text-info">${i.id}</td>
+            <td>
+              <span class="status-pill badge-purple mb-1 text-nowrap">${i.type}</span>
+              ${dateShift}
+            </td>
+            <td>
+              ${assetDisplay}
+              <div class="fw-semibold small">${i.zone}</div>
+            </td>
+            <td>
+              <div class="small fw-semibold">${i.inspector}</div>
+              <div class="small text-muted" style="font-size:0.75rem;">Witness: ${i.supervisor || 'N/A'}</div>
+            </td>
+            <td>${scorePill}</td>
+            <td>
+              <div class="small">${i.notes}</div>
+              ${i.containment ? `<div class="small text-warning" style="font-size:0.75rem;">Containment: ${i.containment}</div>` : ''}
+            </td>
+            <td>${gateBadge}</td>
+            <td>
+              <button class="btn-glass py-1 px-2" type="button" style="font-size:0.75rem;" onclick="viewInspectionDetail(${actualIdx})">
+                <i class="fa-solid fa-eye me-1"></i>Parameters
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    window.viewInspectionDetail = function(idx) {
+      const profile = appState[currentSector];
+      const insp = profile.inspections[idx];
+      if (!insp) return;
+
+      document.getElementById("insp-modal-id").textContent = insp.id;
+      document.getElementById("insp-modal-title").textContent = `${insp.type} Audit`;
+      document.getElementById("insp-modal-subtitle").textContent = `${insp.zone} - Shift Inspection Record`;
+      document.getElementById("insp-modal-asset").textContent = `${insp.assetId || 'N/A'} (${insp.zone})`;
+      document.getElementById("insp-modal-inspector").textContent = insp.inspector;
+      document.getElementById("insp-modal-supervisor").textContent = insp.supervisor || 'Shift Foreman';
+      document.getElementById("insp-modal-shift").textContent = `${insp.shift || 'Day Shift'} | ${insp.ambient || 'Normal'}`;
+      document.getElementById("insp-modal-score").textContent = `${insp.score}%`;
+      document.getElementById("insp-modal-defect-status").textContent = insp.defects || 'NONE';
+      document.getElementById("insp-modal-reinspection").textContent = insp.reinspectionInterval || '30 Days';
+      document.getElementById("insp-modal-notes").textContent = insp.notes || 'None';
+      document.getElementById("insp-modal-containment").textContent = insp.containment || 'None applied';
+
+      const verdictPill = document.getElementById("insp-modal-verdict-pill");
+      if (verdictPill) {
+        if (insp.status === "PASSED") {
+          verdictPill.textContent = "STATUTORY CONFORMANCE CLEARED";
+          verdictPill.className = "status-pill badge-emerald mb-1";
+        } else {
+          verdictPill.textContent = "STATUTORY SHUTDOWN / RED-TAG ACTIVE";
+          verdictPill.className = "status-pill badge-red mb-1";
+        }
+      }
+
+      // Checkpoints breakdown
+      const tbody = document.getElementById("insp-modal-checkpoints-tbody");
+      const checkpoints = insp.checkpoints || (INSPECTION_PROTOCOLS[insp.type] ? INSPECTION_PROTOCOLS[insp.type].checkpoints : []);
+      
+      tbody.innerHTML = checkpoints.map((cp) => {
+        const status = cp.status || (insp.status === "PASSED" ? "PASS" : "FAIL");
+        const statusBadge = status === "PASS"
+          ? '<span class="status-pill badge-emerald py-0 px-2">PASS</span>'
+          : (status === "FAIL" ? '<span class="status-pill badge-red py-0 px-2">FAIL</span>' : '<span class="status-pill badge-secondary py-0 px-2">N/A</span>');
+        
+        const tierBadge = cp.tier === "Critical" 
+          ? '<span class="status-pill badge-red py-0 px-2" style="font-size:0.7rem;">Critical</span>' 
+          : (cp.tier === "Major" ? '<span class="status-pill badge-orange py-0 px-2" style="font-size:0.7rem;">Major</span>' : '<span class="status-pill badge-sky py-0 px-2" style="font-size:0.7rem;">Minor</span>');
+
+        return `
+          <tr>
+            <td>
+              <div class="fw-semibold small">${cp.name}</div>
+              <div class="small text-muted" style="font-size:0.75rem;">${cp.desc || ''}</div>
+            </td>
+            <td>${tierBadge}</td>
+            <td><code class="small text-info">${cp.ref || 'Statutory Ref'}</code></td>
+            <td>${statusBadge}</td>
+            <td class="small text-muted">${status === 'FAIL' ? 'Non-conformance recorded' : 'Verified compliant in field'}</td>
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("inspDetailModal").style.display = "flex";
+    };
 
     function loadState() {
       const saved = localStorage.getItem("she_qms_app_state_v2");
@@ -1932,26 +2532,8 @@
         }).join("");
       }
 
-      // Render Inspections Table
-      const inspBody = document.getElementById("insp-tbody");
-      if (profile.inspections) {
-        inspBody.innerHTML = profile.inspections.map((i) => {
-          const gateBadge = i.status === "PASSED"
-            ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> PASSED (${i.score}%)</span>`
-            : `<span class="status-pill badge-red"><i class="fa-solid fa-xmark"></i> FAILED (${i.score}%)</span>`;
-          return `
-            <tr>
-              <td class="fw-bold text-info">${i.id}</td>
-              <td><span class="status-pill badge-purple">${i.type}</span></td>
-              <td class="fw-semibold">${i.zone}</td>
-              <td>${i.inspector}</td>
-              <td class="fw-bold">${i.score}%</td>
-              <td>${i.notes}</td>
-              <td>${gateBadge}</td>
-            </tr>
-          `;
-        }).join("");
-      }
+      // Render Inspections Table via Full Parameter Module
+      renderInspectionsTable();
 
       // Render Pre-Shift Table
       const psBody = document.getElementById("preshift-tbody");
@@ -2140,6 +2722,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadState();
+      loadCheckpointsForType(document.getElementById('insp-type').value);
       renderAll();
       renderVault();
 
@@ -2218,51 +2801,124 @@
         e.target.reset();
       });
 
-      // Planned Inspections Form Submission (Feeds Executive Command & Seeds CAPA on Failure)
+      // Form 2: Full Parameter Statutory Inspection & Audit Engine
       document.getElementById("insp-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const type = document.getElementById("insp-type").value;
+        const assetId = (document.getElementById("insp-asset-id") ? document.getElementById("insp-asset-id").value.trim() : "EQ-01") || "EQ-01";
         const zone = document.getElementById("insp-zone").value.trim();
+        const shift = document.getElementById("insp-shift") ? document.getElementById("insp-shift").value : "Day Shift";
+        const ambient = document.getElementById("insp-ambient") ? document.getElementById("insp-ambient").value : "Normal";
         const inspector = document.getElementById("insp-inspector").value.trim();
+        const supervisor = document.getElementById("insp-supervisor") ? document.getElementById("insp-supervisor").value.trim() : "Shift Foreman";
         const score = parseInt(document.getElementById("insp-score").value, 10);
         const defects = document.getElementById("insp-defects").value;
+        const reinspectionInterval = document.getElementById("insp-reinspection-interval") ? document.getElementById("insp-reinspection-interval").value : "30 Days";
         const notes = document.getElementById("insp-notes").value.trim();
+        const containment = document.getElementById("insp-containment") ? document.getElementById("insp-containment").value.trim() : "None";
 
         const profile = appState[currentSector];
         if (!profile.inspections) profile.inspections = [];
         const inspId = `INSP-${Math.floor(200 + Math.random() * 799)}`;
         const status = defects === "CRITICAL" || score < 80 ? "FAILED" : "PASSED";
 
+        const snapshotCheckpoints = JSON.parse(JSON.stringify(activeCheckpointsState));
+
         profile.inspections.unshift({
           id: inspId,
           type,
+          assetId,
           zone,
+          shift,
+          ambient,
           inspector,
+          supervisor,
           score,
           defects,
+          reinspectionInterval,
           notes,
-          status
+          containment,
+          status,
+          checkpoints: snapshotCheckpoints
         });
 
         if (status === "FAILED") {
           profile.capas.unshift({
             id: `NCR-${Math.floor(300 + Math.random() * 699)}`,
-            title: `Inspection Non-Conformance at ${zone}: ${notes}`,
+            title: `Inspection Non-Conformance on ${assetId} at ${zone}: ${notes}`,
             zone,
-            clause: "ISO 9001 Cl. 9.2",
+            clause: "ISO 9001 Cl. 9.2 & ISO 45001 Cl. 8.1",
             severity: "HIGH",
             owner: inspector,
             closed: false,
             rcaCat: "Machine",
-            rootCause: `Critical inspection failure recorded during ${type}`,
-            barrier: "Complete immediate corrective maintenance and re-audit within 48h"
+            rootCause: `Critical statutory checkpoint failure recorded during ${type} on ${assetId}`,
+            barrier: containment || "Complete immediate corrective maintenance and re-audit within 48h"
           });
         }
 
         saveState();
         renderAll();
-        e.target.reset();
+        loadCheckpointsForType(type);
       });
+
+      // Type selector change listener to dynamically refresh parameters
+      document.getElementById("insp-type").addEventListener("change", (e) => {
+        loadCheckpointsForType(e.target.value);
+      });
+
+      // Inspection Filters & Search Listeners
+      const filterTypeEl = document.getElementById("insp-filter-type");
+      if (filterTypeEl) {
+        filterTypeEl.addEventListener("change", (e) => {
+          currentInspFilterType = e.target.value;
+          renderInspectionsTable();
+        });
+      }
+
+      const filterVerdictEl = document.getElementById("insp-filter-verdict");
+      if (filterVerdictEl) {
+        filterVerdictEl.addEventListener("change", (e) => {
+          currentInspFilterVerdict = e.target.value;
+          renderInspectionsTable();
+        });
+      }
+
+      const searchInputEl = document.getElementById("insp-search-input");
+      if (searchInputEl) {
+        searchInputEl.addEventListener("input", (e) => {
+          currentInspSearch = e.target.value.trim();
+          renderInspectionsTable();
+        });
+      }
+
+      // Export Inspections CSV Button
+      const btnExportInsp = document.getElementById("btn-export-inspections");
+      if (btnExportInsp) {
+        btnExportInsp.addEventListener("click", () => {
+          const profile = appState[currentSector];
+          if (!profile || !profile.inspections) return;
+          const rows = [
+            ["Audit_ID", "Sector", "Protocol_Type", "Asset_ID", "Operating_Zone", "Shift", "Lead_Inspector", "Supervisor", "Score_Percent", "Defects", "Gate_Verdict", "Reaudit_Due", "Notes", "Containment"],
+            ...profile.inspections.map((i) => [
+              i.id, currentSector, i.type, i.assetId || "EQ-01", i.zone, i.shift || "Day", i.inspector, i.supervisor || "N/A", `${i.score}%`, i.defects, i.status, i.reinspectionInterval || "30 Days", i.notes, i.containment || "None"
+            ])
+          ];
+          const csvContent = "data:text/csv;charset=utf-8," + rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join(String.fromCharCode(10));
+          const link = document.createElement("a");
+          link.setAttribute("href", encodeURI(csvContent));
+          link.setAttribute("download", `SHE_Statutory_Inspections_${currentSector}_2026.csv`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        });
+      }
+
+      // Inspection Modal Close Listeners
+      const inspModalClose = document.getElementById("insp-modal-close");
+      if (inspModalClose) inspModalClose.addEventListener("click", () => document.getElementById("inspDetailModal").style.display = "none");
+      const inspModalOk = document.getElementById("insp-modal-ok");
+      if (inspModalOk) inspModalOk.addEventListener("click", () => document.getElementById("inspDetailModal").style.display = "none");
 
       // Pre-Shift Form Submission
       document.getElementById("preshift-form").addEventListener("submit", (e) => {
@@ -2436,6 +3092,7 @@
       document.getElementById("reset-demo-btn").addEventListener("click", () => {
         localStorage.removeItem("she_qms_app_state_v2");
         loadState();
+      loadCheckpointsForType(document.getElementById('insp-type').value);
         renderAll();
       });
 
