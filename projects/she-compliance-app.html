@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital SHE &amp; Statutory Audit Intelligence App | Industrial, Mining &amp; Informal Sector</title>
-  <meta name="description" content="Interactive ISO 45001, ISO 9001, EMA, and NSSA compliance intelligence application for Mining, Manufacturing, Informal/SME Operations, and Agro-Processing." />
+  <meta name="description" content="Enterprise ISO 45001, ISO 9001, EMA, and NSSA compliance intelligence platform for Mining, Manufacturing, Informal/SME Operations, and Agro-Processing." />
   <meta name="theme-color" content="#0B0F17" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,18 +95,18 @@
     /* App Layout */
     .app-shell {
       display: grid;
-      grid-template-columns: 250px 1fr;
+      grid-template-columns: 260px 1fr;
       min-height: calc(100vh - 65px);
     }
 
     .app-sidebar {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(20px);
       border-right: 1px solid var(--border);
       padding: 20px 14px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .nav-module-btn {
@@ -116,8 +116,8 @@
       color: var(--muted);
       border: 1px solid transparent;
       border-radius: 12px;
-      padding: 11px 14px;
-      font-size: 0.88rem;
+      padding: 10px 14px;
+      font-size: 0.86rem;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -161,7 +161,7 @@
     }
 
     .kpi-label {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.06rem;
       color: var(--muted);
@@ -170,14 +170,14 @@
 
     .kpi-value {
       font-family: "Outfit", sans-serif;
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
       font-weight: 700;
       line-height: 1.15;
       margin: 6px 0 4px;
     }
 
     .kpi-sub {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--muted);
     }
 
@@ -216,7 +216,7 @@
     .table-dark-glass td {
       padding: 12px 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      font-size: 0.87rem;
+      font-size: 0.86rem;
       vertical-align: middle;
     }
 
@@ -249,6 +249,10 @@
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .btn-action:hover {
@@ -268,6 +272,9 @@
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .btn-glass:hover {
@@ -276,6 +283,37 @@
       border-color: var(--sky);
       color: var(--sky);
     }
+
+    /* Risk Matrix 5x5 */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      max-width: 440px;
+    }
+
+    .matrix-cell {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .matrix-cell:hover {
+      transform: scale(1.08);
+      z-index: 2;
+    }
+
+    .risk-low { background: rgba(16, 185, 129, 0.25); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.4); }
+    .risk-med { background: rgba(249, 115, 22, 0.25); color: #FDBA74; border-color: rgba(249, 115, 22, 0.4); }
+    .risk-high { background: rgba(239, 68, 68, 0.3); color: #FCA5A5; border-color: rgba(239, 68, 68, 0.5); }
+    .risk-crit { background: rgba(168, 85, 247, 0.35); color: #E9D5FF; border-color: rgba(168, 85, 247, 0.6); }
 
     /* Interactive Blueprint Canvas */
     .canvas-viewport {
@@ -339,7 +377,7 @@
     .module-pane { display: none; }
     .module-pane.active { display: block; }
 
-    /* Modal */
+    /* Modal Backdrop */
     .node-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -355,11 +393,13 @@
       background: rgba(30, 41, 59, 0.96);
       border: 1px solid var(--border);
       border-radius: 20px;
-      max-width: 600px;
+      max-width: 680px;
       width: 100%;
       padding: 26px;
       color: var(--ink);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     @media (max-width: 992px) {
@@ -381,7 +421,7 @@
   <header class="app-topbar d-flex flex-wrap justify-content-between align-items-center gap-3">
     <div class="d-flex align-items-center gap-3">
       <div class="d-flex align-items-center gap-2">
-        <span class="status-pill badge-orange"><i class="fa-solid fa-helmet-safety"></i> SHE-QMS v2.4</span>
+        <span class="status-pill badge-orange"><i class="fa-solid fa-helmet-safety"></i> SHE-QMS v2.5</span>
         <span class="brand-font fw-bold fs-5">Industrial, Mining &amp; Informal Sector Compliance Intelligence</span>
       </div>
     </div>
@@ -415,17 +455,23 @@
       <button class="nav-module-btn active" data-module="overview" type="button">
         <i class="fa-solid fa-chart-pie"></i> Executive Command
       </button>
+      <button class="nav-module-btn" data-module="hira" type="button">
+        <i class="fa-solid fa-shield-halved"></i> HIRA Risk Matrix
+      </button>
+      <button class="nav-module-btn" data-module="inspections" type="button">
+        <i class="fa-solid fa-list-check"></i> Planned Inspections &amp; PJOs
+      </button>
       <button class="nav-module-btn" data-module="preshift" type="button">
         <i class="fa-solid fa-clipboard-check"></i> Pre-Shift &amp; Equipment
       </button>
       <button class="nav-module-btn" data-module="capa" type="button">
-        <i class="fa-solid fa-triangle-exclamation"></i> Near-Miss &amp; CAPA
+        <i class="fa-solid fa-triangle-exclamation"></i> Near-Miss, RCA &amp; CAPA
       </button>
       <button class="nav-module-btn" data-module="ema" type="button">
         <i class="fa-solid fa-flask-vial"></i> EMA &amp; Statutory Guardrails
       </button>
       <button class="nav-module-btn" data-module="contractors" type="button">
-        <i class="fa-solid fa-truck-Monster"></i> Contractor Scorecards
+        <i class="fa-solid fa-truck-monster"></i> Contractor Scorecards
       </button>
       <button class="nav-module-btn" data-module="vault" type="button">
         <i class="fa-solid fa-vault"></i> ISO 9001/45001 Vault
@@ -454,58 +500,85 @@
             <span class="status-pill badge-emerald"><i class="fa-solid fa-circle-check"></i> Zero-Licensing Open Pipeline</span>
           </div>
           <h1 id="sector-heading" class="h4 mb-0">Heavy Mining &amp; Smelting Operations Command</h1>
-          <p id="sector-subtitle" class="small text-muted mb-0">Consolidated ISO 45001 safety telemetry, EMA effluent monitoring, and Ministry of Mines statutory readiness.</p>
+          <p id="sector-subtitle" class="small text-muted mb-0">Consolidated ISO 45001 safety telemetry, EMA effluent monitoring, HIRA barrier health, and statutory readiness.</p>
         </div>
         <div class="d-flex gap-2 flex-wrap">
-          <button class="btn-action" type="button" data-jump-module="preshift"><i class="fa-solid fa-plus me-1"></i>Log Pre-Shift Check</button>
-          <button class="btn-glass" type="button" data-jump-module="capa"><i class="fa-solid fa-bolt me-1"></i>Report Near-Miss / Hazard</button>
+          <button class="btn-action" type="button" data-jump-module="hira"><i class="fa-solid fa-plus me-1"></i>Log HIRA Hazard</button>
+          <button class="btn-glass" type="button" data-jump-module="inspections"><i class="fa-solid fa-clipboard-check me-1"></i>Conduct Inspection</button>
+          <button class="btn-glass" type="button" data-jump-module="capa"><i class="fa-solid fa-bolt me-1"></i>Log Near-Miss / RCA</button>
         </div>
       </div>
 
       <!-- MODULE 1: EXECUTIVE COMMAND OVERVIEW -->
       <section id="pane-overview" class="module-pane active">
-        <!-- 6 KPI Cards -->
+        <!-- Live Executive Alert Banner -->
+        <div id="exec-alert-banner" class="alert p-3 mb-4 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.4); color: #F8FAFC;">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-shield-check text-success fs-5"></i>
+            <div>
+              <span id="exec-alert-title" class="fw-bold">All Operational Barriers &amp; Statutory Thresholds Cleared</span>
+              <div id="exec-alert-desc" class="small text-muted">Zero unmitigated critical HIRA hazards, pre-shift fleets verified, and effluent within EMA bounds.</div>
+            </div>
+          </div>
+          <span id="exec-alert-badge" class="status-pill badge-emerald">CONTINUOUS AUDIT READY</span>
+        </div>
+
+        <!-- 8 Executive KPI Cards (Linked to HIRA, Inspections, Pre-Shift, CAPA, EMA, Contractors) -->
         <div class="row g-3 mb-4">
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
               <div class="kpi-label">Real-Time LTIFR</div>
               <div id="kpi-ltifr" class="kpi-value" style="color: var(--emerald);">0.28</div>
               <div class="kpi-sub">Ceiling: <span id="kpi-ltifr-ceiling">0.50</span> per 200k hrs</div>
             </div>
           </div>
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
               <div class="kpi-label">Consecutive LTI-Free</div>
               <div id="kpi-lti-days" class="kpi-value" style="color: var(--sky);">142 Days</div>
               <div id="kpi-hours-worked" class="kpi-sub">1,420,500 safe shift hrs</div>
             </div>
           </div>
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
-              <div class="kpi-label">CAPA Closure Rate</div>
+              <div class="kpi-label">HIRA Critical Risk Barrier</div>
+              <div id="kpi-hira-rate" class="kpi-value" style="color: var(--emerald);">100%</div>
+              <div id="kpi-hira-sub" class="kpi-sub">0 unmitigated Critical tasks</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 col-xl-3">
+            <div class="glass-card h-100">
+              <div class="kpi-label">Inspection Conformance</div>
+              <div id="kpi-insp-rate" class="kpi-value" style="color: var(--sky);">95.4%</div>
+              <div id="kpi-insp-sub" class="kpi-sub">Structured PJOs &amp; site audits</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 col-xl-3">
+            <div class="glass-card h-100">
+              <div class="kpi-label">CAPA Closure Velocity</div>
               <div id="kpi-capa-rate" class="kpi-value" style="color: var(--orange);">98.2%</div>
               <div id="kpi-open-capas" class="kpi-sub">2 open high-priority actions</div>
             </div>
           </div>
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
               <div class="kpi-label">Pre-Shift Pass Rate</div>
               <div id="kpi-preshift-rate" class="kpi-value" style="color: var(--emerald);">94.6%</div>
-              <div id="kpi-interlocks" class="kpi-sub">1 active equipment interlock</div>
+              <div id="kpi-interlocks" class="kpi-sub">1 active fleet interlock</div>
             </div>
           </div>
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
               <div class="kpi-label">EMA &amp; Statutory Status</div>
               <div id="kpi-ema-status" class="kpi-value" style="color: var(--emerald);">100%</div>
               <div id="kpi-ema-sub" class="kpi-sub">All parameters within threshold</div>
             </div>
           </div>
-          <div class="col-6 col-xl-2">
+          <div class="col-6 col-md-3 col-xl-3">
             <div class="glass-card h-100">
-              <div class="kpi-label">Contractor / Crew Score</div>
+              <div class="kpi-label">Contractor Compliance</div>
               <div id="kpi-contractor-avg" class="kpi-value" style="color: var(--purple);">91.4%</div>
-              <div id="kpi-contractor-sub" class="kpi-sub">Across 4 active operating units</div>
+              <div id="kpi-contractor-sub" class="kpi-sub">Across 4 active units</div>
             </div>
           </div>
         </div>
@@ -516,8 +589,8 @@
             <div class="glass-card h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                  <h2 class="h5 mb-0">Leading Safety Analytics: Near-Miss Volume vs. CAPA Velocity</h2>
-                  <p class="small text-muted mb-0">6-Month trend correlating hazard reporting volume with corrective action closure rate</p>
+                  <h2 class="h5 mb-0">Leading Safety Analytics: Near-Miss Reporting vs. CAPA Closure Velocity</h2>
+                  <p class="small text-muted mb-0">Correlating proactive hazard identification with timely corrective control closure</p>
                 </div>
                 <span class="status-pill badge-sky">ISO 45001 Cl. 9.1</span>
               </div>
@@ -529,8 +602,8 @@
             <div class="glass-card h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                  <h2 class="h5 mb-0">Statutory Filing &amp; Permit Deadlines</h2>
-                  <p class="small text-muted mb-0">EMA, NSSA, SAZ &amp; Sector Regulatory Calendar</p>
+                  <h2 class="h5 mb-0">Statutory Filing &amp; Permit Calendar</h2>
+                  <p class="small text-muted mb-0">EMA, Ministry of Mines, NSSA &amp; SAZ Requirements</p>
                 </div>
                 <span class="status-pill badge-orange">Zero-Late Target</span>
               </div>
@@ -539,19 +612,22 @@
           </div>
         </div>
 
-        <!-- Live Recent Activity Feed -->
+        <!-- Live Activity Feed Across All Modules -->
         <div class="glass-card">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="h5 mb-0">Live Operational Compliance Stream</h2>
-            <span class="small text-muted">Updated in real time as pre-shift checks and CAPAs are logged</span>
+            <div>
+              <h2 class="h5 mb-0">Live Operational Compliance Stream</h2>
+              <p class="small text-muted mb-0">Real-time telemetry aggregated from HIRA, Planned Inspections, Pre-Shift Logs, and CAPA Actions</p>
+            </div>
+            <span class="small text-muted">Auto-refreshed</span>
           </div>
           <div class="table-responsive">
             <table class="table-dark-glass">
               <thead>
                 <tr>
                   <th>Timestamp</th>
-                  <th>Zone / Unit</th>
-                  <th>Category</th>
+                  <th>Source Module</th>
+                  <th>Zone / Asset</th>
                   <th>Observation / Control Action</th>
                   <th>ISO / Statutory Clause</th>
                   <th>Status</th>
@@ -563,7 +639,224 @@
         </div>
       </section>
 
-      <!-- MODULE 2: PRE-SHIFT & EQUIPMENT INSPECTIONS -->
+      <!-- MODULE 2: HIRA (HAZARD IDENTIFICATION & RISK ASSESSMENT) -->
+      <section id="pane-hira" class="module-pane">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-5">
+            <div class="glass-card">
+              <span class="status-pill badge-sky mb-2">ISO 45001:2018 Clause 6.1.2</span>
+              <h2 class="h5 mb-2">HIRA 5x5 Risk Matrix &amp; Hierarchy</h2>
+              <p class="small text-muted mb-3">Severity (1 to 5) &times; Likelihood (1 to 5). High &amp; Critical residual risks automatically trigger a high-priority CAPA and alert Executive Command.</p>
+
+              <!-- 5x5 Matrix Visual -->
+              <div class="matrix-grid mb-3">
+                <div class="matrix-cell risk-med">5</div><div class="matrix-cell risk-high">10</div><div class="matrix-cell risk-high">15</div><div class="matrix-cell risk-crit">20</div><div class="matrix-cell risk-crit">25</div>
+                <div class="matrix-cell risk-low">4</div><div class="matrix-cell risk-med">8</div><div class="matrix-cell risk-high">12</div><div class="matrix-cell risk-high">16</div><div class="matrix-cell risk-crit">20</div>
+                <div class="matrix-cell risk-low">3</div><div class="matrix-cell risk-med">6</div><div class="matrix-cell risk-med">9</div><div class="matrix-cell risk-high">12</div><div class="matrix-cell risk-high">15</div>
+                <div class="matrix-cell risk-low">2</div><div class="matrix-cell risk-low">4</div><div class="matrix-cell risk-med">6</div><div class="matrix-cell risk-med">8</div><div class="matrix-cell risk-high">10</div>
+                <div class="matrix-cell risk-low">1</div><div class="matrix-cell risk-low">2</div><div class="matrix-cell risk-low">3</div><div class="matrix-cell risk-low">4</div><div class="matrix-cell risk-med">5</div>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span>1-4: Low (Green)</span>
+                <span>5-9: Medium (Orange)</span>
+                <span>10-14: High (Red)</span>
+                <span>15-25: Critical (Purple)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="glass-card">
+              <span class="status-pill badge-orange mb-2">Hazard Intake</span>
+              <h2 class="h5 mb-3">Conduct Task Hazard Assessment</h2>
+              <form id="hira-form">
+                <div class="row g-2 mb-2">
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Work Task / Activity</label>
+                    <input type="text" id="hira-task" class="app-input" placeholder="e.g. Working at Heights in SAG Mill Feed Chute" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Operating Zone / Pit / Workshop</label>
+                    <input type="text" id="hira-zone" class="app-input" placeholder="e.g. Grinding Plant Bay 2" required />
+                  </div>
+                </div>
+                <div class="row g-2 mb-2">
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Hazard Identified</label>
+                    <input type="text" id="hira-hazard" class="app-input" placeholder="e.g. Fall from height > 4m during liner hoist" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Potential Consequence</label>
+                    <input type="text" id="hira-consequence" class="app-input" placeholder="e.g. Severe spinal injury or fatality" required />
+                  </div>
+                </div>
+                <div class="row g-2 mb-2">
+                  <div class="col-md-3">
+                    <label class="small text-muted fw-bold mb-1">Initial Severity (1-5)</label>
+                    <select id="hira-isev" class="app-select">
+                      <option value="1">1 - Negligible</option>
+                      <option value="2">2 - Minor</option>
+                      <option value="3">3 - Moderate</option>
+                      <option value="4">4 - Major</option>
+                      <option value="5" selected>5 - Catastrophic</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="small text-muted fw-bold mb-1">Initial Likelihood (1-5)</label>
+                    <select id="hira-ilike" class="app-select">
+                      <option value="1">1 - Rare</option>
+                      <option value="2">2 - Unlikely</option>
+                      <option value="3">3 - Possible</option>
+                      <option value="4" selected>4 - Likely</option>
+                      <option value="5">5 - Almost Certain</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Hierarchy of Control Category</label>
+                    <select id="hira-control-type" class="app-select">
+                      <option value="Engineering Controls">Engineering Controls (Guards, Interlocks, Scaffolds)</option>
+                      <option value="Elimination">Elimination (Remove hazard completely)</option>
+                      <option value="Substitution">Substitution (Replace with safer substance/machine)</option>
+                      <option value="Administrative Controls">Administrative Controls (Permits, Training, Signage)</option>
+                      <option value="PPE">Personal Protective Equipment (Harness, Respirators)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <label class="small text-muted fw-bold mb-1">Engineered Control Measures</label>
+                  <input type="text" id="hira-controls" class="app-input" placeholder="e.g. Engineered static lifeline, dual inertia reel, certified scaffold with kickplates" required />
+                </div>
+                <div class="row g-2 mb-3">
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Residual Severity (1-5)</label>
+                    <select id="hira-rsev" class="app-select">
+                      <option value="1">1 - Negligible</option>
+                      <option value="2">2 - Minor</option>
+                      <option value="3" selected>3 - Moderate</option>
+                      <option value="4">4 - Major</option>
+                      <option value="5">5 - Catastrophic</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="small text-muted fw-bold mb-1">Residual Likelihood (1-5)</label>
+                    <select id="hira-rlike" class="app-select">
+                      <option value="1" selected>1 - Rare</option>
+                      <option value="2">2 - Unlikely</option>
+                      <option value="3">3 - Possible</option>
+                      <option value="4">4 - Likely</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" class="btn-action w-100"><i class="fa-solid fa-shield-halved me-1"></i>Save HIRA Assessment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- HIRA Registry Table -->
+        <div class="glass-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <h2 class="h5 mb-0">Active HIRA Risk Register</h2>
+              <p class="small text-muted mb-0">Tracks pre-control vs. post-control residual risk ratings with hierarchy-of-control barriers.</p>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table-dark-glass">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Task &amp; Activity</th>
+                  <th>Zone</th>
+                  <th>Hazard &amp; Consequence</th>
+                  <th>Initial Risk</th>
+                  <th>Control Applied</th>
+                  <th>Residual Risk</th>
+                  <th>Barrier Status</th>
+                </tr>
+              </thead>
+              <tbody id="hira-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 3: PLANNED INSPECTIONS & PJOS -->
+      <section id="pane-inspections" class="module-pane">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-4">
+            <div class="glass-card">
+              <span class="status-pill badge-sky mb-2">Structured Audits</span>
+              <h2 class="h5 mb-3">Log Planned Inspection / PJO</h2>
+              <form id="insp-form">
+                <div class="mb-2">
+                  <label class="small text-muted fw-bold mb-1">Inspection Type</label>
+                  <select id="insp-type" class="app-select">
+                    <option value="Planned Job Observation (PJO)">Planned Job Observation (PJO)</option>
+                    <option value="Statutory Pressure Vessel & Lifting">Statutory Pressure Vessel &amp; Lifting Audit</option>
+                    <option value="Workplace 5S & Housekeeping">Workplace 5S &amp; Housekeeping Audit</option>
+                    <option value="Environmental & Effluent Walkthrough">Environmental &amp; Effluent Walkthrough</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <label class="small text-muted fw-bold mb-1">Asset or Operating Zone</label>
+                  <input type="text" id="insp-zone" class="app-input" placeholder="e.g. Crusher Plant / Boiler House" required />
+                </div>
+                <div class="mb-2">
+                  <label class="small text-muted fw-bold mb-1">Lead Inspector</label>
+                  <input type="text" id="insp-inspector" class="app-input" placeholder="e.g. K. Ndlovu (SHE Officer)" required />
+                </div>
+                <div class="mb-2">
+                  <label class="small text-muted fw-bold mb-1">Audit Score achieved (%)</label>
+                  <input type="number" id="insp-score" class="app-input" min="0" max="100" value="95" required />
+                </div>
+                <div class="mb-3">
+                  <label class="small text-muted fw-bold mb-1">Findings / Defects Discovered</label>
+                  <select id="insp-defects" class="app-select">
+                    <option value="NONE">Zero Defects - Full Compliance</option>
+                    <option value="MINOR">Minor Deviation (Housekeeping/Labels)</option>
+                    <option value="CRITICAL">Critical Finding (Auto-trigger NCR &amp; CAPA)</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="small text-muted fw-bold mb-1">Inspection Notes &amp; Evidence Reference</label>
+                  <input type="text" id="insp-notes" class="app-input" placeholder="e.g. LOTO applied, permits verified, eye-wash clear" required />
+                </div>
+                <button type="submit" class="btn-action w-100"><i class="fa-solid fa-list-check me-1"></i>Record Inspection Result</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="glass-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h2 class="h5 mb-0">Planned Job Observations &amp; Structured Inspections Registry</h2>
+                  <p class="small text-muted mb-0">Critical audit failures automatically generate non-conformance actions in the CAPA engine.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table-dark-glass">
+                  <thead>
+                    <tr>
+                      <th>Audit ID</th>
+                      <th>Type</th>
+                      <th>Asset / Zone</th>
+                      <th>Lead Inspector</th>
+                      <th>Score</th>
+                      <th>Findings &amp; Notes</th>
+                      <th>Audit Gate</th>
+                    </tr>
+                  </thead>
+                  <tbody id="insp-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 4: PRE-SHIFT & EQUIPMENT INSPECTIONS -->
       <section id="pane-preshift" class="module-pane">
         <div class="row g-4">
           <div class="col-lg-4">
@@ -632,9 +925,41 @@
         </div>
       </section>
 
-      <!-- MODULE 3: NEAR-MISS & CAPA ENGINE -->
+      <!-- MODULE 5: NEAR-MISS, ROOT CAUSE ANALYSIS (RCA) & CAPA MONITORING -->
       <section id="pane-capa" class="module-pane">
-        <div class="row g-4">
+        <!-- CAPA SLA Monitoring Summary -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3">
+            <div class="glass-card text-center p-3">
+              <div class="kpi-label">Total CAPAs Logged</div>
+              <div id="capa-stat-total" class="fs-3 fw-bold text-info">6</div>
+              <div class="small text-muted">Across all operational sectors</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="glass-card text-center p-3">
+              <div class="kpi-label">Overdue Past SLA</div>
+              <div id="capa-stat-overdue" class="fs-3 fw-bold text-danger">0</div>
+              <div class="small text-muted">Zero critical actions overdue</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="glass-card text-center p-3">
+              <div class="kpi-label">Under 5-Why RCA Investigation</div>
+              <div id="capa-stat-rca" class="fs-3 fw-bold text-warning">1</div>
+              <div class="small text-muted">Awaiting root-cause sign-off</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="glass-card text-center p-3">
+              <div class="kpi-label">30-Day Effectiveness Verified</div>
+              <div id="capa-stat-verified" class="fs-3 fw-bold text-success">5</div>
+              <div class="small text-muted">ISO 9001 Cl. 10.2 compliant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
           <div class="col-lg-4">
             <div class="glass-card">
               <span class="status-pill badge-orange mb-2">ISO 9001 &amp; 45001 Cl. 10.2</span>
@@ -642,11 +967,11 @@
               <form id="capa-form">
                 <div class="mb-3">
                   <label class="small text-muted fw-bold mb-1">Hazard / NCR Title</label>
-                  <input type="text" id="capa-title" class="app-input" placeholder="e.g. Unbunded fuel drum in workshop bay" required />
+                  <input type="text" id="capa-title" class="app-input" placeholder="e.g. Unbunded diesel storage drum in workshop" required />
                 </div>
                 <div class="mb-3">
                   <label class="small text-muted fw-bold mb-1">Work Area / Pit / Cluster</label>
-                  <input type="text" id="capa-zone" class="app-input" placeholder="e.g. Shaft 2 / Welding Cluster B" required />
+                  <input type="text" id="capa-zone" class="app-input" placeholder="e.g. Shaft 2 Surface / Welding Cluster B" required />
                 </div>
                 <div class="mb-3">
                   <label class="small text-muted fw-bold mb-1">Risk Severity</label>
@@ -668,7 +993,7 @@
                 </div>
                 <div class="mb-3">
                   <label class="small text-muted fw-bold mb-1">Accountable Owner</label>
-                  <input type="text" id="capa-owner" class="app-input" placeholder="e.g. Plant Engineer / Cluster Lead" required />
+                  <input type="text" id="capa-owner" class="app-input" placeholder="e.g. Chief Plant Engineer / Cluster Lead" required />
                 </div>
                 <button type="submit" class="btn-action w-100">Create CAPA Action</button>
               </form>
@@ -677,10 +1002,14 @@
 
           <div class="col-lg-8">
             <div class="glass-card">
-              <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                 <div>
-                  <h2 class="h5 mb-0">Active CAPA &amp; Near-Miss Closure Tracker</h2>
-                  <p class="small text-muted mb-0">Click "Verify &amp; Close" once root-cause engineering controls are in place to update the live CAPA closure velocity.</p>
+                  <h2 class="h5 mb-0">CAPA Monitoring &amp; Root Cause Analysis Tracker</h2>
+                  <p class="small text-muted mb-0">Click "5-Why RCA" to complete structured root cause investigations or "Verify 30d" for closure.</p>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="capa-filter-all" class="sector-btn active" type="button">All Actions</button>
+                  <button id="capa-filter-open" class="sector-btn" type="button">Open Only</button>
                 </div>
               </div>
               <div class="table-responsive">
@@ -693,7 +1022,7 @@
                       <th>Clause</th>
                       <th>Severity</th>
                       <th>Owner</th>
-                      <th>Status / Action</th>
+                      <th>RCA &amp; Action</th>
                     </tr>
                   </thead>
                   <tbody id="capa-tbody"></tbody>
@@ -704,14 +1033,19 @@
         </div>
       </section>
 
-      <!-- MODULE 4: EMA & STATUTORY ENVIRONMENTAL GUARDRAILS -->
+      <!-- MODULE 6: EMA & STATUTORY ENVIRONMENTAL GUARDRAILS -->
       <section id="pane-ema" class="module-pane">
         <div class="row g-4">
           <div class="col-lg-5">
             <div class="glass-card">
-              <span class="status-pill badge-purple mb-2">EMA Statutory Guardrail Simulator</span>
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="status-pill badge-purple">Statutory Telemetry Simulator</span>
+                <button id="open-ema-authority-btn" class="btn-glass py-1 px-2" type="button" style="font-size: 0.76rem;">
+                  <i class="fa-solid fa-scale-balanced me-1"></i>Statutory Authority &amp; Acts
+                </button>
+              </div>
               <h2 class="h5 mb-2">Live Environmental &amp; Hygiene Telemetry</h2>
-              <p class="small text-muted mb-3">Adjust field sensor readings below to test automated EMA statutory breach detection and CAPA auto-triggering.</p>
+              <p class="small text-muted mb-3">Adjust field sensor readings below to test automated statutory breach detection and CAPA auto-triggering.</p>
 
               <div class="mb-3">
                 <div class="d-flex justify-content-between small mb-1">
@@ -774,15 +1108,18 @@
         </div>
       </section>
 
-      <!-- MODULE 5: CONTRACTOR & SUB-UNIT SCORECARDS -->
+      <!-- MODULE 7: CONTRACTOR & SUB-UNIT SCORECARDS -->
       <section id="pane-contractors" class="module-pane">
         <div class="glass-card">
           <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
             <div>
               <span class="status-pill badge-sky mb-1">ISO 45001 Cl. 8.1.4 &amp; ISO 9001 Cl. 8.4</span>
               <h2 class="h5 mb-0">Third-Party Contractor &amp; Operating Cluster Scorecards</h2>
-              <p class="small text-muted mb-0">Automated scoring across medical fitness certificates, NSSA/blasting permits, PPE compliance, and pre-shift pass rates.</p>
+              <p class="small text-muted mb-0">Derivation: 35% Medical/NSSA Certs + 30% Pre-Shift Checklists + 20% Incident Record + 15% PJO Conformance - NCR Penalties.</p>
             </div>
+            <button id="open-contractor-method-btn" class="btn-glass" type="button">
+              <i class="fa-solid fa-calculator me-1"></i>View Scoring Derivation &amp; Sources
+            </button>
           </div>
           <div class="table-responsive">
             <table class="table-dark-glass">
@@ -790,9 +1127,10 @@
                 <tr>
                   <th>Contractor / Operating Unit</th>
                   <th>Scope of Work</th>
-                  <th>Medical &amp; NSSA Certs</th>
-                  <th>Pre-Shift Compliance</th>
-                  <th>Open NCRs</th>
+                  <th>Medical &amp; NSSA Certs (35%)</th>
+                  <th>Pre-Shift Pass (30%)</th>
+                  <th>Incidents (20%)</th>
+                  <th>PJO Audit (15%)</th>
                   <th>Composite Score</th>
                   <th>Gate Status</th>
                 </tr>
@@ -803,7 +1141,7 @@
         </div>
       </section>
 
-      <!-- MODULE 6: DIGITAL ISO 9001/45001 AUDIT VAULT -->
+      <!-- MODULE 8: DIGITAL ISO 9001/45001 AUDIT VAULT -->
       <section id="pane-vault" class="module-pane">
         <div class="glass-card">
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
@@ -834,7 +1172,7 @@
         </div>
       </section>
 
-      <!-- MODULE 7: INTERACTIVE ARCHITECTURE BLUEPRINT -->
+      <!-- MODULE 9: INTERACTIVE ARCHITECTURE BLUEPRINT -->
       <section id="pane-blueprint" class="module-pane">
         <div class="glass-card">
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
@@ -951,7 +1289,7 @@
     </main>
   </div>
 
-  <!-- Node Inspector Modal -->
+  <!-- MODAL 1: Blueprint Node Inspector Modal -->
   <div id="nodeModal" class="node-modal-backdrop" role="dialog" aria-modal="true">
     <div class="node-modal-card">
       <div class="d-flex justify-content-between align-items-start mb-3">
@@ -974,13 +1312,202 @@
     </div>
   </div>
 
+  <!-- MODAL 2: 5-Why Root Cause Analysis (RCA) Modal -->
+  <div id="rcaModal" class="node-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="node-modal-card">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <span class="status-pill badge-orange mb-1">ISO 9001 &amp; ISO 45001 Clause 10.2</span>
+          <h3 class="h5 mb-0">Root Cause Analysis (RCA) &amp; 5-Why Stepper</h3>
+        </div>
+        <button id="rca-modal-close" class="btn-glass py-1 px-2" type="button">&times; Close</button>
+      </div>
+      <p class="small text-muted mb-3">Perform systematic 5-Why drilling and Ishikawa (6M) categorization before deploying engineering controls.</p>
+
+      <form id="rca-form">
+        <input type="hidden" id="rca-capa-idx" value="" />
+        <div class="mb-3">
+          <label class="small text-muted fw-bold mb-1">Action Title / Non-Conformance</label>
+          <input type="text" id="rca-capa-title" class="app-input" readonly />
+        </div>
+        <div class="mb-3">
+          <label class="small text-muted fw-bold mb-1">Ishikawa (6M) Root Cause Classification</label>
+          <select id="rca-category" class="app-select">
+            <option value="Machine">Machine (Equipment defect, wear, lack of guarding)</option>
+            <option value="Method">Method (Inadequate SOP, lack of LOTO procedure)</option>
+            <option value="Man">Man / Competency (Training gap, fatigue, lack of induction)</option>
+            <option value="Material">Material (Defective spare part, sub-standard chemical)</option>
+            <option value="Measurement">Measurement (Failed probe, uncalibrated sensor)</option>
+            <option value="Milieu">Milieu / Environment (Poor lighting, extreme dust, noise)</option>
+          </select>
+        </div>
+        <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+          <div class="small fw-bold text-info mb-2"><i class="fa-solid fa-list-ol me-1"></i>5-Why Deep Dive Stepper</div>
+          <div class="mb-2">
+            <label class="small text-muted mb-1">Why 1: Why did the hazard / incident occur?</label>
+            <input type="text" id="rca-w1" class="app-input py-1" placeholder="Immediate technical symptom" required />
+          </div>
+          <div class="mb-2">
+            <label class="small text-muted mb-1">Why 2: Why was that condition present?</label>
+            <input type="text" id="rca-w2" class="app-input py-1" placeholder="Direct precursor" required />
+          </div>
+          <div class="mb-2">
+            <label class="small text-muted mb-1">Why 3: Why was it not detected during pre-shift?</label>
+            <input type="text" id="rca-w3" class="app-input py-1" placeholder="Inspection barrier gap" required />
+          </div>
+          <div class="mb-2">
+            <label class="small text-muted mb-1">Why 4: Why did maintenance or supervision not catch it?</label>
+            <input type="text" id="rca-w4" class="app-input py-1" placeholder="Organizational or procedural gap" required />
+          </div>
+          <div>
+            <label class="small text-muted mb-1">Why 5 (Root Cause): What systemic root cause allowed this?</label>
+            <input type="text" id="rca-w5" class="app-input py-1" placeholder="Definitive systemic / design root cause" required />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="small text-muted fw-bold mb-1">Permanent Preventative Barrier Action</label>
+          <input type="text" id="rca-barrier" class="app-input" placeholder="e.g. Install automated proximity sensor &amp; update PM work order" required />
+        </div>
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" id="rca-cancel" class="btn-glass">Cancel</button>
+          <button type="submit" class="btn-action"><i class="fa-solid fa-check me-1"></i>Save Root Cause &amp; Update CAPA</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: Contractor Derivation & Source Data Modal -->
+  <div id="contractorMethodModal" class="node-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="node-modal-card">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <span class="status-pill badge-sky mb-1">ISO 45001 Cl. 8.1.4.2 &amp; ISO 9001 Cl. 8.4</span>
+          <h3 class="h5 mb-0">Contractor Scorecard Derivation &amp; Data Sources</h3>
+        </div>
+        <button id="contractor-method-close" class="btn-glass py-1 px-2" type="button">&times; Close</button>
+      </div>
+
+      <div class="p-3 rounded-3 mb-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+        <div class="small fw-bold text-info mb-1">Mathematical Scoring Formula</div>
+        <code class="d-block text-warning small p-2 rounded mb-2" style="background: rgba(0,0,0,0.3);">
+          Score = (0.35 &times; Cert) + (0.30 &times; PreShift) + (0.20 &times; Incidents) + (0.15 &times; PJO) - (NCR Penalty)
+        </code>
+        <p class="small text-muted mb-0">Every contractor and operating syndicate is audited continuously using 4 telemetry streams rather than annual subjective questionnaires.</p>
+      </div>
+
+      <div class="table-responsive mb-3">
+        <table class="table-dark-glass">
+          <thead>
+            <tr>
+              <th>Evaluation Pillar</th>
+              <th>Weight</th>
+              <th>Source Stream / Authority</th>
+              <th>Verification Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold">1. Statutory Certifications</td>
+              <td class="text-info fw-bold">35%</td>
+              <td>Biometric Gate Registry, Pneumoconiosis Act (Cap 15:08), NSSA OSH, Blasting Licenses (SI 109/1990)</td>
+              <td>Every shift entry (Real-time gate check)</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">2. Pre-Shift Checklist Pass</td>
+              <td class="text-info fw-bold">30%</td>
+              <td>Pre-Shift Mobile Fleet &amp; Machine Logbooks (Lane 1 digital stream)</td>
+              <td>Daily per shift (Brakes, LOTO, Guards)</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">3. Incident &amp; LTIFR Record</td>
+              <td class="text-info fw-bold">20%</td>
+              <td>Safety Telemetry Engine (Lane 2 near-miss &amp; injury logs)</td>
+              <td>Rolling 200,000-hour window</td>
+            </tr>
+            <tr>
+              <td class="fw-bold">4. Planned Job Observations (PJO)</td>
+              <td class="text-info fw-bold">15%</td>
+              <td>Field PJO &amp; PPE audits (Module 3 structured inspections)</td>
+              <td>Weekly scheduled walkthroughs</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-danger">Penalty Deduction</td>
+              <td class="text-danger fw-bold">-5% / NCR</td>
+              <td>Open High/Medium Non-Conformance Reports exceeding SLA</td>
+              <td>Continuous SLA timer</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button id="contractor-method-ok" class="btn-action" type="button">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: EMA Statutory Authorities & Source of Truth Modal -->
+  <div id="emaAuthorityModal" class="node-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="node-modal-card">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <span class="status-pill badge-purple mb-1">Legal Source of Truth</span>
+          <h3 class="h5 mb-0">Statutory Authorities &amp; Legislative Acts</h3>
+        </div>
+        <button id="ema-auth-close" class="btn-glass py-1 px-2" type="button">&times; Close</button>
+      </div>
+
+      <p class="small text-muted mb-3">All threshold guardrails in this platform derive directly from national Zimbabwean statutory acts and international ISO accreditation frameworks.</p>
+
+      <div class="d-flex flex-column gap-3 mb-3">
+        <div class="p-3 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+          <div class="fw-bold text-info mb-1"><i class="fa-solid fa-scale-balanced me-1"></i>Environmental Management Act [Chapter 20:27]</div>
+          <div class="small text-muted">Principal legislation governing all environmental protection, pollution control, and natural resource stewardship in Zimbabwe.</div>
+          <ul class="small text-muted mt-2 mb-0 ps-3">
+            <li><strong>SI 268 of 2007 (Effluent and Solid Waste Disposal):</strong> Classifies discharges into Blue (Clean), Green (Safe), Amber (High Attention), and Red (Hazardous). Mandates discharge limits (pH 6.0 - 9.0, conductivity 1000 &mu;S/cm, heavy metal ppm).</li>
+            <li><strong>SI 72 of 2009 (Atmospheric Pollution Control):</strong> Establishes emission boundaries for smoke, dust, and respirable silica (quartz limit 2.00 mg/m&sup3;).</li>
+            <li><strong>SI 12 of 2007 (Hazardous Substances, Pesticides and Toxic Substances):</strong> Controls cyanide, toxic reagents, and secondary bunding requirements.</li>
+          </ul>
+        </div>
+
+        <div class="p-3 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+          <div class="fw-bold text-success mb-1"><i class="fa-solid fa-helmet-safety me-1"></i>Ministry of Mines &amp; Mining Development Legislation</div>
+          <ul class="small text-muted mt-2 mb-0 ps-3">
+            <li><strong>Mines and Minerals Act [Chapter 21:05]:</strong> Governs statutory reporting, safety returns, and prospecting rights.</li>
+            <li><strong>Mining (Management and Safety) Regulations (SI 109 of 1990):</strong> Outlines hoisting ropes, bench stability, shaft signals, blasting procedures, and mandatory immediate reporting of fatal/serious incidents.</li>
+            <li><strong>Mining (Health and Sanitation) Regulations (SI 182 of 1995):</strong> Sets water and sanitation standards for industrial mining camps.</li>
+          </ul>
+        </div>
+
+        <div class="p-3 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border);">
+          <div class="fw-bold text-warning mb-1"><i class="fa-solid fa-users-gear me-1"></i>National Social Security Authority (NSSA) &amp; ISO Accreditations</div>
+          <ul class="small text-muted mt-2 mb-0 ps-3">
+            <li><strong>Factories and Works Act [Chapter 14:08]:</strong> Statutory inspection mandates for steam boilers, pressure vessels, and overhead gantry cranes.</li>
+            <li><strong>Pneumoconiosis Act [Chapter 15:08]:</strong> Mandatory chest X-rays and medical fitness certificates for workers in dusty trades.</li>
+            <li><strong>Standards Association of Zimbabwe (SAZ):</strong> ZWS ISO 45001:2018 (Occupational Health and Safety) and ZWS ISO 9001:2015 (Quality Management).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button id="ema-auth-ok" class="btn-action" type="button">Close Authority Explorer</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-shell text-center py-4 border-top" style="background: #080B11; border-color: var(--border) !important; color: #94A3B8;">
+    <div class="container">
+      <p class="mb-1">&copy; <span id="current-year">2026</span> Daud Sibanda. Industrial &amp; Mining Quality Intelligence Systems.</p>
+    </div>
+  </footer>
+
   <script>
     // Sector Profiles (Mining, Informal/SME, Manufacturing, Construction/Agro - NO Hospitals)
     const SECTOR_PROFILES = {
       mining: {
         badge: "MINING & MINERAL PROCESSING",
         heading: "Heavy Mining & Smelting Operations Command",
-        subtitle: "Consolidated ISO 45001 safety telemetry, EMA tailings effluent monitoring, and Ministry of Mines statutory readiness.",
+        subtitle: "Consolidated ISO 45001 safety telemetry, EMA tailings effluent monitoring, HIRA barrier health, and Ministry of Mines statutory readiness.",
         regBody: "ISO 45001 • ISO 9001 • EMA • Ministry of Mines",
         ltifr: 0.28,
         ceiling: "0.50",
@@ -994,6 +1521,16 @@
           { title: "NSSA Pneumoconiosis & Hoist Rope Statutory Inspection", due: "In 19 Days", body: "NSSA OSH", status: "SCHEDULED", cls: "badge-orange" },
           { title: "ISO 45001 / ISO 9001 External Surveillance Audit", due: "In 32 Days", body: "SAZ / ISO Certifier", status: "VAULT READY", cls: "badge-purple" }
         ],
+        hira: [
+          { id: "HIRA-M01", task: "Working at Heights / SAG Mill Relining", zone: "Grinding Mill Bay", hazard: "Fall from height > 4m during liner install", consequence: "Fatal or severe spinal trauma", isev: 5, ilike: 4, irisk: 20, controlType: "Engineering Controls", controls: "Engineered overhead static lifeline, dual inertia reel, certified scaffold with kickplates", rsev: 3, rlike: 1, rrisk: 3, status: "CONTROLLED" },
+          { id: "HIRA-M02", task: "Underground Pit Bench Blasting", zone: "Open Pit North", hazard: "Flyrock & premature detonation", consequence: "Catastrophic blast injury", isev: 5, ilike: 3, irisk: 15, controlType: "Administrative Controls", controls: "500m cleared blast exclusion zone, double-siren protocol, certified shot-firer sign-off", rsev: 4, rlike: 1, rrisk: 4, status: "CONTROLLED" },
+          { id: "HIRA-M03", task: "Cyanide Reagent Make-Up & Addition", zone: "CIL Processing Plant", hazard: "Hydrogen cyanide (HCN) gas inhalation", consequence: "Acute toxic asphyxiation", isev: 5, ilike: 3, irisk: 15, controlType: "Engineering Controls", controls: "Auto HCN atmospheric sensors with 4.7ppm strobe alarm, emergency antidote kit at dosing station", rsev: 4, rlike: 1, rrisk: 4, status: "CONTROLLED" }
+        ],
+        inspections: [
+          { id: "INSP-M01", type: "Statutory Pressure Vessel & Lifting", zone: "Shaft #2 Man-Winder Hoist", inspector: "K. Ndlovu (SHE Officer)", score: 98, defects: "NONE", notes: "Overwind trip test, deceleration governor & rope caliper clearances 100% compliant", status: "PASSED" },
+          { id: "INSP-M02", type: "Planned Job Observation (PJO)", zone: "Heavy Mobile Workshop", inspector: "T. Sibanda (Senior Engineer)", score: 94, defects: "MINOR", notes: "LOTO applied on wheel-dozer; 1 air hose coupling safety clip needed replacement", status: "PASSED" },
+          { id: "INSP-M03", type: "Environmental & Effluent Walkthrough", zone: "Tailings Dam #3 Decant Sump", inspector: "M. Moyo (Environmental Officer)", score: 96, defects: "NONE", notes: "Piezometer water pressure normal, zero outer wall erosion, inline pH 7.4", status: "PASSED" }
+        ],
         preshift: [
           { time: "06:15", asset: "Dump Truck CAT-777D #04", operator: "T. Moyo", shift: "Day Shift", notes: "Service brakes, retarder & fire suppression green", status: "PASS" },
           { time: "06:22", asset: "Underground LHD Loader #02", operator: "S. Dube", shift: "Day Shift", notes: "Hydraulic hose weep detected - locked out for repair", status: "INTERLOCK" },
@@ -1001,23 +1538,23 @@
           { time: "06:40", asset: "Shaft #2 Man-Winder Hoist", operator: "P. Sibanda", shift: "Day Shift", notes: "Overwind trip test & brake caliper clearance OK", status: "PASS" }
         ],
         capas: [
-          { id: "CAPA-401", title: "LHD Loader #02 hydraulic pressure hose replacement", zone: "Shaft 2 Level 4", clause: "ISO 45001 Cl. 8.1", severity: "HIGH", owner: "Chief Trackless Engineer", closed: false },
-          { id: "CAPA-402", title: "Dust suppression water spray nozzle clogged at Crusher #1", zone: "Crushing Plant", clause: "EMA Air Quality", severity: "MEDIUM", owner: "Plant Metallurgist", closed: false },
-          { id: "CAPA-398", title: "Install secondary bund wall at diesel bowser bay", zone: "Surface Workshop", clause: "EMA Hazardous Waste", severity: "HIGH", owner: "SHE Superintendent", closed: true },
-          { id: "CAPA-395", title: "Refresher LOTO tagout drill for night shift mill crew", zone: "CIL Processing Plant", clause: "ISO 45001 Cl. 7.2", severity: "LOW", owner: "Mill Foreman", closed: true },
-          { id: "CAPA-392", title: "Calibrate tailings return water pH inline probe", zone: "Tailings Dam #3", clause: "ISO 9001 Cl. 7.1.5", severity: "MEDIUM", owner: "Instrumentation Lead", closed: true }
+          { id: "CAPA-401", title: "LHD Loader #02 hydraulic pressure hose replacement", zone: "Shaft 2 Level 4", clause: "ISO 45001 Cl. 8.1", severity: "HIGH", owner: "Chief Trackless Engineer", closed: false, rcaCat: "Machine", rootCause: "Fatigue cracking in braided flex hose after 4,200 operating hours exceeding replacement cycle", barrier: "Installed Kevlar sleeve & updated scheduled PM interval to 3,500 hours" },
+          { id: "CAPA-402", title: "Dust suppression water spray nozzle clogged at Crusher #1", zone: "Crushing Plant", clause: "EMA Air Quality", severity: "MEDIUM", owner: "Plant Metallurgist", closed: false, rcaCat: "Material", rootCause: "Silt accumulation in recycled spray line filter basket", barrier: "Added dual duplex backwash inline strainers" },
+          { id: "CAPA-398", title: "Install secondary bund wall at diesel bowser bay", zone: "Surface Workshop", clause: "EMA Hazardous Waste", severity: "HIGH", owner: "SHE Superintendent", closed: true, rcaCat: "Method", rootCause: "Concrete bund wall capacity was calculated for single tank rather than 110% of total manifold", barrier: "Poured reinforced concrete containment wall certified by civil engineer" },
+          { id: "CAPA-395", title: "Refresher LOTO tagout drill for night shift mill crew", zone: "CIL Processing Plant", clause: "ISO 45001 Cl. 7.2", severity: "LOW", owner: "Mill Foreman", closed: true, rcaCat: "Man", rootCause: "New apprentice lacked familiarity with multi-hasp isolation box protocol", barrier: "Conducted hands-on training and issued individual serial-stamped padlocks" },
+          { id: "CAPA-392", title: "Calibrate tailings return water pH inline probe", zone: "Tailings Dam #3", clause: "ISO 9001 Cl. 7.1.5", severity: "MEDIUM", owner: "Instrumentation Lead", closed: true, rcaCat: "Measurement", rootCause: "Calcium carbonate scaling on glass electrode after 60 days in slurry", barrier: "Switched to self-cleaning ultrasonic transducer probe" }
         ],
         contractors: [
-          { name: "Apex Open-Cast Haulage (Pvt) Ltd", scope: "Ore & Waste Rock Haulage", certs: "100% Valid (48/48)", preshift: "97.2%", ncrs: 0, score: 96.4, gate: "APPROVED" },
-          { name: "Zambezi Diamond Drilling Crew", scope: "Exploration & Grade Control", certs: "96.0% Valid (24/25)", preshift: "94.5%", ncrs: 1, score: 91.8, gate: "APPROVED" },
-          { name: "Vulcan Refractory & Mill Relining", scope: "SAG Mill Liner Replacement", certs: "100% Valid (18/18)", preshift: "92.0%", ncrs: 0, score: 93.5, gate: "APPROVED" },
-          { name: "Kwekwe Explosives & Blasting Services", scope: "Pit Bench Blasting", certs: "1 Expiring in 7d", preshift: "88.4%", ncrs: 2, score: 83.9, gate: "CONDITIONAL" }
+          { name: "Apex Open-Cast Haulage (Pvt) Ltd", scope: "Ore & Waste Rock Haulage", certScore: 100, preshiftScore: 97.2, incidentScore: 98.0, pjoScore: 95.0, penalty: 0, score: 96.4, gate: "APPROVED" },
+          { name: "Zambezi Diamond Drilling Crew", scope: "Exploration & Grade Control", certScore: 96.0, preshiftScore: 94.5, incidentScore: 92.0, pjoScore: 90.0, penalty: 5, score: 91.8, gate: "APPROVED" },
+          { name: "Vulcan Refractory & Mill Relining", scope: "SAG Mill Liner Replacement", certScore: 100, preshiftScore: 92.0, incidentScore: 95.0, pjoScore: 92.0, penalty: 0, score: 93.5, gate: "APPROVED" },
+          { name: "Kwekwe Explosives & Blasting Services", scope: "Pit Bench Blasting", certScore: 88.0, preshiftScore: 88.4, incidentScore: 86.0, pjoScore: 82.0, penalty: 10, score: 83.9, gate: "CONDITIONAL" }
         ]
       },
       informal: {
         badge: "INFORMAL SECTOR, SME CLUSTERS & ARTISANAL OPS",
         heading: "Informal Sector, Artisanal Mining & SME Cluster Command",
-        subtitle: "Lightweight mobile-first safety, NSSA hazard prevention, and basic ISO 9001 quality tracking for welding, carpentry, milling, and artisanal syndicates.",
+        subtitle: "Lightweight mobile-first safety, NSSA hazard prevention, HIRA controls, and basic ISO 9001 quality tracking for welding, carpentry, milling, and artisanal syndicates.",
         regBody: "NSSA SME Guidelines • EMA Local Bylaws • SAZ / ISO 9001 Lite",
         ltifr: 0.34,
         ceiling: "0.60",
@@ -1031,29 +1568,35 @@
           { title: "Welding & Carpentry Cluster Waste Oil / Sawdust Disposal Log", due: "In 14 Days", body: "EMA Local Authority", status: "SCHEDULED", cls: "badge-orange" },
           { title: "SME Cooperative Product Quality & Batch Traceability Review", due: "In 25 Days", body: "ISO 9001 Lite", status: "VAULT READY", cls: "badge-purple" }
         ],
+        hira: [
+          { id: "HIRA-S01", task: "Custom Stamp Milling & Pulleys", zone: "Artisanal Milling Bay", hazard: "Exposed V-belt drive entanglement", consequence: "Limb amputation or severe trauma", isev: 5, ilike: 4, irisk: 20, controlType: "Engineering Controls", controls: "Fabricated heavy wire-mesh pulley cage bolted to chassis", rsev: 3, rlike: 1, rrisk: 3, status: "CONTROLLED" },
+          { id: "HIRA-S02", task: "Arc Welding on Structural Steel", zone: "Gazaland Metal Cluster", hazard: "Electrical shock & welding arc eye flash", consequence: "Electrical burns, eye retina injury", isev: 4, ilike: 3, irisk: 12, controlType: "Administrative Controls", controls: "Installed RCD earth leakage switch, auto-darkening welding helmets", rsev: 2, rlike: 1, rrisk: 2, status: "CONTROLLED" }
+        ],
+        inspections: [
+          { id: "INSP-S01", type: "Workplace 5S & Housekeeping", zone: "Carpentry Cluster Workshop A", inspector: "J. Chikwanda (Cluster Lead)", score: 92, defects: "NONE", notes: "Sawdust extraction duct functioning, 5-foot walkways clear of timber offcuts", status: "PASSED" },
+          { id: "INSP-S02", type: "Planned Job Observation (PJO)", zone: "Metal Fabricators Bay #4", inspector: "F. Mutasa (Safety Rep)", score: 95, defects: "NONE", notes: "Earth clamp attached directly to workpiece, gas cylinders chained upright", status: "PASSED" }
+        ],
         preshift: [
           { time: "07:05", asset: "Custom Stamp Mill #01 (Syndicate A)", operator: "M. Ncube", shift: "Artisanal / SME Workshop", notes: "Belt guard bolted & amalgamation pond bunded", status: "PASS" },
-          { time: "07:18", asset: "Arc Welding Bay #3 (Metal Cluster)", operator: "J.Chikwanda", shift: "Artisanal / SME Workshop", notes: "Exposed earth cable insulation - locked out for taping/replacement", status: "INTERLOCK" },
+          { time: "07:18", asset: "Arc Welding Bay #3 (Metal Cluster)", operator: "J. Chikwanda", shift: "Artisanal / SME Workshop", notes: "Exposed earth cable insulation - locked out for taping/replacement", status: "INTERLOCK" },
           { time: "07:30", asset: "Circular Spindle Moulding Saw #2", operator: "F. Mutasa", shift: "Artisanal / SME Workshop", notes: "Riving knife, push-stick & dust bag verified", status: "PASS" },
-          { time: "07:45", asset: "Solar Cold-Storage & Peanut Butter Mill", operator: "R. Gumbo", shift: "Artisanal / SME Workshop", notes: "Food-grade batch hygiene &guard interlock checked", status: "PASS" }
+          { time: "07:45", asset: "Solar Cold-Storage & Peanut Butter Mill", operator: "R. Gumbo", shift: "Artisanal / SME Workshop", notes: "Food-grade batch hygiene & guard interlock checked", status: "PASS" }
         ],
         capas: [
-          { id: "SME-101", title: "Replace frayed earthing lead on Arc Welder #3", zone: "Gazaland Metal Cluster", clause: "NSSA Electrical Safety", severity: "HIGH", owner: "Cluster Safety Rep", closed: false },
-          { id: "SME-102", title: "Fit steel belt guard on Hammer Mill pulley drive", zone: "Artisanal Milling Center", clause: "ISO 45001 Cl. 8.1.2", severity: "HIGH", owner: "Syndicate Chairman", closed: true },
-          { id: "SME-103", title: "Provide welding goggles & leather aprons to 6 apprentices", zone: "Fabrication Cooperative", clause: "ISO 45001 Cl. 8.1", severity: "MEDIUM", owner: "Workshop Coordinator", closed: true },
-          { id: "SME-104", title: "Construct lined sump for waste motor oil collection", zone: "Auto-Mechanics Yard", clause: "EMA Hazardous Waste", severity: "MEDIUM", owner: "Yard Committee", closed: true }
+          { id: "SME-101", title: "Replace frayed earthing lead on Arc Welder #3", zone: "Gazaland Metal Cluster", clause: "NSSA Electrical Safety", severity: "HIGH", owner: "Cluster Safety Rep", closed: false, rcaCat: "Machine", rootCause: "Cable dragged across sharp sheet metal edges without rubber grommet", barrier: "Fitted overhead cable swivel hook & replaced lead" },
+          { id: "SME-102", title: "Fit steel belt guard on Hammer Mill pulley drive", zone: "Artisanal Milling Center", clause: "ISO 45001 Cl. 8.1.2", severity: "HIGH", owner: "Syndicate Chairman", closed: true, rcaCat: "Engineering", rootCause: "Guard removed during bearing replacement and not refitted", barrier: "Fastened guard with captive bolts requiring special tool to open" }
         ],
         contractors: [
-          { name: "Highfield Metal Fabrication Syndicate", scope: "Window Frames & Scotch Carts", certs: "95% PPE Verified", preshift: "94.0%", ncrs: 0, score: 93.2, gate: "APPROVED" },
-          { name: "Shurugwi Artisanal Gold Syndicate #4", scope: "Small-Scale Reef & Custom Milling", certs: "92% Permit Valid", preshift: "89.5%", ncrs: 1, score: 88.4, gate: "APPROVED" },
-          { name: "Glen View Timber & Furniture Cluster", scope: "Carpentry & Joinery", certs: "94% Dust Mask Use", preshift: "91.8%", ncrs: 0, score: 91.0, gate: "APPROVED" },
-          { name: "Mbare Agro-Milling & Oil Expressers", scope: "Grain Milling & Pressing", certs: "100% Guarded", preshift: "96.0%", ncrs: 0, score: 95.1, gate: "APPROVED" }
+          { name: "Highfield Metal Fabrication Syndicate", scope: "Window Frames & Scotch Carts", certScore: 95, preshiftScore: 94.0, incidentScore: 96.0, pjoScore: 90.0, penalty: 0, score: 93.2, gate: "APPROVED" },
+          { name: "Shurugwi Artisanal Gold Syndicate #4", scope: "Small-Scale Reef & Custom Milling", certScore: 92, preshiftScore: 89.5, incidentScore: 90.0, pjoScore: 85.0, penalty: 5, score: 88.4, gate: "APPROVED" },
+          { name: "Glen View Timber & Furniture Cluster", scope: "Carpentry & Joinery", certScore: 94, preshiftScore: 91.8, incidentScore: 92.0, pjoScore: 88.0, penalty: 0, score: 91.0, gate: "APPROVED" },
+          { name: "Mbare Agro-Milling & Oil Expressers", scope: "Grain Milling & Pressing", certScore: 100, preshiftScore: 96.0, incidentScore: 95.0, pjoScore: 92.0, penalty: 0, score: 95.1, gate: "APPROVED" }
         ]
       },
       manufacturing: {
         badge: "HEAVY MANUFACTURING & INDUSTRIAL ENGINEERING",
         heading: "Heavy Manufacturing & Foundry Quality Command",
-        subtitle: "ISO 9001 process capability, ISO 45001 LOTO machine guarding, SAZ product conformance, and trade effluent monitoring.",
+        subtitle: "ISO 9001 process capability, ISO 45001 LOTO machine guarding, SAZ product conformance, HIRA barrier health, and trade effluent monitoring.",
         regBody: "ISO 9001 • ISO 45001 • SAZ • NSSA Factories & Works",
         ltifr: 0.21,
         ceiling: "0.45",
@@ -1067,21 +1610,25 @@
           { title: "Municipal & EMA Trade Effluent Neutralization Return", due: "In 18 Days", body: "EMA Effluent Regs", status: "SCHEDULED", cls: "badge-orange" },
           { title: "Forklift & Overhead Gantry Crane Load-Test Certification", due: "In 27 Days", body: "ISO 45001 Cl. 8.1", status: "VAULT READY", cls: "badge-purple" }
         ],
+        hira: [
+          { id: "HIRA-MF01", task: "Induction Furnace Molten Steel Pour", zone: "Foundry Melt Bay", hazard: "Molten metal eruption from moisture", consequence: "Severe burns, fire", isev: 5, ilike: 3, irisk: 15, controlType: "Engineering Controls", controls: "Infrared charge moisture detection, aluminized heat shields, automated pour crane", rsev: 4, rlike: 1, rrisk: 4, status: "CONTROLLED" }
+        ],
+        inspections: [
+          { id: "INSP-MF01", type: "Statutory Pressure Vessel & Lifting", zone: "Steam Boiler Room", inspector: "C. Marufu (Plant Inspector)", score: 97, defects: "NONE", notes: "Dual safety valves pop at 12.2 bar, sight glasses clear, low-water cutoff functional", status: "PASSED" }
+        ],
         preshift: [
           { time: "06:05", asset: "50-Ton Overhead Foundry Crane #1", operator: "C. Marufu", shift: "Day Shift", notes: "Upper limit switch & wire rope lay verified", status: "PASS" },
-          { time: "06:12", asset: "CNC Press Brake #4", operator: "L.Sibanda", shift: "Day Shift", notes: "Light curtain optical interlock tested & green", status: "PASS" },
+          { time: "06:12", asset: "CNC Press Brake #4", operator: "L. Sibanda", shift: "Day Shift", notes: "Light curtain optical interlock tested & green", status: "PASS" },
           { time: "06:25", asset: "Steam Boiler #2 (12 Bar)", operator: "E. Chuma", shift: "Day Shift", notes: "Blowdown valve & dual water-level sight glass clear", status: "PASS" },
-          { time: "06:38", asset: "LPG Yard Forklift #07", operator: "B.Mpofu", shift: "Day Shift", notes: "Reversing strobe & horn inoperative - held in bay", status: "INTERLOCK" }
+          { time: "06:38", asset: "LPG Yard Forklift #07", operator: "B. Mpofu", shift: "Day Shift", notes: "Reversing strobe & horn inoperative - held in bay", status: "INTERLOCK" }
         ],
         capas: [
-          { id: "MFG-201", title: "Repair reversing strobe and horn on LPG Forklift #07", zone: "Finished Goods Warehouse", clause: "ISO 45001 Cl. 8.1", severity: "HIGH", owner: "Fleet Supervisor", closed: false },
-          { id: "MFG-199", title: "Recalibrate optical pyrometer on Induction Furnace #2", zone: "Foundry Melt Shop", clause: "ISO 9001 Cl. 7.1.5", severity: "MEDIUM", owner: "QA Metrology Lead", closed: true },
-          { id: "MFG-196", title: "Install acoustic enclosure on Air Compressor Bank B", zone: "Utility House", clause: "NSSA Noise Regs", severity: "MEDIUM", owner: "Plant Engineer", closed: true }
+          { id: "MFG-201", title: "Repair reversing strobe and horn on LPG Forklift #07", zone: "Finished Goods Warehouse", clause: "ISO 45001 Cl. 8.1", severity: "HIGH", owner: "Fleet Supervisor", closed: false, rcaCat: "Machine", rootCause: "12V auxiliary fuse blown due to water ingress during pressure wash", barrier: "Installed IP67 waterproof junction box and sealed connector" }
         ],
         contractors: [
-          { name: "Precision Rigging & Crane Services", scope: "Heavy Machinery Rigging", certs: "100% Certified", preshift: "98.0%", ncrs: 0, score: 97.5, gate: "APPROVED" },
-          { name: "Industrial Steam & Boiler Maintenance", scope: "Pressure Vessel Servicing", certs: "100% Certified", preshift: "96.5%", ncrs: 0, score: 96.0, gate: "APPROVED" },
-          { name: "ChemClean Trade Waste Handlers", scope: "Sludge & Solvent Disposal", certs: "98% EMA Licensed", preshift: "93.0%", ncrs: 1, score: 91.2, gate: "APPROVED" }
+          { name: "Precision Rigging & Crane Services", scope: "Heavy Machinery Rigging", certScore: 100, preshiftScore: 98.0, incidentScore: 98.0, pjoScore: 96.0, penalty: 0, score: 97.5, gate: "APPROVED" },
+          { name: "Industrial Steam & Boiler Maintenance", scope: "Pressure Vessel Servicing", certScore: 100, preshiftScore: 96.5, incidentScore: 96.0, pjoScore: 94.0, penalty: 0, score: 96.0, gate: "APPROVED" },
+          { name: "ChemClean Trade Waste Handlers", scope: "Sludge & Solvent Disposal", certScore: 98, preshiftScore: 93.0, incidentScore: 92.0, pjoScore: 88.0, penalty: 5, score: 91.2, gate: "APPROVED" }
         ]
       },
       construction: {
@@ -1097,61 +1644,66 @@
         capaSeries: [85, 89, 92, 95, 96.8, 97.9],
         deadlines: [
           { title: "EMA Environmental Impact Assessment (EIA) Bi-Annual Audit", due: "In 7 Days", body: "EMA Act Cap 20:27", status: "READY", cls: "badge-emerald" },
-          { title: "NSSA Scaffolding & Deep Trench Shoring Register Sign-Off", due: "In 10 Days", body: "NSSA Construction", status: "VALIDATED", cls: "badge-sky" },
-          { title: "Grain Silo Combustible Dust & Spark Arrestor Inspection", due: "In 16 Days", body: "ISO 45001 Cl. 8.2", status: "SCHEDULED", cls: "badge-orange" }
+          { title: "NSSA Scaffolding & Deep Trench Shoring Register Sign-Off", due: "In 10 Days", body: "NSSA Construction", status: "VALIDATED", cls: "badge-sky" }
+        ],
+        hira: [
+          { id: "HIRA-C01", task: "Deep Trenching for Stormwater Culvert", zone: "Dam Spillway Area", hazard: "Trench wall cave-in / collapse", consequence: "Asphyxiation, severe crushing", isev: 5, ilike: 4, irisk: 20, controlType: "Engineering Controls", controls: "Pre-fabricated hydraulic aluminum shoring shields, mandatory trench egress ladder every 7.5m", rsev: 3, rlike: 1, rrisk: 3, status: "CONTROLLED" }
+        ],
+        inspections: [
+          { id: "INSP-C01", type: "Planned Job Observation (PJO)", zone: "Culvert Trench Bay", inspector: "G. Banda (Site Engineer)", score: 96, defects: "NONE", notes: "Shoring boxes seated firmly, spoil pile kept 1.5m back from trench lip", status: "PASSED" }
         ],
         preshift: [
           { time: "06:30", asset: "Tower Crane TC-01 (Dam Wall Site)", operator: "N. Hove", shift: "Day Shift", notes: "Anemometer wind speed < 20kt, slewing brake OK", status: "PASS" },
           { time: "06:42", asset: "Excavator 330D #03", operator: "G. Banda", shift: "Day Shift", notes: "Bucket pin lock & slew alarm verified", status: "PASS" },
-          { time: "06:55", asset: "Grain Intake Elevator Leg #2", operator: "T.Zvobgo", shift: "Day Shift", notes: "Bearing temperature sensor reading high - interlocked", status: "INTERLOCK" }
+          { time: "06:55", asset: "Grain Intake Elevator Leg #2", operator: "T. Zvobgo", shift: "Day Shift", notes: "Bearing temperature sensor reading high - interlocked", status: "INTERLOCK" }
         ],
         capas: [
-          { id: "CON-301", title: "Replace overheated upper bearing on Grain Elevator Leg #2", zone: "Silo Complex A", clause: "ISO 45001 Cl. 8.2", severity: "HIGH", owner: "Mill Maintenance Lead", closed: false },
-          { id: "CON-298", title: "Add toe-boards and green tag to East Elevation Scaffold", zone: "Civil Works Block C", clause: "NSSA Working at Heights", severity: "HIGH", owner: "Site Civil Engineer", closed: true }
+          { id: "CON-301", title: "Replace overheated upper bearing on Grain Elevator Leg #2", zone: "Silo Complex A", clause: "ISO 45001 Cl. 8.2", severity: "HIGH", owner: "Mill Maintenance Lead", closed: false, rcaCat: "Machine", rootCause: "Grease seal dried out due to friction heat", barrier: "Installed auto-lube ceramic cartridge with thermal sensor cutoff" }
         ],
         contractors: [
-          { name: "Southern Earthworks & Civils", scope: "Bulk Earthworks & Dam Lining", certs: "100% Valid", preshift: "95.8%", ncrs: 0, score: 95.4, gate: "APPROVED" },
-          { name: "High-Reach Scaffolding Specialists", scope: "Access Scaffolding", certs: "98% Valid", preshift: "94.2%", ncrs: 0, score: 94.0, gate: "APPROVED" }
+          { name: "Southern Earthworks & Civils", scope: "Bulk Earthworks & Dam Lining", certScore: 100, preshiftScore: 95.8, incidentScore: 96.0, pjoScore: 94.0, penalty: 0, score: 95.4, gate: "APPROVED" },
+          { name: "High-Reach Scaffolding Specialists", scope: "Access Scaffolding", certScore: 98, preshiftScore: 94.2, incidentScore: 94.0, pjoScore: 92.0, penalty: 0, score: 94.0, gate: "APPROVED" }
         ]
       }
     };
 
     const VAULT_DOCUMENTS = [
-      { id: "SOP-SHE-001", clause: "ISO 45001 Cl. 8.1.1", title: "Pre-Shift Mobile Fleet, Fixed Plant & SME Workstation Inspection Procedure", cycle: "Annual • Retained 5 Yrs", owner: "SHE & Engineering", status: "VERIFIED" },
-      { id: "SOP-SHE-002", clause: "ISO 45001 Cl. 8.1.4", title: "Contractor, Artisanal Syndicate & Third-Party Permit-to-Work Gate Control", cycle: "Annual • Retained 5 Yrs", owner: "SHE Superintendent", status: "VERIFIED" },
-      { id: "SOP-SHE-003", clause: "ISO 45001 Cl. 9.1.1", title: "Rolling 200,000-Hour LTIFR & Leading Safety Indicator Calculation Standard", cycle: "Quarterly • Retained 7 Yrs", owner: "Data Science & SHE", status: "VERIFIED" },
-      { id: "SOP-ENV-004", clause: "EMA Act Cap 20:27", title: "Tailings Effluent, Trade Waste Oil, Silica Dust & Noise Monitoring Protocol", cycle: "Quarterly • Retained 10 Yrs", owner: "Environmental Officer", status: "VERIFIED" },
-      { id: "SOP-QMS-005", clause: "ISO 9001 Cl. 10.2", title: "Non-Conformance (NCR), 5-Why Root Cause & 30-Day CAPA Effectiveness Gate", cycle: "Annual • Retained 5 Yrs", owner: "Quality Systems Lead", status: "VERIFIED" },
-      { id: "SOP-QMS-006", clause: "ISO 9001 Cl. 7.5", title: "Digital Audit Vault Indexing, Change Control & Statutory Pack Archiving", cycle: "Annual • Retained 10 Yrs", owner: "QMS Document Controller", status: "VERIFIED" },
-      { id: "SOP-SME-007", clause: "NSSA / ISO 9001 Lite", title: "Informal Sector & SME Workshop Machine Guarding, Electrical & Fire Checklist", cycle: "Bi-Annual • Retained 3 Yrs", owner: "SME Cluster Coordinator", status: "VERIFIED" }
+      { id: "SOP-HIRA-001", clause: "ISO 45001 Cl. 6.1.2", title: "Task Hazard Identification & Risk Assessment (HIRA) Protocol", cycle: "Annual • Retained 5 Yrs", owner: "SHE Department", status: "VERIFIED" },
+      { id: "SOP-INSP-002", clause: "ISO 45001 Cl. 9.1 / ISO 9001 Cl. 9.2", title: "Planned Job Observations (PJO) & Statutory Plant Audits Standard", cycle: "Quarterly • Retained 5 Yrs", owner: "SHE & Quality Leads", status: "VERIFIED" },
+      { id: "SOP-SHE-003", clause: "ISO 45001 Cl. 8.1.1", title: "Pre-Shift Mobile Fleet, Fixed Plant & SME Workstation Inspection Procedure", cycle: "Annual • Retained 5 Yrs", owner: "SHE & Engineering", status: "VERIFIED" },
+      { id: "SOP-SHE-004", clause: "ISO 45001 Cl. 8.1.4", title: "Contractor, Artisanal Syndicate & Third-Party Permit-to-Work Gate Control", cycle: "Annual • Retained 5 Yrs", owner: "SHE Superintendent", status: "VERIFIED" },
+      { id: "SOP-ENV-005", clause: "EMA Act Cap 20:27", title: "Tailings Effluent, Trade Waste Oil, Silica Dust & Noise Monitoring Protocol", cycle: "Quarterly • Retained 10 Yrs", owner: "Environmental Officer", status: "VERIFIED" },
+      { id: "SOP-QMS-006", clause: "ISO 9001 Cl. 10.2", title: "Non-Conformance (NCR), 5-Why Root Cause & 30-Day CAPA Effectiveness Gate", cycle: "Annual • Retained 5 Yrs", owner: "Quality Systems Lead", status: "VERIFIED" },
+      { id: "SOP-QMS-007", clause: "ISO 9001 Cl. 7.5", title: "Digital Audit Vault Indexing, Change Control & Statutory Pack Archiving", cycle: "Annual • Retained 10 Yrs", owner: "QMS Document Controller", status: "VERIFIED" }
     ];
 
     const NODE_METADATA = {
-      N1: { title: "1. Paper Pre-Shift Logbooks", badge: "High Risk Bottleneck", desc: "Manual paper defect books delay maintenance handovers across mine fleets and SME workshops.", sop: "file:///SOP-SHE-001/legacy-logbook-audit.csv", comp: "ISO 45001 Cl. 8.1 - Flagged in Heatmap Mode." },
-      N2: { title: "2. Digital Pre-Shift Checklist", badge: "ISO 45001 Cl. 8.1", desc: "Mobile pre-shift verification for dump trucks, crushers, lathes, saws, and stamp mills.", sop: "file:///SOP-SHE-001/preshift-ingest.py", comp: "Timestamped operator sign-off prior to shift start." },
-      N3: { title: "3. Automated Dispatch Interlock", badge: "Zero-Fault Control", desc: "Automatically locks equipment dispatch when critical brake, guarding, or electrical faults are logged.", sop: "file:///SOP-SHE-001/dispatch-interlock.sql", comp: "Creates mandatory high-priority CAPA before release." },
+      N1: { title: "1. Paper Pre-Shift Logbooks", badge: "High Risk Bottleneck", desc: "Manual paper defect books delay maintenance handovers across mine fleets and SME workshops.", sop: "file:///SOP-SHE-003/legacy-logbook-audit.csv", comp: "ISO 45001 Cl. 8.1 - Flagged in Heatmap Mode." },
+      N2: { title: "2. Digital Pre-Shift Checklist", badge: "ISO 45001 Cl. 8.1", desc: "Mobile pre-shift verification for dump trucks, crushers, lathes, saws, and stamp mills.", sop: "file:///SOP-SHE-003/preshift-ingest.py", comp: "Timestamped operator sign-off prior to shift start." },
+      N3: { title: "3. Automated Dispatch Interlock", badge: "Zero-Fault Control", desc: "Automatically locks equipment dispatch when critical brake, guarding, or electrical faults are logged.", sop: "file:///SOP-SHE-003/dispatch-interlock.sql", comp: "Creates mandatory high-priority CAPA before release." },
       N4: { title: "4. Fragmented Shift Logs", badge: "High Risk Bottleneck", desc: "Unindexed shift spreadsheets obscure hazard trends across operating zones.", sop: "file:///SOP-SHE-003/legacy-shift-sheets.xlsx", comp: "Replaced by centralized telemetry pipeline." },
       N5: { title: "5. Real-Time LTIFR Engine", badge: "Core KPI Engine", desc: "Computes rolling Lost Time Injury Frequency Rate and consecutive LTI-free days.", sop: "file:///SOP-SHE-003/ltifr-engine.py", comp: "ISO 45001 Clause 9.1.1 Performance Evaluation." },
       N6: { title: "6. Leading Safety Analytics", badge: "Predictive Safety", desc: "Correlates near-miss reporting volume against CAPA closure velocity.", sop: "file:///SOP-SHE-003/leading-analytics.py", comp: "Identifies under-reporting zones early." },
-      N7: { title: "7. Manual Contractor Folders", badge: "High Risk Bottleneck", desc: "Paper contractor files risk expired NSSA certificates or blasting licenses.", sop: "file:///SOP-SHE-002/paper-contractors.csv", comp: "Flagged in Heatmap Mode." },
-      N8: { title: "8. Permit-to-Work & Cert Gate", badge: "ISO 45001 Cl. 8.1.4", desc: "Automated verification of medical fitness, blasting tickets, and hot-work permits.", sop: "file:///SOP-SHE-002/permit-gate.sql", comp: "Blocks expired credentials at shift check-in." },
-      N9: { title: "9. Contractor Scorecard Matrix", badge: "ISO 9001 Cl. 8.4", desc: "Ranks haulage contractors, drilling crews, and SME clusters on safety & quality.", sop: "file:///SOP-SHE-002/contractor-scorecard.py", comp: "Feeds monthly commercial SLA reviews." },
-      N10: { title: "10. Effluent & Dust Telemetry", badge: "Environmental & Hygiene", desc: "Monitors effluent pH, respirable dust, occupational noise, and conductivity.", sop: "file:///SOP-ENV-004/ema-telemetry.py", comp: "Aligned with EMA & NSSA statutory limits." },
-      N11: { title: "11. EMA Statutory Threshold Gate", badge: "Statutory Guardrail", desc: "Detects breaches of EMA effluent or NSSA hygiene limits in real time.", sop: "file:///SOP-ENV-004/ema-threshold-gate.py", comp: "Auto-triggers containment CAPA on breach." },
-      N12: { title: "12. Validated EMA Return Pack", badge: "Regulatory Compliance", desc: "Compiles quality-checked environmental tables for quarterly EMA filings.", sop: "file:///SOP-ENV-004/ema-quarterly-export.sql", comp: "Zero transcription errors." },
-      N13: { title: "13. ISO 9001/45001 NCR Intake", badge: "Clause-Indexed Registry", desc: "Logs hazards, machine defects, and audit findings by exact ISO clause.", sop: "file:///SOP-QMS-005/ncr-intake.sql", comp: "ISO 9001 & 45001 Clause 10.2." },
-      N14: { title: "14. Automated CAPA Router", badge: "98.2% Closure Velocity", desc: "Routes corrective actions to accountable owners with SLA escalation.", sop: "file:///SOP-QMS-005/capa-router.py", comp: "Tracks real-time closure percentage." },
-      N15: { title: "15. Root-Cause Effectiveness Gate", badge: "ISO 9001 Cl. 9.2", desc: "Verifies 30-day control effectiveness before closing high-risk CAPAs.", sop: "file:///SOP-QMS-005/effectiveness-gate.sql", comp: "Prevents repeat incidents." },
-      N16: { title: "16. Legacy Paper Binders", badge: "High Risk Bottleneck", desc: "Physical binders cause slow, frantic external audit preparation.", sop: "file:///SOP-QMS-006/paper-binders.txt", comp: "Replaced by Digital ISO Audit Vault." },
-      N17: { title: "17. Statutory Filing Generator", badge: "Ministry / NSSA / EMA", desc: "Generates statutory safety and environmental packages ahead of deadlines.", sop: "file:///SOP-QMS-006/statutory-exporter.py", comp: "100% on-time statutory submissions." },
-      N18: { title: "18. Digital ISO Audit Vault", badge: "ISO 9001 Cl. 7.5", desc: "Instant clause-indexed evidence repository for external auditors.", sop: "file:///SOP-QMS-006/digital-vault.sql", comp: "Cuts audit retrieval time from days to seconds." }
+      N7: { title: "7. Manual Contractor Folders", badge: "High Risk Bottleneck", desc: "Paper contractor files risk expired NSSA certificates or blasting licenses.", sop: "file:///SOP-SHE-004/paper-contractors.csv", comp: "Flagged in Heatmap Mode." },
+      N8: { title: "8. Permit-to-Work & Cert Gate", badge: "ISO 45001 Cl. 8.1.4", desc: "Automated verification of medical fitness, blasting tickets, and hot-work permits.", sop: "file:///SOP-SHE-004/permit-gate.sql", comp: "Blocks expired credentials at shift check-in." },
+      N9: { title: "9. Contractor Scorecard Matrix", badge: "ISO 9001 Cl. 8.4", desc: "Ranks haulage contractors, drilling crews, and SME clusters on safety & quality.", sop: "file:///SOP-SHE-004/contractor-scorecard.py", comp: "Feeds monthly commercial SLA reviews." },
+      N10: { title: "10. Effluent & Dust Telemetry", badge: "Environmental & Hygiene", desc: "Monitors effluent pH, respirable dust, occupational noise, and conductivity.", sop: "file:///SOP-ENV-005/ema-telemetry.py", comp: "Aligned with EMA & NSSA statutory limits." },
+      N11: { title: "11. EMA Statutory Threshold Gate", badge: "Statutory Guardrail", desc: "Detects breaches of EMA effluent or NSSA hygiene limits in real time.", sop: "file:///SOP-ENV-005/ema-threshold-gate.py", comp: "Auto-triggers containment CAPA on breach." },
+      N12: { title: "12. Validated EMA Return Pack", badge: "Regulatory Compliance", desc: "Compiles quality-checked environmental tables for quarterly EMA filings.", sop: "file:///SOP-ENV-005/ema-quarterly-export.sql", comp: "Zero transcription errors." },
+      N13: { title: "13. ISO 9001/45001 NCR Intake", badge: "Clause-Indexed Registry", desc: "Logs hazards, machine defects, and audit findings by exact ISO clause.", sop: "file:///SOP-QMS-006/ncr-intake.sql", comp: "ISO 9001 & 45001 Clause 10.2." },
+      N14: { title: "14. Automated CAPA Router", badge: "98.2% Closure Velocity", desc: "Routes corrective actions to accountable owners with SLA escalation.", sop: "file:///SOP-QMS-006/capa-router.py", comp: "Tracks real-time closure percentage." },
+      N15: { title: "15. Root-Cause Effectiveness Gate", badge: "ISO 9001 Cl. 9.2", desc: "Verifies 30-day control effectiveness before closing high-risk CAPAs.", sop: "file:///SOP-QMS-006/effectiveness-gate.sql", comp: "Prevents repeat incidents." },
+      N16: { title: "16. Legacy Paper Binders", badge: "High Risk Bottleneck", desc: "Physical binders cause slow, frantic external audit preparation.", sop: "file:///SOP-QMS-007/paper-binders.txt", comp: "Replaced by Digital ISO Audit Vault." },
+      N17: { title: "17. Statutory Filing Generator", badge: "Ministry / NSSA / EMA", desc: "Generates statutory safety and environmental packages ahead of deadlines.", sop: "file:///SOP-QMS-007/statutory-exporter.py", comp: "100% on-time statutory submissions." },
+      N18: { title: "18. Digital ISO Audit Vault", badge: "ISO 9001 Cl. 7.5", desc: "Instant clause-indexed evidence repository for external auditors.", sop: "file:///SOP-QMS-007/digital-vault.sql", comp: "Cuts audit retrieval time from days to seconds." }
     };
 
     let currentSector = "mining";
     let appState = null;
+    let capaFilter = "all";
 
     function loadState() {
-      const saved = localStorage.getItem("she_qms_app_state_v1");
+      const saved = localStorage.getItem("she_qms_app_state_v2");
       if (saved) {
         try {
           appState = JSON.parse(saved);
@@ -1162,7 +1714,7 @@
     }
 
     function saveState() {
-      localStorage.setItem("she_qms_app_state_v1", JSON.stringify(appState));
+      localStorage.setItem("she_qms_app_state_v2", JSON.stringify(appState));
     }
 
     function renderTrendChart(nearMiss, capaRates) {
@@ -1173,7 +1725,6 @@
       const plotH = h - padT - padB;
 
       let html = "";
-      // Grid lines
       for (let i = 0; i <= 4; i++) {
         const y = padT + (plotH / 4) * i;
         const val = 100 - i * 25;
@@ -1228,6 +1779,16 @@
       const interlocks = profile.preshift.filter((p) => p.status === "INTERLOCK").length;
       const passRate = totalPs > 0 ? (((totalPs - interlocks) / totalPs) * 100).toFixed(1) : "100.0";
 
+      // HIRA barrier metrics
+      const totalHiras = profile.hira ? profile.hira.length : 0;
+      const unmitigatedCriticalHiras = profile.hira ? profile.hira.filter((h) => h.rrisk >= 15).length : 0;
+      const hiraHealthRate = totalHiras > 0 ? (((totalHiras - unmitigatedCriticalHiras) / totalHiras) * 100).toFixed(0) : "100";
+
+      // Inspection metrics
+      const totalInsps = profile.inspections ? profile.inspections.length : 0;
+      const passedInsps = profile.inspections ? profile.inspections.filter((i) => i.status === "PASSED").length : 0;
+      const avgInspScore = totalInsps > 0 ? (profile.inspections.reduce((acc, i) => acc + i.score, 0) / totalInsps).toFixed(1) : "95.4";
+
       const avgContractor = (
         profile.contractors.reduce((acc, c) => acc + c.score, 0) / Math.max(1, profile.contractors.length)
       ).toFixed(1);
@@ -1239,9 +1800,41 @@
       document.getElementById("kpi-capa-rate").textContent = `${computedCapaRate}%`;
       document.getElementById("kpi-open-capas").textContent = `${openCapas} open action(s)`;
       document.getElementById("kpi-preshift-rate").textContent = `${passRate}%`;
-      document.getElementById("kpi-interlocks").textContent = `${interlocks} active equipment interlock(s)`;
+      document.getElementById("kpi-interlocks").textContent = `${interlocks} active fleet interlock(s)`;
       document.getElementById("kpi-contractor-avg").textContent = `${avgContractor}%`;
       document.getElementById("kpi-contractor-sub").textContent = `Across ${profile.contractors.length} active units`;
+
+      // HIRA & Inspection KPIs
+      document.getElementById("kpi-hira-rate").textContent = `${hiraHealthRate}%`;
+      document.getElementById("kpi-hira-sub").textContent = `${unmitigatedCriticalHiras} critical unmitigated risk(s)`;
+      document.getElementById("kpi-hira-rate").style.color = unmitigatedCriticalHiras > 0 ? "var(--red)" : "var(--emerald)";
+
+      document.getElementById("kpi-insp-rate").textContent = `${avgInspScore}%`;
+      document.getElementById("kpi-insp-sub").textContent = `${passedInsps}/${totalInsps} passed audits`;
+
+      // Executive Alert Banner updates dynamically based on HIRA, Interlocks, and EMA status
+      const execBanner = document.getElementById("exec-alert-banner");
+      const execTitle = document.getElementById("exec-alert-title");
+      const execDesc = document.getElementById("exec-alert-desc");
+      const execBadge = document.getElementById("exec-alert-badge");
+
+      if (interlocks > 0 || unmitigatedCriticalHiras > 0) {
+        execBanner.style.background = "rgba(239, 68, 68, 0.16)";
+        execBanner.style.borderColor = "rgba(239, 68, 68, 0.45)";
+        execTitle.textContent = "Operational Dispatch & Critical Risk Warning Active";
+        execTitle.className = "fw-bold text-danger";
+        execDesc.textContent = `${interlocks} machine interlock held and ${unmitigatedCriticalHiras} unmitigated critical hazard in HIRA register. Immediate engineering controls required.`;
+        execBadge.textContent = "INTERLOCK / RISK ESCALATION";
+        execBadge.className = "status-pill badge-red";
+      } else {
+        execBanner.style.background = "rgba(16, 185, 129, 0.14)";
+        execBanner.style.borderColor = "rgba(16, 185, 129, 0.4)";
+        execTitle.textContent = "All Operational Barriers & Statutory Thresholds Cleared";
+        execTitle.className = "fw-bold text-success";
+        execDesc.textContent = "Zero unmitigated critical HIRA hazards, pre-shift fleets verified, and effluent within EMA bounds.";
+        execBadge.textContent = "CONTINUOUS AUDIT READY";
+        execBadge.className = "status-pill badge-emerald";
+      }
 
       // Render Trend Chart
       const updatedCapaSeries = [...profile.capaSeries];
@@ -1260,36 +1853,105 @@
         </div>
       `).join("");
 
-      // Render Live Operational Stream
+      // Render Live Operational Stream (combines HIRA, Inspections, Pre-Shift, and CAPA)
       const streamBody = document.getElementById("live-stream-tbody");
-      const streamRows = [
-        ...profile.preshift.slice(0, 3).map((p) => ({
-          time: p.time,
-          zone: p.asset,
-          cat: "Pre-Shift Check",
-          obs: p.notes,
+      const streamRows = [];
+      if (profile.hira && profile.hira[0]) {
+        streamRows.push({
+          time: "Just Now",
+          source: "HIRA Register",
+          zone: profile.hira[0].zone,
+          obs: `${profile.hira[0].task} (${profile.hira[0].controlType})`,
+          clause: "ISO 45001 Cl. 6.1.2",
+          status: profile.hira[0].rrisk >= 15 ? `<span class="status-pill badge-red">CRITICAL RISK</span>` : `<span class="status-pill badge-emerald">CONTROLLED</span>`
+        });
+      }
+      if (profile.inspections && profile.inspections[0]) {
+        streamRows.push({
+          time: "Shift Audit",
+          source: "Structured Inspection",
+          zone: profile.inspections[0].zone,
+          obs: `${profile.inspections[0].type} - ${profile.inspections[0].notes}`,
+          clause: "ISO 9001 Cl. 9.2",
+          status: profile.inspections[0].status === "PASSED" ? `<span class="status-pill badge-emerald">SCORE ${profile.inspections[0].score}%</span>` : `<span class="status-pill badge-red">AUDIT FAILED</span>`
+        });
+      }
+      if (profile.preshift && profile.preshift[0]) {
+        streamRows.push({
+          time: profile.preshift[0].time,
+          source: "Pre-Shift Check",
+          zone: profile.preshift[0].asset,
+          obs: profile.preshift[0].notes,
           clause: "ISO 45001 Cl. 8.1",
-          status: p.status === "INTERLOCK" ? `<span class="status-pill badge-red">INTERLOCKED</span>` : `<span class="status-pill badge-emerald">CLEARED</span>`
-        })),
-        ...profile.capas.slice(0, 3).map((c) => ({
-          time: c.id,
-          zone: c.zone,
-          cat: "CAPA Registry",
-          obs: c.title,
-          clause: c.clause,
-          status: c.closed ? `<span class="status-pill badge-emerald">CLOSED</span>` : `<span class="status-pill badge-orange">OPEN (${c.severity})</span>`
-        }))
-      ];
+          status: profile.preshift[0].status === "INTERLOCK" ? `<span class="status-pill badge-red">INTERLOCKED</span>` : `<span class="status-pill badge-emerald">CLEARED</span>`
+        });
+      }
+      if (profile.capas && profile.capas[0]) {
+        streamRows.push({
+          time: profile.capas[0].id,
+          source: "CAPA / RCA Stream",
+          zone: profile.capas[0].zone,
+          obs: profile.capas[0].title,
+          clause: profile.capas[0].clause,
+          status: profile.capas[0].closed ? `<span class="status-pill badge-emerald">VERIFIED CLOSED</span>` : `<span class="status-pill badge-orange">OPEN (${profile.capas[0].severity})</span>`
+        });
+      }
+
       streamBody.innerHTML = streamRows.map((r) => `
         <tr>
           <td class="text-muted">${r.time}</td>
+          <td><span class="status-pill badge-sky">${r.source}</span></td>
           <td class="fw-semibold">${r.zone}</td>
-          <td>${r.cat}</td>
           <td>${r.obs}</td>
-          <td><span class="status-pill badge-sky">${r.clause}</span></td>
+          <td><span class="status-pill badge-purple">${r.clause}</span></td>
           <td>${r.status}</td>
         </tr>
       `).join("");
+
+      // Render HIRA Table
+      const hiraBody = document.getElementById("hira-tbody");
+      if (profile.hira) {
+        hiraBody.innerHTML = profile.hira.map((h) => {
+          const initRiskCls = h.irisk >= 15 ? "risk-crit" : (h.irisk >= 10 ? "risk-high" : "risk-med");
+          const resRiskCls = h.rrisk >= 15 ? "risk-crit" : (h.rrisk >= 10 ? "risk-high" : (h.rrisk >= 5 ? "risk-med" : "risk-low"));
+          const statusBadge = h.rrisk >= 15
+            ? `<span class="status-pill badge-red">CRITICAL RISK ALERT</span>`
+            : `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> BARRIER VERIFIED</span>`;
+          return `
+            <tr>
+              <td class="fw-bold text-info">${h.id}</td>
+              <td class="fw-semibold">${h.task}</td>
+              <td>${h.zone}</td>
+              <td><strong>${h.hazard}</strong><div class="small text-muted">${h.consequence}</div></td>
+              <td><span class="matrix-cell ${initRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.irisk}</span></td>
+              <td><span class="status-pill badge-sky">${h.controlType}</span><div class="small text-muted">${h.controls}</div></td>
+              <td><span class="matrix-cell ${resRiskCls} d-inline-block p-1 px-2" style="font-size:0.75rem;">Score ${h.rrisk}</span></td>
+              <td>${statusBadge}</td>
+            </tr>
+          `;
+        }).join("");
+      }
+
+      // Render Inspections Table
+      const inspBody = document.getElementById("insp-tbody");
+      if (profile.inspections) {
+        inspBody.innerHTML = profile.inspections.map((i) => {
+          const gateBadge = i.status === "PASSED"
+            ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> PASSED (${i.score}%)</span>`
+            : `<span class="status-pill badge-red"><i class="fa-solid fa-xmark"></i> FAILED (${i.score}%)</span>`;
+          return `
+            <tr>
+              <td class="fw-bold text-info">${i.id}</td>
+              <td><span class="status-pill badge-purple">${i.type}</span></td>
+              <td class="fw-semibold">${i.zone}</td>
+              <td>${i.inspector}</td>
+              <td class="fw-bold">${i.score}%</td>
+              <td>${i.notes}</td>
+              <td>${gateBadge}</td>
+            </tr>
+          `;
+        }).join("");
+      }
 
       // Render Pre-Shift Table
       const psBody = document.getElementById("preshift-tbody");
@@ -1309,17 +1971,32 @@
         `;
       }).join("");
 
-      // Render CAPA Table
+      // Render CAPA Table with Root Cause Analysis Stepper Button
       const capaBody = document.getElementById("capa-tbody");
-      capaBody.innerHTML = profile.capas.map((c, idx) => {
+      const displayedCapas = capaFilter === "open" ? profile.capas.filter((c) => !c.closed) : profile.capas;
+      document.getElementById("capa-stat-total").textContent = profile.capas.length;
+      document.getElementById("capa-stat-overdue").textContent = profile.capas.filter((c) => !c.closed && c.severity === "HIGH").length;
+      document.getElementById("capa-stat-rca").textContent = profile.capas.filter((c) => !c.closed && !c.rootCause).length;
+      document.getElementById("capa-stat-verified").textContent = profile.capas.filter((c) => c.closed).length;
+
+      capaBody.innerHTML = displayedCapas.map((c, idx) => {
+        const actualIdx = profile.capas.indexOf(c);
         const sevCls = c.severity === "HIGH" ? "badge-red" : (c.severity === "MEDIUM" ? "badge-orange" : "badge-sky");
+        const rcaBadge = c.rcaCat
+          ? `<span class="status-pill badge-purple mb-1">6M: ${c.rcaCat}</span><div class="small text-muted" style="font-size:0.75rem;">Root Cause: ${c.rootCause}</div>`
+          : `<button class="btn-glass py-1 px-2 mb-1" type="button" data-rca-capa="${actualIdx}"><i class="fa-solid fa-magnifying-glass-arrow-right me-1"></i>5-Why RCA</button>`;
+
         const actionHtml = c.closed
-          ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> Verified Closed</span>`
-          : `<button class="btn-glass py-1 px-2" type="button" data-close-capa="${idx}">Verify &amp; Close</button>`;
+          ? `<span class="status-pill badge-emerald"><i class="fa-solid fa-check"></i> 30d Verified Closed</span>`
+          : `<button class="btn-glass py-1 px-2" type="button" data-close-capa="${actualIdx}"><i class="fa-solid fa-check me-1"></i>Verify 30d &amp; Close</button>`;
+
         return `
           <tr>
             <td class="fw-bold text-info">${c.id}</td>
-            <td>${c.title}</td>
+            <td>
+              <div class="fw-semibold">${c.title}</div>
+              ${rcaBadge}
+            </td>
             <td>${c.zone}</td>
             <td><span class="status-pill badge-sky">${c.clause}</span></td>
             <td><span class="status-pill ${sevCls}">${c.severity}</span></td>
@@ -1329,7 +2006,7 @@
         `;
       }).join("");
 
-      // Render Contractors Table
+      // Render Contractors Table (4 Weighted Pillars)
       const conBody = document.getElementById("contractors-tbody");
       conBody.innerHTML = profile.contractors.map((c) => {
         const gateHtml = c.gate === "APPROVED"
@@ -1339,10 +2016,11 @@
           <tr>
             <td class="fw-bold">${c.name}</td>
             <td>${c.scope}</td>
-            <td>${c.certs}</td>
-            <td>${c.preshift}</td>
-            <td>${c.ncrs}</td>
-            <td class="fw-bold text-info">${c.score}%</td>
+            <td><span class="status-pill badge-sky">${c.certScore}%</span></td>
+            <td><span class="status-pill badge-emerald">${c.preshiftScore}%</span></td>
+            <td><span class="status-pill badge-purple">${c.incidentScore}%</span></td>
+            <td><span class="status-pill badge-sky">${c.pjoScore}%</span></td>
+            <td class="fw-bold text-info fs-6">${c.score}%</td>
             <td>${gateHtml}</td>
           </tr>
         `;
@@ -1364,10 +2042,10 @@
       document.getElementById("val-cond").textContent = `${cond} µS/cm`;
 
       const rows = [
-        { name: "Effluent / Discharge pH", val: `${ph.toFixed(1)} pH`, limit: "6.0 - 9.0 pH", auth: "EMA Statutory Instrument", breach: ph < 6.0 || ph > 9.0 },
-        { name: "Respirable Silica / Particulate Dust", val: `${dust.toFixed(2)} mg/m³`, limit: "2.00 mg/m³", auth: "NSSA & EMA Air Quality", breach: dust > 2.0 },
-        { name: "Occupational Shift Noise Peak", val: `${noise} dBA`, limit: "85 dBA (8h TWA)", auth: "NSSA Factories & Works", breach: noise > 85 },
-        { name: "Tailings / Trade Effluent Conductivity", val: `${cond} µS/cm`, limit: "1000 µS/cm", auth: "EMA Water Pollution Control", breach: cond > 1000 }
+        { name: "Effluent / Discharge pH", val: `${ph.toFixed(1)} pH`, limit: "6.0 - 9.0 pH", auth: "EMA SI 268 of 2007", breach: ph < 6.0 || ph > 9.0 },
+        { name: "Respirable Silica / Particulate Dust", val: `${dust.toFixed(2)} mg/m³`, limit: "2.00 mg/m³ (Quartz Ceiling)", auth: "EMA SI 72 of 2009 & NSSA", breach: dust > 2.0 },
+        { name: "Occupational Shift Noise Peak", val: `${noise} dBA`, limit: "85 dBA (8h TWA Ceiling)", auth: "NSSA Factories & Works Act", breach: noise > 85 },
+        { name: "Tailings / Trade Effluent Conductivity", val: `${cond} µS/cm`, limit: "1000 µS/cm", auth: "EMA Water Pollution Control Regs", breach: cond > 1000 }
       ];
 
       const breaches = rows.filter((r) => r.breach);
@@ -1377,7 +2055,7 @@
           <td class="fw-semibold">${r.name}</td>
           <td class="fw-bold">${r.val}</td>
           <td class="text-muted">${r.limit}</td>
-          <td>${r.auth}</td>
+          <td><span class="status-pill badge-sky">${r.auth}</span></td>
           <td>${r.breach ? `<span class="status-pill badge-red">STATUTORY BREACH</span>` : `<span class="status-pill badge-emerald">WITHIN LIMIT</span>`}</td>
         </tr>
       `).join("");
@@ -1409,7 +2087,10 @@
               clause: "EMA Statutory Limit",
               severity: "HIGH",
               owner: "Environmental & SHE Lead",
-              closed: false
+              closed: false,
+              rcaCat: "Measurement",
+              rootCause: "Statutory threshold exceeded in live telemetry stream",
+              barrier: "Activate emergency containment pumps and notify EMA per SI 268/2007"
             });
             saveState();
             renderAll();
@@ -1421,7 +2102,7 @@
         alertBox.style.borderColor = "rgba(16, 185, 129, 0.4)";
         alertBox.innerHTML = `
           <div class="fw-bold small text-success"><i class="fa-solid fa-circle-check me-1"></i>All EMA &amp; NSSA Hygiene Parameters Compliant</div>
-          <div class="small text-muted mt-1">All telemetry channels are within statutory thresholds.</div>
+          <div class="small text-muted mt-1">All telemetry channels are within statutory thresholds under SI 268/2007 &amp; SI 72/2009.</div>
         `;
         kpiEma.textContent = "100%";
         kpiEma.style.color = "var(--emerald)";
@@ -1454,6 +2135,7 @@
       document.querySelectorAll(".module-pane").forEach((p) => {
         p.classList.toggle("active", p.id === `pane-${modName}`);
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -1479,6 +2161,109 @@
         });
       });
 
+      // HIRA Form Submission (Feeds Executive Command & Seeds CAPA on Critical)
+      document.getElementById("hira-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const task = document.getElementById("hira-task").value.trim();
+        const zone = document.getElementById("hira-zone").value.trim();
+        const hazard = document.getElementById("hira-hazard").value.trim();
+        const consequence = document.getElementById("hira-consequence").value.trim();
+        const isev = parseInt(document.getElementById("hira-isev").value, 10);
+        const ilike = parseInt(document.getElementById("hira-ilike").value, 10);
+        const irisk = isev * ilike;
+        const controlType = document.getElementById("hira-control-type").value;
+        const controls = document.getElementById("hira-controls").value.trim();
+        const rsev = parseInt(document.getElementById("hira-rsev").value, 10);
+        const rlike = parseInt(document.getElementById("hira-rlike").value, 10);
+        const rrisk = rsev * rlike;
+
+        const profile = appState[currentSector];
+        if (!profile.hira) profile.hira = [];
+        const hiraId = `HIRA-${Math.floor(100 + Math.random() * 899)}`;
+        profile.hira.unshift({
+          id: hiraId,
+          task,
+          zone,
+          hazard,
+          consequence,
+          isev,
+          ilike,
+          irisk,
+          controlType,
+          controls,
+          rsev,
+          rlike,
+          rrisk,
+          status: rrisk >= 15 ? "CRITICAL RISK ALERT" : "CONTROLLED"
+        });
+
+        // Auto-seed a CAPA if residual risk is high or critical
+        if (rrisk >= 12) {
+          profile.capas.unshift({
+            id: `CAPA-${Math.floor(500 + Math.random() * 499)}`,
+            title: `Implement HIRA barrier for: ${task} (${hazard})`,
+            zone,
+            clause: "ISO 45001 Cl. 6.1.2",
+            severity: "HIGH",
+            owner: "Safety & Operations Superintendent",
+            closed: false,
+            rcaCat: "Method",
+            rootCause: "High residual risk task requiring mandatory engineered barrier verification",
+            barrier: controls
+          });
+        }
+
+        saveState();
+        renderAll();
+        e.target.reset();
+      });
+
+      // Planned Inspections Form Submission (Feeds Executive Command & Seeds CAPA on Failure)
+      document.getElementById("insp-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const type = document.getElementById("insp-type").value;
+        const zone = document.getElementById("insp-zone").value.trim();
+        const inspector = document.getElementById("insp-inspector").value.trim();
+        const score = parseInt(document.getElementById("insp-score").value, 10);
+        const defects = document.getElementById("insp-defects").value;
+        const notes = document.getElementById("insp-notes").value.trim();
+
+        const profile = appState[currentSector];
+        if (!profile.inspections) profile.inspections = [];
+        const inspId = `INSP-${Math.floor(200 + Math.random() * 799)}`;
+        const status = defects === "CRITICAL" || score < 80 ? "FAILED" : "PASSED";
+
+        profile.inspections.unshift({
+          id: inspId,
+          type,
+          zone,
+          inspector,
+          score,
+          defects,
+          notes,
+          status
+        });
+
+        if (status === "FAILED") {
+          profile.capas.unshift({
+            id: `NCR-${Math.floor(300 + Math.random() * 699)}`,
+            title: `Inspection Non-Conformance at ${zone}: ${notes}`,
+            zone,
+            clause: "ISO 9001 Cl. 9.2",
+            severity: "HIGH",
+            owner: inspector,
+            closed: false,
+            rcaCat: "Machine",
+            rootCause: `Critical inspection failure recorded during ${type}`,
+            barrier: "Complete immediate corrective maintenance and re-audit within 48h"
+          });
+        }
+
+        saveState();
+        renderAll();
+        e.target.reset();
+      });
+
       // Pre-Shift Form Submission
       document.getElementById("preshift-form").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -1501,7 +2286,10 @@
             clause: "ISO 45001 Cl. 8.1",
             severity: "HIGH",
             owner: "Duty Engineering Lead",
-            closed: false
+            closed: false,
+            rcaCat: "Machine",
+            rootCause: `Critical fault detected on ${asset} during pre-shift check`,
+            barrier: "Lockout tagout enforced until mechanical repairs certified"
           });
         }
         saveState();
@@ -1534,49 +2322,120 @@
         e.target.reset();
       });
 
-      // Close CAPA Handler
+      // CAPA Filters
+      document.getElementById("capa-filter-all").addEventListener("click", () => {
+        capaFilter = "all";
+        document.getElementById("capa-filter-all").classList.add("active");
+        document.getElementById("capa-filter-open").classList.remove("active");
+        renderAll();
+      });
+      document.getElementById("capa-filter-open").addEventListener("click", () => {
+        capaFilter = "open";
+        document.getElementById("capa-filter-open").classList.add("active");
+        document.getElementById("capa-filter-all").classList.remove("active");
+        renderAll();
+      });
+
+      // 5-Why Root Cause Analysis (RCA) Modal Trigger & Submission
+      const rcaModal = document.getElementById("rcaModal");
       document.getElementById("capa-tbody").addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-close-capa]");
-        if (!btn) return;
-        const idx = parseInt(btn.dataset.closeCapa, 10);
-        const profile = appState[currentSector];
-        if (profile.capas[idx]) {
-          profile.capas[idx].closed = true;
-          saveState();
-          renderAll();
+        const rcaBtn = e.target.closest("[data-rca-capa]");
+        if (rcaBtn) {
+          const idx = parseInt(rcaBtn.dataset.rcaCapa, 10);
+          const profile = appState[currentSector];
+          const c = profile.capas[idx];
+          if (!c) return;
+          document.getElementById("rca-capa-idx").value = String(idx);
+          document.getElementById("rca-capa-title").value = `${c.id}: ${c.title}`;
+          document.getElementById("rca-w1").value = c.fiveWhys ? c.fiveWhys[0] || "" : `Direct defect observed in ${c.zone}`;
+          document.getElementById("rca-w2").value = c.fiveWhys ? c.fiveWhys[1] || "" : "Operational stress or lack of early detection";
+          document.getElementById("rca-w3").value = c.fiveWhys ? c.fiveWhys[2] || "" : "Inspection interval was insufficient";
+          document.getElementById("rca-w4").value = c.fiveWhys ? c.fiveWhys[3] || "" : "Standard operating procedure lacked specific tolerance metric";
+          document.getElementById("rca-w5").value = c.rootCause || "Systemic maintenance schedule gap";
+          document.getElementById("rca-barrier").value = c.barrier || "Update PM schedule and fit engineered guard";
+          rcaModal.classList.add("open");
+          return;
+        }
+
+        const closeBtn = e.target.closest("[data-close-capa]");
+        if (closeBtn) {
+          const idx = parseInt(closeBtn.dataset.closeCapa, 10);
+          const profile = appState[currentSector];
+          if (profile.capas[idx]) {
+            profile.capas[idx].closed = true;
+            saveState();
+            renderAll();
+          }
         }
       });
 
-      // EMA Sliders
+      document.getElementById("rca-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const idx = parseInt(document.getElementById("rca-capa-idx").value, 10);
+        const profile = appState[currentSector];
+        const c = profile.capas[idx];
+        if (c) {
+          c.rcaCat = document.getElementById("rca-category").value;
+          c.fiveWhys = [
+            document.getElementById("rca-w1").value.trim(),
+            document.getElementById("rca-w2").value.trim(),
+            document.getElementById("rca-w3").value.trim(),
+            document.getElementById("rca-w4").value.trim(),
+            document.getElementById("rca-w5").value.trim()
+          ];
+          c.rootCause = document.getElementById("rca-w5").value.trim();
+          c.barrier = document.getElementById("rca-barrier").value.trim();
+          saveState();
+          renderAll();
+        }
+        rcaModal.classList.remove("open");
+      });
+
+      const closeRca = () => rcaModal.classList.remove("open");
+      document.getElementById("rca-modal-close").addEventListener("click", closeRca);
+      document.getElementById("rca-cancel").addEventListener("click", closeRca);
+
+      // Contractor Derivation Modal Triggers
+      const conMethodModal = document.getElementById("contractorMethodModal");
+      document.getElementById("open-contractor-method-btn").addEventListener("click", () => conMethodModal.classList.add("open"));
+      document.getElementById("contractor-method-close").addEventListener("click", () => conMethodModal.classList.remove("open"));
+      document.getElementById("contractor-method-ok").addEventListener("click", () => conMethodModal.classList.remove("open"));
+
+      // EMA Statutory Authorities Modal Triggers
+      const emaAuthModal = document.getElementById("emaAuthorityModal");
+      document.getElementById("open-ema-authority-btn").addEventListener("click", () => emaAuthModal.classList.add("open"));
+      document.getElementById("ema-auth-close").addEventListener("click", () => emaAuthModal.classList.remove("open"));
+      document.getElementById("ema-auth-ok").addEventListener("click", () => emaAuthModal.classList.remove("open"));
+
+      // Sliders & Vault Search
       ["slider-ph", "slider-dust", "slider-noise", "slider-cond"].forEach((id) => {
         document.getElementById(id).addEventListener("input", evaluateEmaSliders);
       });
+      document.getElementById("vault-search").addEventListener("input", (e) => renderVault(e.target.value));
 
-      // Vault Search
-      document.getElementById("vault-search").addEventListener("input", (e) => {
-        renderVault(e.target.value);
-      });
-
-      // Export Audit CSV
+      // Export Audit CSV (Includes HIRA, Inspections, Pre-Shift, and CAPA)
       document.getElementById("export-csv-btn").addEventListener("click", () => {
         const profile = appState[currentSector];
         const rows = [
-          ["Record_Type", "ID_or_Time", "Zone_or_Asset", "Title_or_Notes", "Clause_or_Operator", "Severity_or_Status", "Closed_or_Gate"],
+          ["Record_Type", "ID_or_Time", "Zone_or_Asset", "Title_or_Task", "Clause_or_Operator", "Score_Severity_Risk", "Status_or_Barrier"],
+          ...(profile.hira || []).map((h) => ["HIRA", h.id, h.zone, h.task, "ISO 45001 Cl. 6.1.2", `Init:${h.irisk}/Res:${h.rrisk}`, h.status]),
+          ...(profile.inspections || []).map((i) => ["INSPECTION", i.id, i.zone, i.type, i.inspector, `${i.score}%`, i.status]),
           ...profile.preshift.map((p) => ["PRE_SHIFT", p.time, p.asset, p.notes, p.operator, p.status, p.shift]),
-          ...profile.capas.map((c) => ["CAPA", c.id, c.zone, c.title, c.clause, c.severity, c.closed ? "CLOSED" : "OPEN"])
+          ...profile.capas.map((c) => ["CAPA", c.id, c.zone, c.title, c.clause, c.severity, c.closed ? "30D_VERIFIED_CLOSED" : "OPEN"])
         ];
-        const csvContent = "data:text/csv;charset=utf-8," + rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+        const csvContent = "data:text/csv;charset=utf-8," + rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("
+");
         const link = document.createElement("a");
         link.setAttribute("href", encodeURI(csvContent));
-        link.setAttribute("download", `SHE_Audit_Pack_${currentSector}_2026.csv`);
+        link.setAttribute("download", `SHE_QMS_Audit_Pack_${currentSector}_2026.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       });
 
-      // Reset Seeded Data
+      // Reset Demo Data
       document.getElementById("reset-demo-btn").addEventListener("click", () => {
-        localStorage.removeItem("she_qms_app_state_v1");
+        localStorage.removeItem("she_qms_app_state_v2");
         loadState();
         renderAll();
       });
